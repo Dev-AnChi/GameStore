@@ -1,0 +1,220 @@
+<div class="container d-flex justify-content-center" style="padding-top: 20px;">
+    <figure class="card card-product-grid card-lg"> 
+          <div class="img-wrap"> 
+            <!-- image slide show -->
+            <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+                <div class="carousel-indicators" >
+                  <button style="color: darkgray;" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
+                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button style="color: darkgray;" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
+                      aria-label="Slide 2"></button>
+                  <button style="color: darkgray;" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
+                      aria-label="Slide 3"></button>
+                </div>
+                
+                <div class="carousel-inner" >
+                    <div class="carousel-item active">
+                      <img [src]=img1 class="img-thumbnail rounded" style="height:300px; background-color: gainsboro;"/>
+                    </div>
+                    <div class="carousel-item ">
+                        <img [src]=img2 class="img-thumbnail" style="height:300px; background-color: gainsboro;"/>
+                    </div>
+                    <div class="carousel-item ">
+                      <img [src]=img3 class="img-thumbnail" style="height:300px; background-color: gainsboro;"/>
+                  </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"
+                data-mdb-slide="prev">
+                <span style="color: gray;" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators"
+                data-mdb-slide="next">
+                <span style="color: gray;" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>    
+          </div>
+        <div class="bottom-wrap" > <a class="btn btn-primary pull-right" data-abc="true" style="background-color: white; border: solid 1px black;" (click)="clickDowload()">
+          <span *ngIf=!isGameDaTai style="color: green;">Cài đặt </span> <span *ngIf=isGameDaTai style="color: red;">Gỡ cài đặt</span></a>
+            <div class="price-wrap" *ngIf="!isYeuThich"> 
+                <a class="btn btn-warning float-left like-game" data-abc="true" style="border: solid 1px green;" (click)="clickLike()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart" viewBox="0 0 16 16" >
+                    <path d="m8 6.236-.894-1.789c-.222-.443-.607-1.08-1.152-1.595C5.418 2.345 4.776 2 4 2 2.324 2 1 3.326 1 4.92c0 1.211.554 2.066 1.868 3.37.337.334.721.695 1.146 1.093C5.122 10.423 6.5 11.717 8 13.447c1.5-1.73 2.878-3.024 3.986-4.064.425-.398.81-.76 1.146-1.093C14.446 6.986 15 6.131 15 4.92 15 3.326 13.676 2 12 2c-.777 0-1.418.345-1.954.852-.545.515-.93 1.152-1.152 1.595L8 6.236zm.392 8.292a.513.513 0 0 1-.784 0c-1.601-1.902-3.05-3.262-4.243-4.381C1.3 8.208 0 6.989 0 4.92 0 2.755 1.79 1 4 1c1.6 0 2.719 1.05 3.404 2.008.26.365.458.716.596.992a7.55 7.55 0 0 1 .596-.992C9.281 2.049 10.4 1 12 1c2.21 0 4 1.755 4 3.92 0 2.069-1.3 3.288-3.365 5.227-1.193 1.12-2.642 2.48-4.243 4.38z"/>
+                </svg>
+                  Yêu thích
+                </a> 
+            </div>
+            <div class="price-wrap" *ngIf="isYeuThich"> 
+              <a class="btn btn-warning float-left like-game" data-abc="true" style="border: solid 1px red; color: red;" (click)="clickLike()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16" style="color: red;">
+                  <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+                </svg>
+                Yêu thích
+              </a> 
+          </div>
+        </div>
+
+        <div class="bottom-wrap">
+            <div class="row">
+                <div class="col-md-9 col-xs-9"> <div class="title" style="font-weight: bold;">{{dataGame[0].Ten_Game}}</div> 
+                  <span class="rated" style="color: black;">{{dataGame[0].Ten_NhaSanXuat}}</span> 
+                </div>
+                <div class="col-md-3 col-xs-3">
+                    <div class="rating pull-right" > 
+                      <span *ngFor="let in of counter(dataGame[0].DanhGiaTB) ;let i = index"><i class="fa fa-star" ></i></span>
+                      <span *ngFor="let in of counter(5-dataGame[0].DanhGiaTB) ;let i = index"><i class="fa fa-star" style="color: gray;"></i></span><br/>
+                        <span class="rated">Rated {{dataGame[0].DanhGiaTB.toFixed(1)}}/5</span> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-wrap-tmp">
+          <figcaption class="info-wrap">
+              <div class="row">
+                <div class="col-md-9 col-xs-9"> 
+                  <div class="title">Thể loại: 
+                    <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px;" 
+                     *ngFor="let theloai of dataTheLoai">{{theloai.TenTheLoai}}</button></div> 
+                <span class="rated" ></span> 
+              </div>
+                  <div class="col-md-3 col-xs-3">
+                      <span class="title pull-right"></span> <br>
+                      <span class="rated pull-right"></span>
+                  </div>
+              </div>
+          </figcaption>
+        </div>
+
+        <div class="bottom-wrap-tmp">
+            <figcaption class="info-wrap">
+                <div class="row">
+                  <div class="col-md-9 col-xs-9"> <div class="title">Giá : {{dataGame[0].Gia}}</div> 
+                  <span class="rated">{{dataGame[0].LuotTaiXuong}} lượt tải xuống</span> 
+                </div>
+                    <div class="col-md-3 col-xs-3">
+                        <span class="title pull-right">Phiên bản : {{dataGame[0].PhienBan}}</span> <br>
+                        <span class="rated pull-right">{{dataGame[0].NgayCapNhat}}</span>
+                    </div>
+                </div>
+            </figcaption>
+        </div>
+
+        <div class="bottom-wrap-tmp">
+          <figcaption class="info-wrap">
+              <div class="row">
+                <div class="col-md-9 col-xs-9"> <div class="title">Cấu hình : {{dataGame[0].YC_CauHinh}}</div> 
+                <span class="rated">Không phù hợp cho trẻ dưới {{dataGame[0].GioiHan_Tuoi}} tuổi</span> 
+              </div>
+                  <div class="col-md-3 col-xs-3">
+                      <span class="title pull-right">Phát hành vào</span> <br>
+                      <span class="rated pull-right">{{dataGame[0].NgayTao}}</span>
+                  </div>
+              </div>
+          </figcaption>
+      </div>
+      
+        
+
+        <div class="bottom-wrap">
+            <span class="title badge badge-primary badge-pill" id="btnMota" data-mdb-toggle="collapse" data-mdb-target="#motachitiet"> 
+              Mô tả <span class="small" style="color: gray;">(Bấm để xem chi tiết)</span></span>   
+            <span class="collapse" id="motachitiet">
+              {{dataGame[0].MoTaChiTiet}}
+            </span>
+        </div>
+
+
+        <!-- comment -->
+        <!--  -->
+        <div class="row d-flex justify-content-center bottom-wrap" *ngIf="User[0].ID_NguoiDung!='error'">
+              <div class="d-flex flex-start w-100">
+                <img class="rounded-circle shadow-1-strong me-3"
+                  [src]=imageUrl+User[0].AnhDaiDien alt="avatar" width="65"
+                  height="65" />
+                <div class="w-100">
+                  <h5>{{User[0].NickName}}</h5>
+                  <div class="rating-wrapper rating md-3">
+                    <!-- star 5 -->
+                    <input type="radio" id="5-star-rating" name="star-rating" value="5" (click)="clickDanhGia(5)">
+                    <label for="5-star-rating" class="star-rating" title="Excellent">
+                      <i class="fas fa-star d-inline-block"></i>
+                    </label>
+                    <!-- star 4 -->
+                    <input type="radio" id="4-star-rating" name="star-rating" value="4" (click)="clickDanhGia(4)">
+                    <label for="4-star-rating" class="star-rating star" title="Good">
+                      <i class="fas fa-star d-inline-block"></i>
+                    </label>
+                    <!-- star 3 -->
+                    <input type="radio" id="3-star-rating" name="star-rating" value="3" (click)="clickDanhGia(3)">
+                    <label for="3-star-rating" class="star-rating star" title="OK">
+                      <i class="fas fa-star d-inline-block"></i>
+                    </label>
+                    <!-- star 2 -->
+                    <input type="radio" id="2-star-rating" name="star-rating" value="2" (click)="clickDanhGia(2)">
+                    <label for="2-star-rating" class="star-rating star" title="Poor">
+                      <i class="fas fa-star d-inline-block"></i>
+                    </label>
+                    <!-- star 1 -->
+                    <input type="radio" id="1-star-rating" name="star-rating" value="1" (click)="clickDanhGia(1)">
+                    <label for="1-star-rating" class="star-rating star" title="Bad">
+                      <i class="fas fa-star d-inline-block"></i>
+                    </label>
+                  </div>
+
+                  <div class="form-floating">
+                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="What is your view?" [(ngModel)]="NoiDungBL"></textarea>
+                    <label for="textAreaExample">What is your view?</label>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-3 pull-right">
+                    <!-- bl -->
+                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" (click)="clickBinhLuan()">
+                      Bình luận
+                    </button>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <!-- comment all -->
+              <div class="row d-flex justify-content-center" style="padding-top: 10px;">
+                  <div class="d-flex flex-start mb-4" *ngFor="let in of counter(listBinhLuan.length) ;let i = index">
+                    <img class="rounded-circle shadow-1-strong me-3"
+                      [src]=imageUrl+listDetailNguoiDung[i][0].AnhDaiDien alt="avatar" width="65"
+                      height="65"/>
+                    <div class="card w-100">
+                      <div class="card-body p-4">
+                        <div class="">
+                          <h5>{{listDetailNguoiDung[i][0].NickName}}</h5>
+                            <p class="small">
+                              {{listBinhLuan[i].NgayBinhLuan}}
+                            </p>
+                            <div class="rating" > 
+                              <span *ngFor="let in of counter(listBinhLuan[i].DanhGia) ;let j = index"><i class="fa fa-star" ></i></span>
+                              <span *ngFor="let in of counter(5-listBinhLuan[i].DanhGia) ;let j = index"><i class="fa fa-star" style="color: gray;"></i></span><br/>
+                              </div>
+                            <p>
+                            {{listBinhLuan[i].NoiDungBL}}
+                            </p>
+          
+                          <div class="d-flex justify-content-between align-items-center" *ngIf="User[0].ID_NhomChucNang=='NCN1'">
+                            <div class="d-flex align-items-center">
+                            </div>
+                            <a class="link-muted">
+                              <button class="btn" style="border: solid 1px red;" (click)="deleteBinhLuan(listBinhLuan[i].ID_BinhLuan)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16" style="color: red;">
+                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                </svg>
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+    </figure>
+</div>
+

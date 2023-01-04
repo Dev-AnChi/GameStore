@@ -1,0 +1,68 @@
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: white;
+    color: #508bfc;;   
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+} 
+
+.header{
+  background-color: rgb(228, 244, 247);
+  color: #508bfc; 
+//  border-bottom: solid 1px blue;
+}
+
+// .form-control{
+//   border-bottom: solid 1px gray;
+// }
+// .form-control:focus{
+//   border-bottom: solid 1px blue;
+// }
+
+
+.navbar{
+  background-color: none;
+//  border-bottom: solid 4px rgb(3, 71, 3);
+}
+
+.nav-item a{
+  font-size: medium;
+  color: black;
+}
+.nav-item a:hover{
+  font-size: larger;
+  font-weight: bold;
+  color: #508bfc;
+  border-bottom: solid 4px #508bfc ;
+}
+.nav-item a:focus{
+  font-weight: bold;
+  color: #508bfc;
+  border-bottom: solid 4px #508bfc ;
+}
+
+.badge:hover{
+  font-size: 15px;
+}
+
+
+
+@media (min-width: 800px) {  }
+
+li{
+  color: #1462f3;
+}
+li:hover{
+  color: blue;
+}
+
+a:hover{
+  color: blue;
+}

@@ -1,0 +1,103 @@
+.wrapper{
+    margin-top: 20px;
+    width: 95%;
+    background-color: #d1dff9;
+}
+
+.card{
+    border:1px solid #eee;
+    cursor: pointer;
+}
+
+
+.weight{
+    margin-top: -65px; 
+    transition: all 0.5s;  
+}
+
+.weight small{
+    color: #a9a7a7;
+}
+.fa-star{
+    color: orange;
+}
+
+.buttons {
+    padding: 10px;
+    background-color: #d8d4d4;
+    border-radius: 4px;
+    position: relative;
+    margin-top: 7px;
+    opacity: 0;
+    transition: all 0.8s;
+}
+
+.cart-button {
+    height: 48px
+}
+
+.cart {
+    position: relative;
+    height: 48px !important;
+    width: 50px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 11px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 1s ease-in-out;
+    overflow: hidden;
+
+}
+
+@keyframes item {
+    0% {
+        opacity: 1;
+        top: 30%;
+        left: 30%
+    }
+
+    25% {
+        opacity: 1;
+        left: 26%;
+        top: 0%
+    }
+
+    50% {
+        opacity: 1;
+        left: 23%;
+        top: -22%
+    }
+
+    75% {
+        opacity: 1;
+        left: 19%;
+        top: -18%
+    }
+
+    100% {
+        opacity: 1;
+        left: 14%;
+        top: 28%
+    }
+}
+
+
+
+.hoverG:hover .buttons{
+    opacity: 1;
+}
+
+
+.hoverG:hover .weight{
+     margin-top: 10px;
+}
+
+.hoverG:hover{
+    transform: scale(1.04);
+    z-index: 2;
+    overflow: hidden;
+}   

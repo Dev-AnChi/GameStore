@@ -1,0 +1,57 @@
+<div class="wrapper card mx-4 mx-md-5 shadow-5-strong" >
+    <div class="container card-body py-5 px-md-5 ">
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light d-flex">
+              <tr>
+                <th>Tên thể loại</th>
+              </tr>
+              <tr>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="d-flex" *ngFor="let item of TheLoai">
+                <tr>
+                  <td>
+                    <div class="form-floating">
+                      <input type="text" id="theloai" class="form-control" [value]="item.TenTheLoai" placeholder="Tên thể loại" [(ngModel)]="item.TenTheLoai" [ngModelOptions]="{standalone: true}"/>
+                      <label for="theloai">Tên thể loại</label>
+                    </div>
+                  </td>
+                  <td >
+                        <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: red;" (click)="deleteTheLoai(item)">
+                          Xóa
+                        </button>
+                          <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: blue;" (click)="clickEditTheLoai(item.ID_Loai, item.TenTheLoai)">
+                            Sửa
+                        </button>
+                  </td>
+                </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>
+                  <button class="btn" style="background-color: blue; color: white;" data-mdb-toggle="collapse" data-mdb-target="#add">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                      <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg> Thêm mới
+                  </button>
+                </td>
+              </tr>
+              <tr class="collapse" id="add">
+                <td>
+                  <div class="form-floating">
+                    <input type="text" id="theloai" class="form-control" placeholder="Tên thể loại" [(ngModel)]="TenTheLoai" [ngModelOptions]="{standalone: true}"/>
+                    <label for="theloai">Tên thể loại</label>
+                  </div>
+                </td>
+                <td >
+                  <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: white; background-color: blue;" (click)="addTheLoai()">
+                    Thêm
+                  </button>
+            </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

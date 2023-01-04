@@ -1,0 +1,64 @@
+<section class="text-center" style="padding-top: 20px;">
+    <div class="card mx-4 mx-md-5 shadow-5-strong">
+      <div class="card-body py-5 px-md-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <form>  
+            <div class="form-outline mb-4 ">
+                <label class="form-label pull-left" for="customFile">Ảnh minh họa 1</label>
+                <img [src]=imageUrl+img1 alt=""  class="img-thumbnail rounded" style="height:300px; background-color: gainsboro;"/>
+                <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto1($event)"/>
+                <div class="row d-flex flex-row" style="padding-top: 15px;">
+                    <span class="text-center">
+                    <button type="submit" class="btn btn-primary mb-4 col-5" style="background-color: red;" (click)="deleteImage1()">
+                        Xóa
+                    </button>
+                    <button type="submit" class="btn btn-primary  mb-4 col-5" (click)="editImages1()">
+                        Xác nhận
+                    </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-outline mb-4 ">
+                <label class="form-label pull-left" for="customFile">Ảnh minh họa 2</label>
+                <img [src]=imageUrl+img2 alt=""  class="img-thumbnail rounded" style="height:300px; background-color: gainsboro;"/>
+                <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto2($event)"/>
+                <div class="row" style="padding-top: 15px;">
+                    <span class="text-center">
+                    <button type="submit" class="btn btn-primary mb-4 col-5" style="background-color: red;" (click)="deleteImage2()">
+                        Xóa
+                    </button>
+                    <button type="submit" class="btn btn-primary  mb-4 col-5" (click)="editImages2()">
+                        Xác nhận
+                    </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-outline mb-4 ">
+                <label class="form-label pull-left" for="customFile">Ảnh minh họa 3</label>
+                <img [src]=imageUrl+img3 alt=""  class="img-thumbnail rounded" style="height:300px; background-color: gainsboro;"/>
+                <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto3($event)"/>
+                <div class="row" style="padding-top: 15px;">
+                    <span class="text-center">
+                    <button type="submit" class="btn btn-primary mb-4 col-5" style="background-color: red;" (click)="deleteImage3()">
+                        Xóa
+                    </button>
+                    <button type="submit" class="btn btn-primary  mb-4 col-5" (click)="editImages3()">
+                        Xác nhận
+                    </button>
+                    </span>
+                </div>
+            </div>
+
+            <a [routerLink]="['/edit-game/edit-theloai/', ID_Game]" routerLinkActive="router-link-active">
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Next
+                </button>
+            </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  

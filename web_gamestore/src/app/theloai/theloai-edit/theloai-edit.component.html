@@ -1,0 +1,22 @@
+<section class="text-center" style="padding-top: 20px;">
+    <div class="card mx-4 mx-md-5 shadow-5-strong">
+      <div class="card-body py-5 px-md-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <form>  
+                <div class="form-floating mb-4">
+                    <input type="text" id="theloai" class="form-control" [value]="TenTheLoai" placeholder="Tên thể loại" [(ngModel)]="TenTheLoai" [ngModelOptions]="{standalone: true}"/>
+                    <label for="theloai">Tên thể loại</label>
+                </div>
+
+                <a [routerLink]="['/theloai']" routerLinkActive="router-link-active" >
+                    <button type="submit" class="btn btn-primary btn-block mb-4" (click)="clickEditTheLoai()">
+                        Sửa
+                    </button>
+                </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

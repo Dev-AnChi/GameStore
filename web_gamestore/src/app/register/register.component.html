@@ -1,0 +1,93 @@
+<section class="text-center" style="padding-top: 20px;">
+    <div class="card mx-4 mx-md-5 shadow-5-strong">
+      <div class="card-body py-5 px-md-5">
+
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Đăng kí tài khoản</h2>
+            <form>  
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="form-floating mb-4">
+                <input type="text" id="name" class="form-control" placeholder="Họ và tên" [(ngModel)]=TenNguoiDung [ngModelOptions]="{standalone: true}"/>
+                <label for="name">Họ và tên</label>
+              </div>
+              <!-- Username input -->
+              <div class="form-floating mb-4">
+                <input type="text" id="nickname" class="form-control" placeholder="NickName" [(ngModel)]="NickName"  [ngModelOptions]="{standalone: true}"/>
+                <label for="nickname">NickName</label>
+              </div>
+
+              <!-- Username input -->
+              <div class="form-floating mb-4">
+                <input type="text" id="username" class="form-control" placeholder="Tài khoản" [(ngModel)]="UserName_ND" [ngModelOptions]="{standalone: true}"/>
+                <label for="username">Tài khoản</label>
+              </div>
+  
+              <!-- Password input -->
+              <div class="form-floating mb-4">
+                <input type="password" id="password" class="form-control" placeholder="Mật khẩu" [(ngModel)]="Password_ND"  [ngModelOptions]="{standalone: true}"/>
+                <label for="password">Mật khẩu</label>
+              </div>
+  
+              <div class="form-floating mb-2 d-flex">
+                <div class="form-check form-check-inline" >
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true" [(ngModel)]="GioiTinh" [ngModelOptions]="{standalone: true}"/>
+                  <label class="form-check-label" for="inlineRadio1">Nam</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" [(ngModel)]="GioiTinh" [ngModelOptions]="{standalone: true}"/>
+                  <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4 ">
+                <label class="form-label pull-left" for="customFile">Ảnh đại diện</label>
+                <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto($event)"/>
+              </div>
+              
+              <!-- SDT input -->
+              <div class="form-floating mb-4 form-floating">
+                <input type="phone" id="sdt" class="form-control" placeholder="Số điện thoại" [(ngModel)]="SDT" [ngModelOptions]="{standalone: true}">
+                <label for="sdt">Số điện thoại</label>
+              </div>
+              
+              <!-- Date input -->
+              <div class="form-floating mb-4">
+                <input type="date" id="date" pattern="\d{2}/\d{2}/\d{4}" class="form-control" placeholder="Ngày sinh" [(ngModel)]="NgaySinh" [ngModelOptions]="{standalone: true}"/>
+                <label class="form-label pull-left" for="date">Ngày sinh</label>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-floating mb-4">
+                <input type="email" id="email" class="form-control" placeholder="Địa chỉ Email" [(ngModel)]="Email" [ngModelOptions]="{standalone: true}"/>
+                <label for="email">Địa chỉ Email</label>
+              </div>
+
+               <!-- Email input -->
+               <div class="form-floating mb-4">
+                <input type="address" id="address" class="form-control" placeholder="Địa chỉ" [(ngModel)]="DiaChi" [ngModelOptions]="{standalone: true}"/>
+                <label for="address">Địa chỉ</label>
+              </div>
+              
+              <select class="form-select mb-4" [(ngModel)]="TenNhomChucNang" [ngModelOptions]="{standalone: true}">
+                <option selected style="background-color: gray; color: white;">--Chọn nhóm chức năng--</option>
+                <option *ngFor="let item of listNhomChucNang">{{item.TenNhomChucNang}}</option>
+              </select>
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-center mb-4 pull-left">
+                <input class="form-check-input me-2" type="checkbox" value="" id="rules">
+                <label class="form-check-label" for="rules">
+                  Tôi đã đọc kĩ điều khoản sử dụng
+                </label>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4" (click)="saveUserClick()">
+                Đăng kí
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

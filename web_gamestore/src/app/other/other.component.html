@@ -1,0 +1,32 @@
+<div class="wrapper card mx-4 mx-md-5 shadow-5-strong" >
+    <div class="container card-body py-5 px-md-5 ">
+        <div class="row g-1 justify-content-center">
+            <div class="col-md-3" *ngFor="let dataItem of Gamelist" style="padding: 15px; padding-top: 0px;">
+                <!-- cài animation cho game hover -->
+                <div [ngClass]="animation" (mouseover)="animation='card p-3 hoverG'" (mouseout)="animation='card p-3'" >
+                    <!-- (click)="detailClick(dataItem)" -->
+                    
+                        <div class="text-center">
+                            <img [src]=imageUrl+dataItem.Logo_Game alt="" width="100%" height="150px" title="Xem chi tiết"/>
+                        </div>
+                    <div class="product-details">
+                        <span class="font-weight-bold d-block" style="font-weight: bold;">{{dataItem.Ten_Game}}</span>
+                        <span>{{dataItem.LuotTaiXuong}} lượt tải xuống</span>
+                        <span class="font-weight-bold d-block">Giá : {{dataItem.Gia}}</span>
+                        <a [routerLink]="['/detail_game/', dataItem.ID_Game]"
+                        routerLinkActive="router-link-active">  
+                            <div class="buttons d-flex flex-row">
+                                <button class="btn btn-success cart-button
+                                    btn-block">Xem chi tiết
+                                </button>
+                            </div>
+                        </a>
+                        <div class="weight">
+                            <small><span *ngFor="let in of counter(dataItem.DanhGiaTB) ;let i = index"><i class="fa fa-star" ></i></span><span *ngFor="let in of counter(5-dataItem.DanhGiaTB) ;let i = index"><i class="fa fa-star" style="color: gray;"></i> </span> {{dataItem.DanhGiaTB.toFixed(1)}}/5.0 </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

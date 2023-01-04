@@ -1,0 +1,98 @@
+<section class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 20px;">
+    <div  class="container card-body py-5 px-md-5" style="width: 95%;">
+      <div class="row">
+        <h2 class="fw-bold mb-5 text-center">Chỉnh sửa thông tin người dùng</h2>
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+                <img [src]=imageUrl+AnhDaiDien alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                <input type="file" class="text-center"  (change)="uploadPhoto($event)">
+                <input type="text" class="my-3 text-center" [(ngModel)]=NickName [value]=NickName />
+                <p class="text-muted mb-1" [(ngModel)]=NgayTao>Được tạo ngày : {{NgayTao}}</p>
+                <p class="text-muted mb-4" [(ngModel)]=NgayCapNhat>Cập nhật cuối : {{NgayCapNhat}}</p>
+                <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary" (click)="saveUserClick()">Lưu thay đổi</button>
+                    <a [routerLink]="['/user_profile/', ID_NguoiDung]" routerLinkActive="router-link-active">
+                      <button type="button" class="btn btn-outline-primary ms-1">Quay lại</button>
+                    </a>
+                </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Họ và tên</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="text-muted mb-0" [value]=TenNguoiDung [(ngModel)]=TenNguoiDung/>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Ngày sinh</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="date" class="text-muted mb-0" pattern="\d{2}/\d{2}/\d{4}" [value]=NgaySinh [(ngModel)]=NgaySinh/>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Giới tính</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="text-muted mb-0" *ngIf=GioiTinh value="Nam" />
+                  <input type="text" class="text-muted mb-0" *ngIf=!GioiTinh value="Nữ" />
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="email" class="text-muted mb-0" [value]=Email [(ngModel)]=Email/>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Số điện thoại</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="text-muted mb-0" [value]=SDT  [(ngModel)]=SDT/>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Địa chỉ</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" class="text-muted mb-0" [value]=DiaChi [(ngModel)]=DiaChi/>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Nhóm chức năng</p>
+                </div>
+                <div class="col-sm-9">
+                  <select class="form-select mb-0" id="ncn" [(ngModel)]="TenNhomChucNang">
+                    <option disabled selected style="background-color: gray; color: white;">{{TenNhomChucNang}}</option>
+                    <option *ngFor="let item of listNhomChucNang">{{item.TenNhomChucNang}}</option>
+                  </select>     
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

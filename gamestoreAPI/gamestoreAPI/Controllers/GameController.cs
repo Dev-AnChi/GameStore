@@ -305,6 +305,64 @@ namespace gamestoreAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, dt);
         }
 
+        [Route("api/Game/TopLuotTai")]
+        [HttpGet]
+        public HttpResponseMessage topLuotTai()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["dataGameStore"].ConnectionString);
+            var cmd = new SqlCommand("topLuotTai", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
 
+        [Route("api/Game/TopDanhGia")]
+        [HttpGet]
+        public HttpResponseMessage topDanhGia()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["dataGameStore"].ConnectionString);
+            var cmd = new SqlCommand("topDanhGia", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+
+        [Route("api/Game/gameFree")]
+        [HttpGet]
+        public HttpResponseMessage gameFree()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["dataGameStore"].ConnectionString);
+            var cmd = new SqlCommand("gameFree", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
+
+        [Route("api/Game/TopGiaTien")]
+        [HttpGet]
+        public HttpResponseMessage topGiaTien()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(ConfigurationManager.ConnectionStrings["dataGameStore"].ConnectionString);
+            var cmd = new SqlCommand("topGiaTien", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
     }
 }

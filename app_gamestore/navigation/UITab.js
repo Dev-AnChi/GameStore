@@ -46,10 +46,10 @@ function UITab({navigation, route}){
     //alert(route.params.idUser)
   return (
     <Tab.Navigator screenOptions={screenOption} >
-        <Tab.Screen name='MainScreen' component={MainScreen} options={{tabBarLabel: 'Trang chủ'}} initialParams={{idUser : route.params.idUser}}/>
-        <Tab.Screen name='DownloadScreen' component={DownloadScreen} options={{tabBarLabel: 'Đã tải'}} initialParams={{idUser : route.params.idUser}}/>
-        <Tab.Screen name='LikeScreen' component={LikeScreen} options={{tabBarLabel: 'Yêu thích'}} initialParams={{idUser : route.params.idUser}}/>
-        <Tab.Screen name='UserScreen' component={UserScreen} options={{tabBarLabel: 'Người dùng'}} initialParams={{idUser : route.params.idUser}}/>
+        <Tab.Screen name='MainScreen' component={MainScreen} options={{tabBarLabel: 'Trang chủ', unmountOnBlur: true}} initialParams={{idUser : route.params.idUser}}/>
+        <Tab.Screen name='DownloadScreen' component={DownloadScreen} options={{tabBarLabel: 'Đã tải', unmountOnBlur: true}} initialParams={{idUser : route.params.idUser}}/>
+        <Tab.Screen name='LikeScreen' component={LikeScreen} options={{tabBarLabel: 'Yêu thích', unmountOnBlur: true}} initialParams={{idUser : route.params.idUser}}/>
+        <Tab.Screen name='UserScreen' component={UserScreen} options={{tabBarLabel: 'Người dùng', unmountOnBlur: true}} initialParams={{idUser : route.params.idUser}}/>
     </Tab.Navigator>
   )
 }

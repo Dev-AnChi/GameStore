@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TouchableOpacity, ScrollView, ImageBackground, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TouchableOpacity, ScrollView, ImageBackground, TextInput, FlatList, RefreshControl, BackHandler, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../contains/color';
-import TheLoai from '../api/TheLoai';
+//import TheLoai from '../api/TheLoai';
 import images from '../contains/images';
 //import Game from '../api/Game';
 import axios from 'axios';
@@ -12,11 +12,33 @@ import DownloadBtn from '../api/DownloadBtn';
 function MainScreen({ navigation, route }) {
     var idUser = route.params.idUser;
     const [show, setShow] = useState(false);
-
+    const [isFilter, setisFilter] = useState('');
+    const [textfilter, settextfilter] = useState('');
+    //get full game
     configGame = configApi.games;
     const [games, setGame] = useState([]);
     useEffect(() => {
         getDataGame();
+        getDataTheLoai();
+
+        const backAction = () => {
+            Alert.alert("Thông báo", "Bạn có chắc chắn muốn thoát ứng dụng này không ?", [
+              {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel"
+              },
+              { text: "YES", onPress: () => BackHandler.exitApp() }
+            ]);
+            return true;
+          };
+      
+          const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+          );
+      
+          return () => backHandler.remove();
     }, [])
 
     const getDataGame = () => {
@@ -29,6 +51,97 @@ function MainScreen({ navigation, route }) {
                 console.log("Loi khong lay duoc API: " + error);
             });
     }
+    //get find game by name
+    configfindGame = '';
+    const getDatafindGame = () => {
+        axios.get(configfindGame)
+            .then((response) => {
+                var datafindGame = response.data;
+                setGame(datafindGame);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+    //get full thể loại
+    configTheLoai = configApi.theloais;
+
+    const [theloais, setTheLoai] = useState([]);
+    const getDataTheLoai = () => {
+        axios.get(configTheLoai)
+            .then((response) => {
+                var dataTheLoai = response.data;
+                setTheLoai(dataTheLoai);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+    //get find game by ID_TheLoai
+    configfilterTheLoai = '';
+    const getDatafilterTheLoai = () => {
+        axios.get(configfilterTheLoai)
+            .then((response) => {
+                var datafilterTheLoai = response.data;
+                setGame(datafilterTheLoai);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+
+    //top Luot Tai
+    configtopLuotTai = configApi.topLuottai;
+    const getDatatopLuotTai = () => {
+        axios.get(configtopLuotTai)
+            .then((response) => {
+                var datatopLuotTai = response.data;
+                setGame(datatopLuotTai);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+
+    //top Danh Gia
+    configtopDanhGia = configApi.topDanhGia;
+    const getDatatopDanhGia = () => {
+        axios.get(configtopDanhGia)
+            .then((response) => {
+                var datatopDanhGia = response.data;
+                setGame(datatopDanhGia);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+
+    //game Free
+    configgameFree = configApi.gameFree;
+    const getDatagameFree = () => {
+        axios.get(configgameFree)
+            .then((response) => {
+                var datagameFree = response.data;
+                setGame(datagameFree);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+
+    //topLuot Tai
+    configtopGiaTien = configApi.topGiaTien;
+    const getDatatopGiaTien = () => {
+        axios.get(configtopGiaTien)
+            .then((response) => {
+                var datatopGiaTien = response.data;
+                setGame(datatopGiaTien);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+    
 
     return (
         <KeyboardAvoidingView
@@ -44,58 +157,136 @@ function MainScreen({ navigation, route }) {
                             <Image source={images.logoGame} style={styles.logoGame} />
                             <Text style={styles.textWellcome}>GameStore</Text>
                         </View>
-
+                        {/* tim kiem */}
                         <View style={styles.boxfilter}>
-                            {show && <TextInput style={styles.inputsearch} placeholder='Nhập tên game' />}
-                            {!show && <TouchableOpacity style={styles.search} onPress={() => {
-                                setShow(!show)
-                            }} >
-                                <Image style={styles.imgSearch}
-                                    resizeMode='cover'
-                                    source={{ uri: images.search, }} />
-                            </TouchableOpacity>}
-                            {show && <TouchableOpacity
-                                style={{
-                                    backgroundColor: '#000066',
-                                    borderRadius: 10,
-                                    borderWidth: 1,
-                                    height: '100%',
-                                    justifyContent: 'center',
-                                    marginLeft: 5
-                                }}
+                            {show && <TextInput style={styles.inputsearch} 
+                                onChangeText={
+                                    (text) => {
+                                        settextfilter(text);
+                                        if(text==''){
+                                            setisFilter('');
+                                            setGame([]);
+                                            getDataGame();
+                                        }else{
+                                            setisFilter('Kết quả tìm kiếm');
+                                            configfindGame = configApi.findGame + text;
+                                            setGame([]);
+                                            getDatafindGame();
+                                        }
+                                    }} 
+                                keyboardShouldPersistTaps    
+                                placeholder='Nhập tên game' value={textfilter}/>}
+                            {!show && <TouchableOpacity style={styles.search} 
                                 onPress={() => {
                                     setShow(!show)
                                 }} >
-                                <Text style={{ color: 'white', fontWeight: '500' }}>Tìm kiếm</Text>
+                                <Image style={styles.imgSearch}
+                                    resizeMode='cover'
+                                    source={images.search}/>
+                                </TouchableOpacity>}
+                            {show && <TouchableOpacity
+                                onPress={() => {
+                                    setShow(!show);
+                                    settextfilter('');
+                                    setisFilter('');
+                                    setGame([]);
+                                    getDataGame();
+                                }} >
+                                <Image source={images.cancel} style={styles.imgSearch}
+                                    resizeMode='cover'/>
                             </TouchableOpacity>}
-                            <View></View>
                         </View>
-
-
                     </View>
-                    <TheLoai />
 
+                    {/* the loai */}
+                    <View style={styles.danhsach}>
+                        <FlatList
+                            data={theloais}
+                            style={styles.flatlistTL}
+                            showsVerticalScrollIndicator={false}
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item }) => {
+                                return <TouchableOpacity 
+                                        onPress={()=>{
+                                            setisFilter(item.TenTheLoai);
+                                            configfilterTheLoai = configApi.filterTheLoai + item.ID_Loai;
+                                            setGame([]);
+                                            getDatafilterTheLoai();
+                                        }} 
+                                        >
+                                            <View style={{
+                                                //styles.boxTL
+                                                flex : 1,
+                                                marginHorizontal : 15, 
+                                                marginTop : 10,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                borderBottomWidth : isFilter == item.TenTheLoai ? 4 : 0,
+                                                borderBottomColor : isFilter == item.TenTheLoai ? 'red' : ''
+                                            }}>
+                                                <Text style={{
+                                                    //styles.textTheloai
+                                                    flex: 1,
+                                                    color: isFilter == item.TenTheLoai ? 'red' : color.textColor,
+                                                    fontSize: 18,
+                                                    fontWeight: 'bold',
+                                                    justifyContent : 'center',
+                                                    alignItems : 'center',
+                                                }}>{item.TenTheLoai}</Text>
+                                            </View>
+                                    </TouchableOpacity>
+                            }}
+                            horizontal
+                        >
+                        </FlatList>
+                    </View>
+                    {/* thong ke */}
                     <View style={styles.boxTK}>
                         <ScrollView horizontal style={{ flex: 1 }}>
-                            <TouchableOpacity style={styles.thongke}>
+                            <TouchableOpacity onPress={()=>{
+                                setisFilter('Top lượt tải');
+                                setGame([]);
+                                getDatatopLuotTai();
+                            }} 
+                            style={styles.thongke}
+                            >
                                 <View style={styles.itemTaiXuong}>
                                     <Image source={images.cups} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Top lượt tải</Text></View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.thongke}>
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setisFilter('Top đánh giá');
+                                setGame([]);
+                                getDatatopDanhGia();
+                            }}     
+                            style={styles.thongke}
+                            >
                                 <View style={styles.itemDanhGia}>
                                     <Image source={images.check} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Top đánh giá</Text></View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.thongke}>
+                            <TouchableOpacity 
+                            onPress={()=>{
+                                setisFilter('Game miễn phí');
+                                setGame([]);
+                                getDatagameFree();
+                            }} 
+                            style={styles.thongke}>
                                 <View style={styles.itemMienPhi}>
                                     <Image source={images.free} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Miễn phí</Text></View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.thongke}>
+                            <TouchableOpacity 
+                            onPress={()=>{
+                                setisFilter('Game có giá cao nhất');
+                                setGame([]);
+                                getDatatopGiaTien();
+                            }} 
+                            style={styles.thongke}>
                                 <View style={styles.itemGiaCaoNhat}>
                                     <Image source={images.money} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
@@ -105,35 +296,52 @@ function MainScreen({ navigation, route }) {
                     </View>
 
                 </View>
-                <View style={{ borderLeftWidth: 4, borderLeftColor: 'red', marginBottom: 10 }}>
-                    <Text style={{ fontSize: 22, color: 'black', fontWeight: 'bold', marginLeft: 10 }}>Danh sách game</Text>
+
+                <View style={{ borderLeftWidth: 4, borderLeftColor: 'red', marginBottom: 10, flexDirection : 'row' }}>
+                    <Text style={{ fontSize: 22, color: 'black', fontWeight: 'bold', marginLeft: 10 }}>
+                        {isFilter == '' ? "Danh sách game" : isFilter}
+                    </Text>
+{/* {isFilter != '' && */}<TouchableOpacity style={{marginLeft : 20}} 
+                                onPress={() => {
+                                    setShow(false);
+                                    settextfilter('');
+                                    setisFilter('');
+                                    setGame([]);
+                                    getDataGame();
+                                }} >
+                                <Image source={isFilter != '' ? images.cancel : images.reload} style={styles.imgSearch}
+                                    resizeMode='cover'/>
+                            </TouchableOpacity>{/*}*/}
                 </View>
+                {/* game */}
                 <View style={styles.body}>
-                    {/* <Game navigation={navigation}/> */}
+                    {games.length == 0 && 
+                        <View style={{flex : 1, justifyContent : 'center', alignItems : 'center'}}>
+                            <Text style={{color : 'red', fontSize : 20}}>Không tìm thấy kết quả nào</Text>
+                        </View>
+                    }
                     <FlatList
                         data={games}
                         style={styles.flatlist}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
+                        // refreshControl={<RefreshControl refreshing={true} onRefresh={getDataGame()} />}
                         renderItem={({ item }) => {
                             return <TouchableOpacity
                                 onPress={() =>
-                                    navigation.navigate('DetailScreen', { idGame: item.ID_Game, idUser: idUser })
+                                    navigation.navigate('DetailScreen', { idGame: item.ID_Game, idUser: idUser }) 
+                                    // refresh: function(){getDataGame()}
                                 }>
                                 <View style={styles.boxGame}>
                                     <ItemGame idGame={item.ID_Game} />
                                     <View style={styles.rightbox}>
-                                        <TouchableOpacity style={styles.boxdownload}
-                                            onPress={() => {
-                                                alert('Tải game thành công');
-                                            }}
-                                        >
+                                        <View style={styles.boxdownload}>
                                             <View style={
                                                 styles.btndownload
                                             }>
                                                 <DownloadBtn idGame={item.ID_Game} idUser={idUser} />
                                             </View>
-                                        </TouchableOpacity>
+                                        </View>
                                     </View>
                                 </View>
                             </TouchableOpacity>
@@ -157,10 +365,10 @@ const styles = StyleSheet.create({
         backgroundColor: color.white,
     },
     header: {
-        flex: 6,
+        flex: 5,
     },
     body: {
-        flex: 10,
+        flex: 8,
 
     },
     title: {
@@ -228,7 +436,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black',
         justifyContent: 'center',
-        marginLeft: 10
+        marginLeft: 5
     },
     boxfilter: {
         flex: 1,
@@ -268,6 +476,7 @@ const styles = StyleSheet.create({
     },
 
 
+    
     flatlist: {
         flex: 1,
     },
@@ -287,8 +496,37 @@ const styles = StyleSheet.create({
         //backgroundColor: 'green',
         width: 100,
         height: 30,
+        borderRadius : 20,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+
+    danhsach: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    flatlistTL: {
+        flex: 1,
+        borderBottomWidth : 1,
+        borderBottomColor : 'grey',
+    },
+    boxTL: {
+        flex : 1,
+        marginHorizontal : 15, 
+        marginTop : 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    },
+    textTheloai: {
+        flex: 1,
+        color: color.textColor,
+        fontSize: 18,
+        fontWeight: 'bold',
+        justifyContent : 'center',
+        alignItems : 'center',
+    },
 
 })

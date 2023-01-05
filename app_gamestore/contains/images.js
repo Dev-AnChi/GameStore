@@ -1,7 +1,9 @@
 
 export default {
     null : '',
-    search : 'https://cdn-icons-png.flaticon.com/512/9177/9177086.png', 
+    search : require('..//assets//search.png'),
+    cancel : require('..//assets//cancel.png'),
+    reload : require('..//assets//reload.png'),
     icondownload : require('..//assets//icondownload.png'),
     age : require('..//assets//age.png'),
     memory : require('..//assets//memory.png'),
@@ -35,6 +37,8 @@ export default {
     email : require('..//assets//mail.png'),
     homeaddress : require('..//assets//home-address.png'),
     phone : require('..//assets//phone-call.png'),
+
+    logout : require('..//assets//logout.png'),
 }
 
 // home : 'https://cdn-icons-png.flaticon.com/512/2626/2626863.png',

@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import DetailScreen from '../screen/DetailScreen';
 import MainScreen from '../screen/MainScreen';
-import Game from '../api/Game';
 import UITab from './UITab';
 import UserScreen from '../screen/UserScreen';
 import DownloadScreen from '../screen/DownloadScreen';

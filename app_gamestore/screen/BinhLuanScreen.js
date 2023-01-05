@@ -131,7 +131,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     </View>
                 }} />
             <View>
-                <Text style={{color : 'black', fontSize : 18, fontWeight : 'bold', borderLeftWidth : 5, paddingLeft : 10}}>Thêm đánh giá</Text>
+                <Text style={{color : 'black', fontSize : 18, fontWeight : 'bold', borderLeftWidth : 5, paddingLeft : 10, borderLeftColor : 'blue'}}>Thêm đánh giá</Text>
                 <View style={{margin : 10, flexDirection : 'row'}}>
                     <TouchableOpacity onPress={()=>{setdanhgia(1)}} style={styles.starDanhGia}>
                         <Image source={danhgia>=1 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>

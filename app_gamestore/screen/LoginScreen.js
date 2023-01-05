@@ -7,7 +7,7 @@ import axios from 'axios';
 const LoginScreen = ({navigation}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setisLogin]=useState(false);
+    const [isLogin, setisLogin]=useState(true);
     const [isPress, setisPress]=useState(false);
 
     var configlogin = '';

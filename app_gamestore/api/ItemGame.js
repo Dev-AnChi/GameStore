@@ -35,15 +35,15 @@ const ItemGame = (props) => {
             </View>
             <View style={{ flex: 1, flexDirection: 'row', fontSize: 15 }}>
               <View style={styles.boxDetails}>
-                <Text style={{ color: 'black' }}>{game.Gia/*==.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')*/}</Text><View style={{ justifyContent: 'flex-start' }}><Text style={{ color: 'orange', fontWeight: 'bold', fontSize: 10 }}> đ</Text></View>
+                <Text style={{ color: 'red' }}>{game.Gia ? game.Gia.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') : game.Gia}</Text><View style={{ justifyContent: 'flex-start' }}><Text style={{ color: 'red', fontWeight: 'bold', fontSize: 10 }}> đ</Text></View>
               </View>
               <View style={styles.boxDetails}>
                 <Image source={images.star} style={{ width: 18, height: 18 }} />
-                <Text style={{ color: 'black' }}> {game.DanhGiaTB/*.toFixed(1)*/}</Text>
+                <Text style={{ color: 'black' }}> {game.DanhGiaTB ? game.DanhGiaTB.toFixed(1) : game.DanhGiaTB}</Text>
               </View>
               <View style={styles.boxDetails}>
                 <Image source={images.icondownload} style={{ width: 18, height: 18 }} />
-                <Text style={{ color: 'black' }}> {game.LuotTaiXuong/*.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')*/} </Text>
+                <Text style={{ color: 'black' }}> {game.LuotTaiXuong  ? game.LuotTaiXuong.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') : game.LuotTaiXuong} </Text>
               </View>
             </View>
           </View>

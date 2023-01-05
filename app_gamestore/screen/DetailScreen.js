@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View, Image, KeyboardAvoidingView, TouchableOpacity, ImageBackground, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, KeyboardAvoidingView, TouchableOpacity, ImageBackground, FlatList, ScrollView, BackHandler, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import images from '../contains/images'
 import configApi from '../api/configApi';
 import axios from 'axios';
 import GameImage from '../api/GameImage';
 import TheLoaiGame from '../api/TheLoaiGame';
-import BinhLuan from '../api/BinhLuan';
 import LikeBtn from '../api/LikeBtn';
 import DownloadBtn from '../api/DownloadBtn';
 
@@ -45,7 +44,10 @@ const DetailScreen = ({ navigation, route }) => {
     >
         <View style={styles.container}>
             <ImageBackground source={{uri: 'http://192.168.101.35/Images/'+game.Logo_Game}} style={styles.header}>
-                <TouchableOpacity style={styles.back} onPress={navigation.goBack}>
+                <TouchableOpacity style={styles.back} 
+                    onPress={
+                        navigation.goBack
+                    }>
                     <Image source={images.back} style={{width : 15, height : 15}}/>
                 </TouchableOpacity>
 
@@ -64,13 +66,14 @@ const DetailScreen = ({ navigation, route }) => {
                     <View style={styles.nameGame}>
                         <Text style={{fontSize : 20, fontWeight : 'bold', color : 'black'}}>{game.Ten_Game}</Text>
                         <Text style={{fontSize : 15}}>{game.Ten_NhaSanXuat}</Text>
+                        <Text style={{fontSize : 15}}>Giá : <Text style={{color : 'red'}}>
+                            {game.Gia ? game.Gia.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') : game.Gia} đ
+                        </Text></Text>
                     </View>
 
                         <View style={{flex : 3, alignItems : 'flex-end', justifyContent : 'flex-start', marginTop : -50}}>
-                            <TouchableOpacity style={styles.likeBtn}>
-                                {/* <Image source={images.heart} style={{width : 20, height : 20}}/> */}
+                            
                                 <LikeBtn idGame={idGame} idUser={idUser}/>
-                            </TouchableOpacity>
                         </View>
                 </View>
                 
@@ -79,15 +82,15 @@ const DetailScreen = ({ navigation, route }) => {
                 <View style={styles.thongtinchitiet}>
                     <View style={styles.boxDetails}>
                         <Image source={images.star} style={styles.sizeIcon}/>
-                        <Text style={styles.textTT}>{game.DanhGiaTB/*.toFixed(1)*/}</Text>
+                        <Text style={styles.textTT}>{game.DanhGiaTB? game.DanhGiaTB.toFixed(1) : game.DanhGiaTB} sao</Text>
                     </View>
                     <View style={styles.boxDetails}>
                         <Image source={images.icondownload} style={styles.sizeIcon}/>
-                        <Text style={styles.textTT}>{game.LuotTaiXuong/*.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')*/}</Text>
+                        <Text style={styles.textTT}>{game.LuotTaiXuong ? game.LuotTaiXuong.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') : game.LuotTaiXuong} lượt tải</Text>
                     </View>
                     <View style={styles.boxDetails}>
                         <Image source={images.age} style={styles.sizeIcon}/>
-                        <Text style={styles.textTT}>{game.GioiHan_Tuoi}+</Text>
+                        <Text style={styles.textTT}>{game.GioiHan_Tuoi} tuổi</Text>
                     </View>
                     <View style={styles.boxDetails}>
                         <Image source={images.memory} style={styles.sizeIcon}/>
@@ -110,10 +113,18 @@ const DetailScreen = ({ navigation, route }) => {
                         <Text style={styles.titleNormal}>- Phát hành vào : <Text style={styles.textNormal}>{game.NgayTao}</Text></Text>
                         <Text style={styles.titleNormal}>- Lần cập nhật gần đây nhất : <Text style={styles.textNormal}>{game.NgayCapNhat}</Text></Text>
                     </View>
-                    <View style={{marginBottom : 10, marginTop : 20}}>
+                    <TouchableOpacity 
+                        onPress={()=>{
+                            navigation.navigate('BinhLuanScreen', {idGame : idGame, idUser : idUser})}
+                        }
+                        style={{marginBottom : 10, marginTop : 20, justifyContent : 'center', alignItems : 'flex-end'}}
+                    >
+                        <Text style={{fontSize : 18, color : 'blue', fontWeight : 'bold'}}>Xem các bài đánh giá </Text>
+                    </TouchableOpacity>
+                    {/* <View style={{marginBottom : 10, marginTop : 20}}>
                     <Text style={{fontSize : 18, color : 'black', fontWeight : 'bold'}}>Các bài đánh giá : </Text>
                         <BinhLuan idGame={idGame}/>
-                    </View>
+                    </View> */}
                 </ScrollView>
             </View> 
 
@@ -178,7 +189,7 @@ const styles = StyleSheet.create({
     },
     nameGame : {
         flex : 5,
-        marginTop : 60,
+        marginTop : 50,
         alignItems : 'center',
     },
     thongtinchitiet : {
@@ -192,13 +203,14 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
     },
     sizeIcon : {
-        width : 30, 
-        height : 30
+        width : 25, 
+        height : 25
     },
     textTT : {
         fontSize : 15,
         color : 'black',
-        fontWeight : '400'
+        fontWeight : 'normal',
+        marginTop : 5
     },
 
     downBtn : {
@@ -215,17 +227,7 @@ const styles = StyleSheet.create({
         fontWeight : 'bold',
         fontSize : 15
     },
-    likeBtn : {
-        justifyContent : 'center',
-        alignItems : 'center',
-        height : 40,
-        width : 40,
-        borderColor : 'black',
-        borderWidth : 1,
-        //borderRadius : 5,
-        marginRight : 10,
-        marginTop : 10
-    },
+    
     titleNormal : {
         fontSize : 15, 
         color : 'black', 

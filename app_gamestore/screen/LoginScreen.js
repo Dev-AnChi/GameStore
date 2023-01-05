@@ -7,6 +7,8 @@ import axios from 'axios';
 const LoginScreen = ({navigation}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogin, setisLogin]=useState(false);
+    const [isPress, setisPress]=useState(false);
 
     var configlogin = '';
 
@@ -14,8 +16,13 @@ const LoginScreen = ({navigation}) => {
         axios.get(configlogin)
         .then( (response) => {
             var datalogin = response.data;
+
+            setisLogin(datalogin.length==0 ? false : true);
+            datalogin.length==0 ? alert('Sai tài khoản hoặc mật khẩu, yêu cầu nhập lại !') : alert('Đăng nhập thành công !');
+
             datalogin.map((item, index)=>{
                 if(item.UserName_ND == username && item.Password_ND == password){
+                    setisLogin(true);
                     navigation.navigate('Home', {idUser : item.ID_NguoiDung});
                 }
             });
@@ -65,11 +72,17 @@ const LoginScreen = ({navigation}) => {
                                 placeholder='Password' placeholderTextColor={'black'} secureTextEntry={true} style={styles.inputform} 
                             />
                         </View>
+                        {(isLogin == false && isPress==true)&&
+                            <View style={{left : 50, top : 10}}>
+                                <Text style={{color : 'red'}}>Nhập sai tài khoản hoặc mật khẩu, yêu cầu nhập lại !</Text>
+                            </View>
+                        }
                 </View>
                 <View style={styles.btnformlogin}>
                     <TouchableOpacity
                         onPress={() => {
                             configlogin = configApi.login + username + '/' + password;
+                            setisPress(true);
                             getDatalogin();
                         }}
                         style={styles.btnlogin}

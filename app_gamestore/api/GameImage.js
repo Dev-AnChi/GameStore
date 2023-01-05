@@ -34,7 +34,7 @@ const GameImage = (props) => {
                 onPress={()=>
                     {}
                 }>
-                    <View >
+                    <View style={{width : 300}}>
                         <Image source={{uri: 'http://192.168.101.35/Images/'+item.AnhMH}} style={styles.listImage}/>
                     </View>
                 </TouchableOpacity>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         flex : 1,
     },
     listImage : {
-        width : 300, 
+        //width : 300, 
         height : 180, 
         marginRight : 10,
         borderRadius : 20

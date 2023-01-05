@@ -390,8 +390,8 @@ CREATE PROC getBinhLuanIDGame
 (@ID_Game INT)
 AS
 BEGIN
-    SELECT* FROM BinhLuan
-    WHERE ID_Game = @ID_Game
+    SELECT* FROM BinhLuan bl, NguoiDung nd
+    WHERE ID_Game = @ID_Game and bl.ID_NguoiBinhLuan = nd.ID_NguoiDung
 END
 GO
 --count đánh giá
@@ -829,5 +829,38 @@ AS
 BEGIN
     SELECT* FROM Menu
     WHERE ID_Menu = @ID_Menu
+END
+GO
+
+--Sap xep theo luot tai
+CREATE PROC topLuotTai
+AS
+BEGIN
+    SELECT* FROM Game
+    Order by LuotTaiXuong Desc
+END
+GO
+--Sap xep danh gia
+CREATE PROC topDanhGia
+AS
+BEGIN
+    SELECT* FROM Game
+    Order by DanhGiaTB Desc
+END
+GO
+--Sap xep theo luot tai
+CREATE PROC gameFree
+AS
+BEGIN
+    SELECT* FROM Game
+    WHERE Gia=0
+END
+GO
+--Sap xep theo luot tai
+CREATE PROC topGiaTien
+AS
+BEGIN
+    SELECT* FROM Game
+    Order by Gia Desc
 END
 GO

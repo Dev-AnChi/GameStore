@@ -10,19 +10,21 @@ import UserScreen from '../screen/UserScreen';
 import DownloadScreen from '../screen/DownloadScreen';
 import LikeScreen from '../screen/LikeScreen';
 import LoginScreen from '../screen/LoginScreen';
+import BinhLuanScreen from '../screen/BinhLuanScreen';
 
 const Stack = createNativeStackNavigator();
 export default function MyStack(props){
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown : false}}>
-        <Stack.Screen name="Login" component={LoginScreen}/>
-        <Stack.Screen name="Home" component={UITab}/>
-        <Stack.Screen name="DetailScreen" component={DetailScreen} />
-        <Stack.Screen name="MainScreen" component={MainScreen} />
-        <Stack.Screen name="DownloadScreen" component={DownloadScreen} />
-        <Stack.Screen name="LikeScreen" component={LikeScreen} />
-        <Stack.Screen name="UserScreen" component={UserScreen} />
+      <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown : false,}}>
+        <Stack.Screen name="Login" component={LoginScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="Home" component={UITab} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="DetailScreen" component={DetailScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="MainScreen" component={MainScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="DownloadScreen" component={DownloadScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="LikeScreen" component={LikeScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="UserScreen" component={UserScreen} options={{unmountOnBlur: true}}/>
+        <Stack.Screen name="BinhLuanScreen" component={BinhLuanScreen} options={{unmountOnBlur: true}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

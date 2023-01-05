@@ -9,8 +9,8 @@ import { GameComponent } from './game/game.component';
 })
 export class SharedService {
 
-  readonly APIUrl="http://192.168.101.35/api";
-  readonly ImagesUrl = "http://192.168.101.35/Images";
+  readonly APIUrl="https://localhost:44325/api";
+  readonly ImagesUrl = "https://localhost:44325/Images";
 
   constructor(private http:HttpClient) { }
   isAdmin:any;
@@ -41,7 +41,7 @@ export class SharedService {
   }
   updateGameLuotTai(val:any){
     return this.http.get(this.APIUrl + '/Game/updateLuotTai/' + val);
-   }
+  }
 
   
 //the loai  

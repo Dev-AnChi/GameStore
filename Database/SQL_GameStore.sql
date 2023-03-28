@@ -394,13 +394,36 @@ BEGIN
     WHERE ID_Game = @ID_Game and bl.ID_NguoiBinhLuan = nd.ID_NguoiDung
 END
 GO
+CREATE PROC findBinhLuan
+(@ID_Game int, @ID_NguoiDung varchar(20))
+AS
+BEGIN
+	SELECT * FROM BinhLuan WHERE ID_Game = @ID_Game and ID_NguoiBinhLuan = @ID_NguoiDung
+END
+GO
 --count đánh giá
 CREATE PROC countDanhGia
 (@ID_Game int)
 AS
 BEGIN
-    SELECT AVG(DanhGia+0.0) FROM BinhLuan
-    WHERE ID_Game = @ID_Game
+	DECLARE @danhgiaTB float
+    SET @danhgiaTB = (SELECT AVG(DanhGia+0.0) FROM BinhLuan WHERE ID_Game = @ID_Game)
+	if @danhgiaTB is null
+		select 0
+	else select @danhgiaTB
+END
+GO
+--check bình luận
+CREATE PROC checkBinhLuan
+(@ID_Game INT, @ID_NguoiDung varchar(20))
+AS
+BEGIN
+	DECLARE @checkBL int
+    SET @checkBL = (SELECT ID_BinhLuan FROM BinhLuan
+					WHERE ID_Game = @ID_Game and ID_NguoiBinhLuan = @ID_NguoiDung)
+	if @checkBL is null
+		select 0
+	else select 1
 END
 GO
 -----------------------------------Xem Game------------------------------------------------------------------

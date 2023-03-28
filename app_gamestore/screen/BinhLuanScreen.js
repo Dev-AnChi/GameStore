@@ -13,10 +13,14 @@ const BinhLuanScreen = ({ navigation, route }) => {
     const [danhgia, setdanhgia] = useState(0);
     const [noidung, setnoidung] = useState('');
     const [isSubmit, setisSubmit] = useState(false);
+    const [checkBL, setcheckBL] = useState(false);
 
     const [binhluan, setbinhluan] = useState([]);
+    const [findBL, setfindBL] = useState([]);
+
     useEffect(() => {
         getDatabinhluan();
+        findBinhLuan();
     }, [])
 
     const getDatabinhluan = () => {
@@ -34,7 +38,40 @@ const BinhLuanScreen = ({ navigation, route }) => {
     //them binh luan
     const addBinhLuan = async () => {
         //console.log(danhgia + '--' + noidung + '--' + idGame + '--' + idUser)
-        await axios.post(configApi.addBinhLuan, {
+        await axios.post(configApi.BinhLuan, {
+            DanhGia:danhgia,
+            NoiDungBL:noidung,
+            NgayBinhLuan:'',
+            ID_NguoiBinhLuan: idUser,
+            ID_Game: idGame
+        })
+            .then((response) => {
+                //console.log(response);
+                updateDanhGia();
+                getDatabinhluan();
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+
+    //check binh luan
+    const findBinhLuan = () => {
+        axios.get(configApi.findBinhLuan + idGame + "/" + idUser)
+            .then((response) => {
+                var findBL = response.data;
+                setcheckBL(findBL.length == 0 ? false : true);
+                setfindBL(findBL);
+            })
+            .catch(function (error) {
+                console.log("Loi khong lay duoc API: " + error);
+            });
+    }
+    //edit binh luan
+    const editBinhLuan = async () => {
+        //console.log(danhgia + '--' + noidung + '--' + idGame + '--' + idUser)
+        await axios.put(configApi.BinhLuan, {
+            ID_BinhLuan:findBL[0].ID_BinhLuan,
             DanhGia:danhgia,
             NoiDungBL:noidung,
             NgayBinhLuan:'',
@@ -112,7 +149,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     return <View>
                         <View style={styles.user}>
                             <View style={{borderWidth : 1, borderRadius : 100}}>
-                                <Image source={{ uri: 'http://192.168.101.35/Images/' + item.AnhDaiDien }} style={{ width: 60, height: 60, borderRadius: 100 }} />
+                                <Image source={{ uri: configApi.localhostIMG + item.AnhDaiDien }} style={{ width: 60, height: 60, borderRadius: 100 }} />
                             </View>
                             <View>
                                 <Text style={styles.textname}>{item.NickName}<Text style={{ fontWeight: 'normal', fontSize: 14 }}>{" <" + item.Email + "> "}</Text></Text>
@@ -169,7 +206,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     <TouchableOpacity 
                         onPress={()=>{
                             if(noidung != '' && danhgia != 0){
-                                addBinhLuan();
+                                checkBL ? editBinhLuan() : addBinhLuan();
                                 getDatabinhluan();
                                 setdanhgia(0);
                                 setbinhluan('');

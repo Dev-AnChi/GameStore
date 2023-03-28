@@ -43,7 +43,7 @@ const DetailScreen = ({ navigation, route }) => {
             style={styles.keyboard}
     >
         <View style={styles.container}>
-            <ImageBackground source={{uri: 'http://192.168.101.35/Images/'+game.Logo_Game}} style={styles.header}>
+            <ImageBackground source={{uri: configApi.localhostIMG + game.Logo_Game}} style={styles.header}>
                 <TouchableOpacity style={styles.back} 
                     onPress={
                         navigation.goBack
@@ -52,7 +52,7 @@ const DetailScreen = ({ navigation, route }) => {
                 </TouchableOpacity>
 
                 <View style={styles.icon}>
-                    <Image source={{uri: 'http://192.168.101.35/Images/'+game.Logo_Game}} style={{width : 120, height : 120, borderRadius : 18}}/> 
+                    <Image source={{uri: configApi.localhostIMG + game.Logo_Game}} style={{width : 120, height : 120, borderRadius : 18}}/> 
                 </View>
             </ImageBackground>
                   

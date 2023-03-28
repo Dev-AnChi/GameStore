@@ -22,14 +22,12 @@ export class TheloaiComponent implements OnInit {
   }
 
   deleteTheLoai(item:any){
-    console.log(item.ID_Loai);
     alert("Bạn có chắc chắn muốn xóa không ?");
     this.service.deleteTheLoai(item.ID_Loai).subscribe(res=>alert(res.toString()));
   }
 
   clickEditTheLoai(id:any, name:any){
     var val={ID_Loai:id, TenTheLoai:name};
-    console.log(val);
     this.service.editTheLoai(val).subscribe(res=>{
       alert(res.toString());
       this.refreshTheLoai();

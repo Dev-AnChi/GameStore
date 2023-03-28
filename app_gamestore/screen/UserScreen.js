@@ -33,7 +33,7 @@ const UserScreen = ({ navigation, route }) => {
             <Image source={images.logout} style ={{width: 50, height : 50}}/>
           </View> */}
           <View style={styles.avatar}>
-            <Image source={{ uri: 'http://192.168.101.35/Images/' + user.AnhDaiDien }} style={{ width: 120, height: 120, borderRadius: 100 }} />
+            <Image source={{ uri: configApi.localhostIMG + user.AnhDaiDien }} style={{ width: 120, height: 120, borderRadius: 100 }} />
           </View>
         </ImageBackground>
         <View style={styles.mid}>

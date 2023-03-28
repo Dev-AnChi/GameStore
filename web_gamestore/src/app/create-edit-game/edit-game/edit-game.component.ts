@@ -40,7 +40,6 @@ export class EditGameComponent implements OnInit {
     this.imageUrl=this.service.ImagesUrl + "/";
     this.service.detailGame(this.ID_Game).subscribe(data=>{
       this.dataGame=data;  
-      console.log(data);
       this.loadData();
     });
   }
@@ -54,7 +53,7 @@ export class EditGameComponent implements OnInit {
     this.LuotTaiXuong = this.dataGame[0].LuotTaiXuong;
     this.DanhGiaTB = this.dataGame[0].DanhGiaTB;
     this.GioiHan_Tuoi = this.dataGame[0].GioiHan_Tuoi;
-    this.Gia = this.dataGame[0].Gia;
+    this.Gia = Number(this.dataGame[0].Gia);
     this.MoTaChiTiet = this.dataGame[0].MoTaChiTiet;
     this.UserName_Tao = this.dataGame[0].UserName_Tao;
     this.NgayTao = this.dataGame[0].NgayTao;
@@ -66,10 +65,10 @@ export class EditGameComponent implements OnInit {
   saveGameClick(){
       var val =  {ID_Game:this.ID_Game,Ten_Game:this.Ten_Game,Ten_NhaSanXuat:this.Ten_NhaSanXuat,SoHieuPhienBan:this.SoHieuPhienBan
       ,PhienBan:this.PhienBan,YC_CauHinh:this.YC_CauHinh,LuotTaiXuong:this.LuotTaiXuong,DanhGiaTB:this.DanhGiaTB,GioiHan_Tuoi:this.GioiHan_Tuoi,
-      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_CapNhat:this.service.username,
+      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_CapNhat:this.service.username,NgayTao:this.NgayTao, UserName_Tao:this.UserName_Tao,
       NgayCapNhat:this.NgayCapNhat,Logo_Game:this.Logo_Game};
+      console.log(val)
       alert("Lưu lại những thay đổi ?");
-      console.log(val);
       this.service.editGame(val).subscribe(res=>{
         this.refreshGame();
         alert(res.toString());
@@ -84,7 +83,6 @@ export class EditGameComponent implements OnInit {
 
     this.service.UploadImagesGame(formData).subscribe((data:any)=>{
       this.Logo_Game = data.toString();
-      console.log(this.Logo_Game);
     })
   }
 

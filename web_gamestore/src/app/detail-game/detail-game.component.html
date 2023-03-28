@@ -75,9 +75,9 @@
           <figcaption class="info-wrap">
               <div class="row">
                 <div class="col-md-9 col-xs-9"> 
-                  <div class="title">Thể loại: 
+                  <div class="title">Thể loại:
                     <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px;" 
-                     *ngFor="let theloai of dataTheLoai">{{theloai.TenTheLoai}}</button></div> 
+                     *ngFor="let in of counter(dataTheLoai.length) ;let i = index">{{dataTheLoai[i].TenTheLoai}}</button></div> 
                 <span class="rated" ></span> 
               </div>
                   <div class="col-md-3 col-xs-3">
@@ -114,7 +114,7 @@
                   </div>
               </div>
           </figcaption>
-      </div>
+        </div>
       
         
 
@@ -127,8 +127,7 @@
         </div>
 
 
-        <!-- comment -->
-        <!--  -->
+        <!-- comment is null -->
         <div class="row d-flex justify-content-center bottom-wrap" *ngIf="User[0].ID_NguoiDung!='error'">
               <div class="d-flex flex-start w-100">
                 <img class="rounded-circle shadow-1-strong me-3"
@@ -171,13 +170,17 @@
 
                   <div class="d-flex justify-content-between mt-3 pull-right">
                     <!-- bl -->
-                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" (click)="clickBinhLuan()">
+                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" *ngIf="!isBinhLuan" (click)="clickBinhLuan()">
                       Bình luận
+                    </button>
+                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" *ngIf="isBinhLuan" (click)="clickEditBL()">
+                      Sửa bình luận
                     </button>
                   </div>
                 </div>
               </div>
         </div>
+
         <!-- comment all -->
               <div class="row d-flex justify-content-center" style="padding-top: 10px;">
                   <div class="d-flex flex-start mb-4" *ngFor="let in of counter(listBinhLuan.length) ;let i = index">

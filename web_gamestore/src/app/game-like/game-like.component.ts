@@ -31,7 +31,6 @@ export class GameLikeComponent implements OnInit {
       for(let i of this.listYeuThich){
         this.service.detailGame(i.ID_Game).subscribe(data=>{
           this.listGame.push(data);
-          console.log(this.listGame);
         })
       }
     })

@@ -46,7 +46,6 @@ export class CreateGameComponent implements OnInit {
         }
         else{
           alert("Lưu lại những thay đổi ?");
-          console.log(val);
           this.service.addGame(val).subscribe(res=>{
             alert(res.toString());
           });
@@ -75,7 +74,6 @@ export class CreateGameComponent implements OnInit {
 
     this.service.UploadImagesGame(formData).subscribe((data:any)=>{
       this.Logo_Game = data.toString();
-      console.log(this.Logo_Game);
     })
   }
 

@@ -33,9 +33,7 @@ export class LoginComponent implements OnInit {
 
     this.service.loginNguoiDung(this.service.username,this.service.password).subscribe(data=>{
       this.User=data;
-      console.log(this.service.username + "  " + this.service.password);
-      this.id_nguoidung = this.User[0].ID_NguoiDung
-      console.log(this.id_nguoidung);
+      this.id_nguoidung = this.User[0].ID_NguoiDung;
       if(this.id_nguoidung == 'error'){
         this.service.checkLogin = false;
         this.checkLogin = this.service.checkLogin;

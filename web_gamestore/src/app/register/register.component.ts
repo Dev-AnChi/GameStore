@@ -48,7 +48,6 @@ export class RegisterComponent implements OnInit {
               SDT:this.SDT,AnhDaiDien:this.AnhDaiDien,UserName_Tao:this.service.username,NgayTao:this.NgayTao,
               UserName_CapNhat:this.service.username,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:this.ID_NhomChucNang};
               alert("Lưu lại những thay đổi ?");
-              console.log(val);
               this.service.addNguoiDung(val).subscribe(res=>alert(res.toString()));
           }
           else{
@@ -66,7 +65,6 @@ export class RegisterComponent implements OnInit {
 
     this.service.UploadImagesNguoiDung(formData).subscribe((data:any)=>{
       this.AnhDaiDien = data.toString();
-      console.log(this.AnhDaiDien);
     })
   }
 }

@@ -36,7 +36,6 @@ export class EditImageMHComponent implements OnInit {
     this.service.getHinhAnhIDGame(this.ID_Game).subscribe(data=>{
       this.dataImg = data;
       this.img1=this.dataImg[0].AnhMH;
-      console.log(this.img1);
 
       this.img2=this.dataImg[1].AnhMH;
       this.img3=this.dataImg[2].AnhMH;
@@ -125,10 +124,8 @@ export class EditImageMHComponent implements OnInit {
     })
   }
   deleteImage2(){
-    console.log(this.ID_Game);
     this.service.getHinhAnhIDGame(this.ID_Game).subscribe(data=>{
       this.dataImg = data;
-      console.log(this.dataImg);
       this.service.deleteHinhAnh(this.dataImg[1].ID_AnhMH).subscribe(res=>alert(res.toString()));
     })
   }

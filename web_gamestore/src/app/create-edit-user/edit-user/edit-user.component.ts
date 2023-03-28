@@ -89,9 +89,9 @@ export class EditUserComponent implements OnInit {
         var val =  {ID_NguoiDung:this.ID_NguoiDung,NickName:this.NickName,UserName_ND:this.UserName_ND,Password_ND:this.Password_ND,
         TenNguoiDung:this.TenNguoiDung,GioiTinh:this.GioiTinh,NgaySinh:this.NgaySinh,
         Email:this.Email, DiaChi:this.DiaChi, SDT:this.SDT,AnhDaiDien:this.AnhDaiDien 
-        ,UserName_CapNhat:this.service.username,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:this.ID_NhomChucNang};
+        ,UserName_CapNhat:this.service.username,NgayCapNhat:this.NgayCapNhat,UserName_Tao:"",NgayTao:"",ID_NhomChucNang:this.ID_NhomChucNang};
+        console.log(val)
         alert("Lưu lại những thay đổi ?");
-        console.log(val);
         this.service.editNguoiDung(val).subscribe(res=>{
           this.refreshUser();
           alert(res.toString());
@@ -110,7 +110,6 @@ export class EditUserComponent implements OnInit {
 
     this.service.UploadImagesNguoiDung(formData).subscribe((data:any)=>{
       this.AnhDaiDien = data.toString();
-      console.log(this.AnhDaiDien);
     })
   }
 }

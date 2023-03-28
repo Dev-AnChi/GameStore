@@ -93,14 +93,12 @@ export class AppComponent {
     this.service.checkUserName(this.service.username).subscribe(id=>{
       this.service.detailNguoiDung(id).subscribe(data=>{
         this.NguoiDung = data;
-        console.log(this.NguoiDung[0].ID_NhomChucNang)
         if(this.NguoiDung[0].ID_NhomChucNang != 'NCN1'){
           this.service.isAdmin = false;
         }
         else{
           this.service.isAdmin = true;
         }
-        console.log(this.service.isAdmin);
       })
     })
   }

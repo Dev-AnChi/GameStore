@@ -35,7 +35,7 @@ const GameImage = (props) => {
                     {}
                 }>
                     <View style={{width : 300}}>
-                        <Image source={{uri: 'http://192.168.101.35/Images/'+item.AnhMH}} style={styles.listImage}/>
+                        <Image source={{uri: configApi.localhostIMG+item.AnhMH}} style={styles.listImage}/>
                     </View>
                 </TouchableOpacity>
         }} />

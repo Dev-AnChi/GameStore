@@ -30,7 +30,6 @@ export class TheloaiEditComponent implements OnInit {
 
   clickEditTheLoai(){
     var val={ID_Loai:this.ID_Loai.id, TenTheLoai:this.TenTheLoai};
-    console.log(val);
     this.service.editTheLoai(val).subscribe(res=>{
       alert(res.toString());
       this.refreshTheLoai();

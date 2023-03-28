@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-import { GameComponent } from './game/game.component';
+//import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SharedService {
 
-  readonly APIUrl="https://localhost:44325/api";
-  readonly ImagesUrl = "https://localhost:44325/Images";
+export class SharedService {
+  readonly APIUrl="http://localhost:5162/api";
+  readonly ImagesUrl = "http://localhost:5162/Images";
 
   constructor(private http:HttpClient) { }
   isAdmin:any;
-
 
   //game
   getGamelist():Observable<any[]>{
@@ -39,6 +37,7 @@ export class SharedService {
   updateGameDanhGia(val:any){
    return this.http.get(this.APIUrl + '/Game/updateDanhGia/' + val);
   }
+  
   updateGameLuotTai(val:any){
     return this.http.get(this.APIUrl + '/Game/updateLuotTai/' + val);
   }
@@ -102,7 +101,7 @@ export class SharedService {
   getNameTheLoaiChiTietGame(val:any):Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl+'/ChiTietGame/'+val);
   }
-  //Tìm ID game theo logo
+  //Tìm ID game theo ten
   getIDNameGame(val:any){
     return this.http.get(this.APIUrl + '/Game/GetIDNameGame/' + val);
   }
@@ -167,6 +166,9 @@ export class SharedService {
   }
   getBinhLuanIDGame(val:any):Observable<any[]>{
     return this.http.get<any>(this.APIUrl + '/BinhLuan/getBinhLuanIDGame/' + val);
+  }
+  findBinhLuan(idGame:any, idUser:any){
+    return this.http.get<any>(this.APIUrl + "/BinhLuan/findBinhLuan/" + idGame + "/" + idUser);
   }
 
   //game

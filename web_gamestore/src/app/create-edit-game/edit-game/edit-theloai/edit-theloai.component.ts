@@ -43,7 +43,6 @@ export class EditTheloaiComponent implements OnInit {
   editTheLoai1(){
     this.service.getNameTheLoaiChiTietGame(this.ID_Game).subscribe(data=>{
       this.dataTheLoai = data;
-      console.log(data);
       if(this.dataTheLoai.length > 0){
         this.service.getIDNameTheLoai(this.theloai1).subscribe(theloai=>{
           var val = {ID_ChiTietGame:this.dataTheLoai[0].ID_ChiTietGame,ID_Game:this.ID_Game,ID_Loai:theloai};
@@ -62,7 +61,6 @@ export class EditTheloaiComponent implements OnInit {
   editTheLoai2(){
     this.service.getNameTheLoaiChiTietGame(this.ID_Game).subscribe(data=>{
       this.dataTheLoai = data;
-      console.log(this.dataTheLoai.length)
       if(this.dataTheLoai.length > 1){
         this.service.getIDNameTheLoai(this.theloai2).subscribe(theloai=>{
           var val = {ID_ChiTietGame:this.dataTheLoai[1].ID_ChiTietGame,ID_Game:this.ID_Game,ID_Loai:theloai};
@@ -71,7 +69,6 @@ export class EditTheloaiComponent implements OnInit {
       }
       else{
         this.service.getIDNameTheLoai(this.theloai2).subscribe(theloai=>{
-          console.log(theloai);
           var val = {ID_Game:this.ID_Game,ID_Loai:theloai};
           this.service.addChiTietGame(val).subscribe(res=>alert(res.toString()));
         })

@@ -26,7 +26,7 @@ const ItemGame = (props) => {
     }
   return (
         <View style={styles.leftbox}>
-          <Image source={{ uri: 'http://192.168.101.35/Images/' + game.Logo_Game }} resizeMode='cover'
+          <Image source={{ uri: configApi.localhostIMG + game.Logo_Game }} resizeMode='cover'
             style={{ width: 80, height: 80, borderRadius: 18 }} />
           <View style={styles.boxThongTin}>
             <View style={{ flex: 1 }}>

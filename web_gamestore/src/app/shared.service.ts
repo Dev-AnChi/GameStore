@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 
 export class SharedService {
-  readonly APIUrl="http://localhost:5162/api";
-  readonly ImagesUrl = "http://localhost:5162/Images";
+  readonly APIUrl="http://localhost/api";
+  readonly ImagesUrl = "http://localhost/Images";
 
   constructor(private http:HttpClient) { }
   isAdmin:any;

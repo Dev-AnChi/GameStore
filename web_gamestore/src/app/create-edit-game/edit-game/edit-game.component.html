@@ -1,91 +1,92 @@
 <section class="text-center" style="padding-top: 20px;">
-  <div class="card mx-4 mx-md-5 shadow-5-strong">
-    <div class="card-body py-5 px-md-5">
-
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="fw-bold mb-5">Sửa thông tin game</h2>
-          <form>  
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="idgame" class="form-control" placeholder="ID_Game" [value]="ID_Game" disabled/>
-              <label for="idgame">ID_Game</label>
-            </div>
-      
-            <div class="form-floating mb-4">
-              <input type="text" id="name" class="form-control" placeholder="Ten_Game" [value]="Ten_Game" [(ngModel)]="Ten_Game"  [ngModelOptions]="{standalone: true}"/>
-              <label for="name">Tên game</label>
-            </div>
-
-      
-            <div class="form-floating mb-4">
-              <input type="text" id="nsx" class="form-control" placeholder="Nhà sản xuất" [value]="Ten_NhaSanXuat" [(ngModel)]="Ten_NhaSanXuat" [ngModelOptions]="{standalone: true}"/>
-              <label for="nsx">Nhà sản xuất</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="number" id="shphienban" class="form-control" placeholder="Số hiệu phiên bản" [value]="SoHieuPhienBan" [(ngModel)]="SoHieuPhienBan"  [ngModelOptions]="{standalone: true}"/>
-              <label for="shphienban">Số hiệu phiên bản</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="phienban" class="form-control" placeholder="Phiên bản" [value]="PhienBan" [(ngModel)]="PhienBan"  [ngModelOptions]="{standalone: true}"/>
-              <label for="phienban">Phiên bản</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="yccauhinh" class="form-control" placeholder="Yêu cầu cấu hình" [value]="YC_CauHinh" [(ngModel)]="YC_CauHinh"  [ngModelOptions]="{standalone: true}"/>
-              <label for="yccauhinh">Yêu cầu cấu hình</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="luottai" class="form-control" placeholder="Lượt tải xuống" [value]="LuotTaiXuong" disabled/>
-              <label for="luottai">Lượt tải xuống</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="danhgia" class="form-control" placeholder="Đánh giá trung bình" [value]="DanhGiaTB" disabled/>
-              <label for="danhgia">Đánh giá trung bình</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="ghtuoi" class="form-control" placeholder="Giới hạn tuổi" [value]="GioiHan_Tuoi" [(ngModel)]="GioiHan_Tuoi"  [ngModelOptions]="{standalone: true}"/>
-              <label for="ghtuoi">Giới hạn tuổi</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="gia" class="form-control" placeholder="Giá" [value]="Gia" [(ngModel)]="Gia"  [ngModelOptions]="{standalone: true}"/>
-              <label for="gia">Giá</label>
-            </div>
-
-            
-            <div class="form-floating mb-4">
-              <input type="text" id="mota" class="form-control" placeholder="Mô tả chi tiết" [value]="MoTaChiTiet" [(ngModel)]="MoTaChiTiet"  [ngModelOptions]="{standalone: true}"/>
-              <label for="mota">Mô tả chi tiết</label>
-            </div>
-
-            <div class="form-outline mb-4 ">
-              <label class="form-label pull-left" for="customFile">Logo Game</label>
-              <img [src]=imageUrl+Logo_Game alt="" />
-              <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto($event)"/>
-            </div>
-            
-            <!-- Submit button -->
-            <a [routerLink]="['/edit-game/edit-imageMH', ID_Game]" routerLinkActive="router-link-active">
-              <button type="submit" class="btn btn-primary btn-block mb-4" (click)="saveGameClick()">
-                Next
-              </button>
-            </a>
-          </form>
+    <div class="card mx-4 mx-md-5 shadow-5-strong">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5">Sửa thông tin game</h2>
+            <form>  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="idgame" class="form-control" placeholder="ID_Game" [value]="ID_Game" disabled/>
+                <label for="idgame">ID_Game</label>
+              </div>
+        
+              <div class="form-floating mb-4">
+                <input type="text" id="name" class="form-control" placeholder="Ten_Game" [value]="Ten_Game" [(ngModel)]="Ten_Game"  [ngModelOptions]="{standalone: true}"/>
+                <label for="name">Tên game</label>
+              </div>
+  
+        
+              <div class="form-floating mb-4">
+                <input type="text" id="nsx" class="form-control" placeholder="Nhà sản xuất" [value]="Ten_NhaSanXuat" [(ngModel)]="Ten_NhaSanXuat" [ngModelOptions]="{standalone: true}"/>
+                <label for="nsx">Nhà sản xuất</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="number" id="shphienban" class="form-control" placeholder="Số hiệu phiên bản" [value]="SoHieuPhienBan" [(ngModel)]="SoHieuPhienBan"  [ngModelOptions]="{standalone: true}"/>
+                <label for="shphienban">Số hiệu phiên bản</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="phienban" class="form-control" placeholder="Phiên bản" [value]="PhienBan" [(ngModel)]="PhienBan"  [ngModelOptions]="{standalone: true}"/>
+                <label for="phienban">Phiên bản</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="yccauhinh" class="form-control" placeholder="Yêu cầu cấu hình" [value]="YC_CauHinh" [(ngModel)]="YC_CauHinh"  [ngModelOptions]="{standalone: true}"/>
+                <label for="yccauhinh">Yêu cầu cấu hình</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="luottai" class="form-control" placeholder="Lượt tải xuống" [value]="LuotTaiXuong" disabled/>
+                <label for="luottai">Lượt tải xuống</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="danhgia" class="form-control" placeholder="Đánh giá trung bình" [value]="DanhGiaTB" disabled/>
+                <label for="danhgia">Đánh giá trung bình</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="ghtuoi" class="form-control" placeholder="Giới hạn tuổi" [value]="GioiHan_Tuoi" [(ngModel)]="GioiHan_Tuoi"  [ngModelOptions]="{standalone: true}"/>
+                <label for="ghtuoi">Giới hạn tuổi</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="gia" class="form-control" placeholder="Giá" [value]="Gia" [(ngModel)]="Gia"  [ngModelOptions]="{standalone: true}"/>
+                <label for="gia">Giá</label>
+              </div>
+  
+              
+              <div class="form-floating mb-4">
+                <input type="text" id="mota" class="form-control" placeholder="Mô tả chi tiết" [value]="MoTaChiTiet" [(ngModel)]="MoTaChiTiet"  [ngModelOptions]="{standalone: true}"/>
+                <label for="mota">Mô tả chi tiết</label>
+              </div>
+  
+              <div class="form-outline mb-4 ">
+                <label class="form-label pull-left" for="customFile">Logo Game</label>
+                <img [src]=imageUrl+Logo_Game alt="" />
+                <input type="file" class="form-control" id="customFile" style="border: solid 1px grey;" (change)="uploadPhoto($event)"/>
+              </div>
+              
+              <!-- Submit button -->
+              <a [routerLink]="['/edit-game/edit-imageMH', ID_Game]" routerLinkActive="router-link-active">
+                <button type="submit" class="btn btn-primary btn-block mb-4" (click)="saveGameClick()">
+                  Next
+                </button>
+              </a>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  

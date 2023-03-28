@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditImageMHComponent } from './edit-image-mh.component';
+import { EditImageMhComponent } from './edit-image-mh.component';
 
-describe('EditImageMHComponent', () => {
-  let component: EditImageMHComponent;
-  let fixture: ComponentFixture<EditImageMHComponent>;
+describe('EditImageMhComponent', () => {
+  let component: EditImageMhComponent;
+  let fixture: ComponentFixture<EditImageMhComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditImageMHComponent ]
+      declarations: [ EditImageMhComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditImageMHComponent);
+    fixture = TestBed.createComponent(EditImageMhComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

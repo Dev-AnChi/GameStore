@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-//import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SharedService {
-  readonly APIUrl="http://localhost/api";
-  readonly ImagesUrl = "http://localhost/Images";
+  readonly APIUrl="http://gamestoreapi.somee.com/api";
+  readonly ImagesUrl = "http://gamestoreapi.somee.com/Images";
 
   constructor(private http:HttpClient) { }
-  isAdmin:any;
 
   //game
   getGamelist():Observable<any[]>{
@@ -114,9 +112,9 @@ export class SharedService {
   }
 
   //Người dùng
-  checkLogin:boolean=false;
-  username:string="error";
-  password:string="error"; 
+  // checkLogin:boolean=false;
+  // username:string="error";
+  // password:string="error"; 
   getNguoiDung():Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/NguoiDung');
   }

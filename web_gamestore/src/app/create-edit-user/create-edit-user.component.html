@@ -14,14 +14,14 @@
               <tr *ngIf="item.ID_NguoiDung!='error'">
                 <td>
                   <div class="d-flex align-items-center">
-                    <a [routerLink]="['/user_profile',item.ID_NguoiDung]" routerLinkActive="router-link-active" (click)="detailNguoiDung(item)">
+                    <!-- <a [routerLink]="['/user_profile',item.ID_NguoiDung]" routerLinkActive="router-link-active" (click)="detailNguoiDung(item)"> -->
                       <img
                           [src]=imageUrl+item.AnhDaiDien
                           alt=""
                           style="width: 45px; height: 45px"
                           class="rounded-circle"
                           />
-                      </a>
+                      <!-- </a> -->
                     <div class="ms-3">
                       <p class="fw-bold mb-1">{{item.NickName}}</p>
                       <p class="text-muted mb-0">{{item.Email}}</p>
@@ -45,6 +45,7 @@
                         Xóa
                       </button>
                     </a>
+                    <!-- nang lam admin -->
                     <!-- <a [routerLink]="['/edit-user']" routerLinkActive="router-link-active" class="col-md-6">
                       <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: green;" >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">

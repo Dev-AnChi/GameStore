@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import {ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-create-game',
   templateUrl: './create-game.component.html',
@@ -8,7 +9,7 @@ import {ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateGameComponent implements OnInit {
 
-  constructor(private service:SharedService, private route : ActivatedRoute, private router:Router) { }
+  constructor(private service:SharedService, private route : ActivatedRoute, private router:Router, private cookie:CookieService) { }
 
   ID_Game:any;
   Ten_Game:any;
@@ -21,9 +22,9 @@ export class CreateGameComponent implements OnInit {
   GioiHan_Tuoi:any;
   Gia:any;
   MoTaChiTiet:any;
-  UserName_Tao:any="";
+  UserName_Tao:any=this.cookie.get("username");
   NgayTao:any="";
-  UserName_CapNhat:any="";
+  UserName_CapNhat:any=this.cookie.get("username");
   NgayCapNhat:any="";
   Logo_Game:any;
 
@@ -38,7 +39,7 @@ export class CreateGameComponent implements OnInit {
   addGameClick(){
       var val =  {Ten_Game:this.Ten_Game,Ten_NhaSanXuat:this.Ten_NhaSanXuat,SoHieuPhienBan:this.SoHieuPhienBan
       ,PhienBan:this.PhienBan,YC_CauHinh:this.YC_CauHinh,LuotTaiXuong:this.LuotTaiXuong,DanhGiaTB:this.DanhGiaTB,GioiHan_Tuoi:this.GioiHan_Tuoi,
-      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_Tao:this.service.username,NgayTao:this.NgayTao,UserName_CapNhat:this.service.username,
+      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_Tao:this.UserName_Tao,NgayTao:this.NgayTao,UserName_CapNhat:this.UserName_CapNhat,
       NgayCapNhat:this.NgayCapNhat,Logo_Game:this.Logo_Game};
       this.service.getIDNameGame(this.Ten_Game).subscribe(id=>{
         if(id != "error"){

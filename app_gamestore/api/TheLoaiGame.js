@@ -31,7 +31,7 @@ const TheLoaiGame = (props) => {
         renderItem={({ item }) => {
             return <View style={{alignItems : 'flex-start', justifyContent : 'center'}}>
                 <TouchableOpacity style={styles.loaiBtn}>
-                    <Text style={{marginLeft : 5, color : 'black', fontSize : 15}}>{item.TenTheLoai}</Text>
+                    <Text style={{marginLeft : 0, color : 'black', fontSize : 12}}>{item.TenTheLoai}</Text>
                 </TouchableOpacity>
             </View>
         }} />
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
         alignItems : 'center',
         height : 25,
-        width : 90,
+        width : 80,
         borderColor : 'black',
         borderWidth : 1,
         borderRadius : 8,

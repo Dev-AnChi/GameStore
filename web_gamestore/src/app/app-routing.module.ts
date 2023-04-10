@@ -20,6 +20,7 @@ import { GameLikeComponent } from './game-like/game-like.component';
 import { OtherComponent } from './other/other.component';
 import { TheloaiComponent } from './theloai/theloai.component';
 import { TheloaiEditComponent } from './theloai/theloai-edit/theloai-edit.component';
+import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
 const routes: Routes = [
   {path:"", component:GameComponent},
   {path:"game", component:GameComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"register", component:RegisterComponent},
   {path:"detail_game/:id", component:DetailGameComponent},
+  {path:"binhluan/:id", component:BinhluanGameComponent},
   {path:"user_profile/:id", component:UserProfileComponent},
   {path:"user_profile", component:UserProfileComponent},
   {path:"create-edit-game", component:CreateEditGameComponent},

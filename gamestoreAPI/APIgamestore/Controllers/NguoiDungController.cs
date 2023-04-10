@@ -178,24 +178,14 @@ namespace APIgamestore.Controllers
         [HttpGet]
         public JsonResult Get(string username, string password)
         {
-            string id = "error";
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
             var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
             var cmd = new SqlCommand("LoginNguoiDung", con);
             cmd.Parameters.Add(new SqlParameter("@UserName_ND", username));
             cmd.Parameters.Add(new SqlParameter("@Password_ND", password));
             cmd.CommandType = CommandType.StoredProcedure;
-            con.Open();
-            if (cmd.ExecuteScalar() != null)
-                id = cmd.ExecuteScalar().ToString();
-            con.Close();
-
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-
-            con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
-            cmd = new SqlCommand("detailNguoiDung", con);
-            cmd.Parameters.Add(new SqlParameter("@ID_NguoiDung", id));
-            cmd.CommandType = CommandType.StoredProcedure;
+            
             da.SelectCommand = cmd;
             da.Fill(dt);
 

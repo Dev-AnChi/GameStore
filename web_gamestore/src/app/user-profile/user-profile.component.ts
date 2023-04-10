@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -8,36 +9,53 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private service:SharedService, private route:ActivatedRoute) { }
+  constructor(private service:SharedService, private route:ActivatedRoute, private cookie:CookieService) { }
   ID_NguoiDung:string="error";
   User:any = null;
   imageUrl:any;
-  checkLogin:any;
+  checkLogin:any = false;
   TenNhomChucNang:any;
 
-  username:string="";
+  username:any;
+  password:any;
 
   ngOnInit(): void {
-    this.checkLogin=this.service.checkLogin;
-    if(this.service.username != "error")
-      this.route.params.subscribe(params => {
+    this.username = this.cookie.get("username");
+    this.password = this.cookie.get("password");
+    
+    this.route.params.subscribe(params => {
         this.ID_NguoiDung = params['id'];
-        if(this.ID_NguoiDung == null)
-          this.ID_NguoiDung = "error";
+        this.isLogin();
         this.refreshUser();
-      });
-      this.imageUrl=this.service.ImagesUrl + "/";
+    });
+    this.imageUrl=this.service.ImagesUrl + "/";
+  }
+
+  isLogin(){
+    if(this.cookie.check('username')){
+      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+        this.User=data;
+        console.log(this.User)
+        this.ID_NguoiDung = this.User[0].ID_NguoiDung;
+        if(this.ID_NguoiDung == 'error'){
+          this.checkLogin = false;
+        }
+        else{
+          this.checkLogin = true;
+        }
+      })
+    }
   }
 
   refreshUser(){
     this.service.detailNguoiDung(this.ID_NguoiDung).subscribe(data=>{
       this.User=data;
       if(this.User[0].ID_NguoiDung == 'error'){
-        this.service.checkLogin = false;
-        this.checkLogin = this.service.checkLogin;
+        this.checkLogin = false;
+        //this.checkLogin = this.service.checkLogin;
       }
-      this.service.getNameIDNhomChucNang(this.User[0].ID_NhomChucNang).subscribe(data1=>{
-        this.TenNhomChucNang=data1;
+      this.service.getNameIDNhomChucNang(this.User[0].ID_NhomChucNang).subscribe(data=>{
+        this.TenNhomChucNang=data;
       }
       )
     })

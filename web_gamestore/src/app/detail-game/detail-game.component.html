@@ -75,9 +75,9 @@
           <figcaption class="info-wrap">
               <div class="row">
                 <div class="col-md-9 col-xs-9"> 
-                  <div class="title">Thể loại:
-                    <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px;" 
-                     *ngFor="let in of counter(dataTheLoai.length) ;let i = index">{{dataTheLoai[i].TenTheLoai}}</button></div> 
+                  <div class="title a">Thể loại:
+                    <button type="text" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px;" 
+                     *ngFor="let item of dataTheLoai">{{item.TenTheLoai}}</button></div> 
                 <span class="rated" ></span> 
               </div>
                   <div class="col-md-3 col-xs-3">
@@ -102,7 +102,7 @@
             </figcaption>
         </div>
 
-        <div class="bottom-wrap-tmp">
+        <div class="bottom-wrap-tmp" >
           <figcaption class="info-wrap">
               <div class="row">
                 <div class="col-md-9 col-xs-9"> <div class="title">Cấu hình : {{dataGame[0].YC_CauHinh}}</div> 
@@ -119,105 +119,20 @@
         
 
         <div class="bottom-wrap">
-            <span class="title badge badge-primary badge-pill" id="btnMota" data-mdb-toggle="collapse" data-mdb-target="#motachitiet"> 
+            <span class="btn title badge badge-primary badge-pill" id="btnMota" data-mdb-toggle="collapse" data-mdb-target="#motachitiet"> 
               Mô tả <span class="small" style="color: gray;">(Bấm để xem chi tiết)</span></span>   
-            <span class="collapse" id="motachitiet">
-              {{dataGame[0].MoTaChiTiet}}
-            </span>
+        </div>
+        <div class="bottom-wrap collapse" id="motachitiet">
+            {{dataGame[0].MoTaChiTiet}}
         </div>
 
-
-        <!-- comment is null -->
-        <div class="row d-flex justify-content-center bottom-wrap" *ngIf="User[0].ID_NguoiDung!='error'">
-              <div class="d-flex flex-start w-100">
-                <img class="rounded-circle shadow-1-strong me-3"
-                  [src]=imageUrl+User[0].AnhDaiDien alt="avatar" width="65"
-                  height="65" />
-                <div class="w-100">
-                  <h5>{{User[0].NickName}}</h5>
-                  <div class="rating-wrapper rating md-3">
-                    <!-- star 5 -->
-                    <input type="radio" id="5-star-rating" name="star-rating" value="5" (click)="clickDanhGia(5)">
-                    <label for="5-star-rating" class="star-rating" title="Excellent">
-                      <i class="fas fa-star d-inline-block"></i>
-                    </label>
-                    <!-- star 4 -->
-                    <input type="radio" id="4-star-rating" name="star-rating" value="4" (click)="clickDanhGia(4)">
-                    <label for="4-star-rating" class="star-rating star" title="Good">
-                      <i class="fas fa-star d-inline-block"></i>
-                    </label>
-                    <!-- star 3 -->
-                    <input type="radio" id="3-star-rating" name="star-rating" value="3" (click)="clickDanhGia(3)">
-                    <label for="3-star-rating" class="star-rating star" title="OK">
-                      <i class="fas fa-star d-inline-block"></i>
-                    </label>
-                    <!-- star 2 -->
-                    <input type="radio" id="2-star-rating" name="star-rating" value="2" (click)="clickDanhGia(2)">
-                    <label for="2-star-rating" class="star-rating star" title="Poor">
-                      <i class="fas fa-star d-inline-block"></i>
-                    </label>
-                    <!-- star 1 -->
-                    <input type="radio" id="1-star-rating" name="star-rating" value="1" (click)="clickDanhGia(1)">
-                    <label for="1-star-rating" class="star-rating star" title="Bad">
-                      <i class="fas fa-star d-inline-block"></i>
-                    </label>
-                  </div>
-
-                  <div class="form-floating">
-                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="What is your view?" [(ngModel)]="NoiDungBL"></textarea>
-                    <label for="textAreaExample">What is your view?</label>
-                  </div>
-
-                  <div class="d-flex justify-content-between mt-3 pull-right">
-                    <!-- bl -->
-                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" *ngIf="!isBinhLuan" (click)="clickBinhLuan()">
-                      Bình luận
-                    </button>
-                    <button type="button" class="btn btn-danger" style="background-color: blue; color: white;" *ngIf="isBinhLuan" (click)="clickEditBL()">
-                      Sửa bình luận
-                    </button>
-                  </div>
-                </div>
-              </div>
+        <div class="bottom-wrap">
+          <!-- <a [routerLink]="['/binhluan/', idGameDetails]" routerLinkActive="router-link-active"> -->
+          <span class="btn btn-primary pull-right" (click)="clickBinhLuan()"> 
+            Bình luận
+          </span>
+          <!-- </a> -->
         </div>
-
-        <!-- comment all -->
-              <div class="row d-flex justify-content-center" style="padding-top: 10px;">
-                  <div class="d-flex flex-start mb-4" *ngFor="let in of counter(listBinhLuan.length) ;let i = index">
-                    <img class="rounded-circle shadow-1-strong me-3"
-                      [src]=imageUrl+listBinhLuan[i].AnhDaiDien alt="avatar" width="65"
-                      height="65"/>
-                    <div class="card w-100">
-                      <div class="card-body p-4">
-                        <div class="">
-                          <h5>{{listBinhLuan[i].NickName}}</h5>
-                            <p class="small">
-                              {{listBinhLuan[i].NgayBinhLuan}}
-                            </p>
-                            <div class="rating" > 
-                              <span *ngFor="let in of counter(listBinhLuan[i].DanhGia) ;let j = index"><i class="fa fa-star" ></i></span>
-                              <span *ngFor="let in of counter(5-listBinhLuan[i].DanhGia) ;let j = index"><i class="fa fa-star" style="color: gray;"></i></span><br/>
-                              </div>
-                            <p>
-                            {{listBinhLuan[i].NoiDungBL}}
-                            </p>
-          
-                          <div class="d-flex justify-content-between align-items-center" *ngIf="User[0].ID_NhomChucNang=='NCN1'">
-                            <div class="d-flex align-items-center">
-                            </div>
-                            <a class="link-muted">
-                              <button class="btn" style="border: solid 1px red;" (click)="deleteBinhLuan(listBinhLuan[i].ID_BinhLuan)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16" style="color: red;">
-                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                </svg>
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
     </figure>
 </div>
 

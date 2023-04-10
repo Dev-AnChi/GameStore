@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { SharedService } from '../shared.service';
 @Component({
   selector: 'app-register',
@@ -7,7 +8,7 @@ import { SharedService } from '../shared.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private service:SharedService) { }
+  constructor(private service:SharedService, private cookie:CookieService) { }
   TenNhomChucNang:string="";
 
   ID_NguoiDung:string="";
@@ -21,9 +22,9 @@ export class RegisterComponent implements OnInit {
   SDT:string="";
   DiaChi:string="";
   AnhDaiDien:string="";
-  UserName_Tao:string="";
+  UserName_Tao:string=this.cookie.get("username");
   NgayTao:string="";
-  UserName_CapNhat:string="";
+  UserName_CapNhat:string=this.cookie.get("username");;
   NgayCapNhat:string="";
   ID_NhomChucNang:any;
   listNhomChucNang:any=[];
@@ -45,8 +46,8 @@ export class RegisterComponent implements OnInit {
           if(IDusername=='null'){
             var val =  {ID_NguoiDung:this.ID_NguoiDung,NickName:this.NickName,UserName_ND:this.UserName_ND,Password_ND:this.Password_ND,
               TenNguoiDung:this.TenNguoiDung,GioiTinh:this.GioiTinh,NgaySinh:this.NgaySinh,Email:this.Email, DiaChi:this.DiaChi, 
-              SDT:this.SDT,AnhDaiDien:this.AnhDaiDien,UserName_Tao:this.service.username,NgayTao:this.NgayTao,
-              UserName_CapNhat:this.service.username,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:this.ID_NhomChucNang};
+              SDT:this.SDT,AnhDaiDien:this.AnhDaiDien,UserName_Tao:this.UserName_Tao,NgayTao:this.NgayTao,
+              UserName_CapNhat:this.UserName_CapNhat,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:this.ID_NhomChucNang};
               alert("Lưu lại những thay đổi ?");
               this.service.addNguoiDung(val).subscribe(res=>alert(res.toString()));
           }

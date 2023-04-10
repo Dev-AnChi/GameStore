@@ -23,7 +23,10 @@ export class TheloaiComponent implements OnInit {
 
   deleteTheLoai(item:any){
     alert("Bạn có chắc chắn muốn xóa không ?");
-    this.service.deleteTheLoai(item.ID_Loai).subscribe(res=>alert(res.toString()));
+    this.service.deleteTheLoai(item.ID_Loai).subscribe(res=>{
+      alert(res.toString())
+      this.refreshTheLoai();
+    });
   }
 
   clickEditTheLoai(id:any, name:any){

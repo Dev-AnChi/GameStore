@@ -7,40 +7,40 @@
 //     }
 // };
 export default configApi = {
-    localhostIMG : 'http://192.168.1.28/Images/',
-    games: 'http://192.168.1.28/api/Game',
-    theloais : 'http://192.168.1.28/api/TheLoai',
-    detailGame : 'http://192.168.1.28/api/Game/',
-    detailImage : 'http://192.168.1.28/api/HinhAnh/',
-    theloaigame : 'http://192.168.1.28/api/ChiTietGame/',
-    binhluangame : 'http://192.168.1.28/api/BinhLuan/getBinhLuanIDGame/',
-    detailUser : 'http://192.168.1.28/api/NguoiDung/',
+    localhostIMG : 'http://gamestoreapi.somee.com/Images/',
+    games: 'http://gamestoreapi.somee.com/api/Game',
+    theloais : 'http://gamestoreapi.somee.com/api/TheLoai',
+    detailGame : 'http://gamestoreapi.somee.com/api/Game/',
+    detailImage : 'http://gamestoreapi.somee.com/api/HinhAnh/',
+    theloaigame : 'http://gamestoreapi.somee.com/api/ChiTietGame/',
+    binhluangame : 'http://gamestoreapi.somee.com/api/BinhLuan/getBinhLuanIDGame/',
+    detailUser : 'http://gamestoreapi.somee.com/api/NguoiDung/',
     
-    login : 'http://192.168.1.28/api/NguoiDung/Login/',
+    login : 'http://gamestoreapi.somee.com/api/NguoiDung/Login/',
     
-    gamedatai : 'http://192.168.1.28/api/GameDaTai/getGameDaTaiIDNguoiDung/',
-    gameyeuthich : 'http://192.168.1.28/api/YeuThich/getYeuThichIDNguoiDung/',
+    gamedatai : 'http://gamestoreapi.somee.com/api/GameDaTai/getGameDaTaiIDNguoiDung/',
+    gameyeuthich : 'http://gamestoreapi.somee.com/api/YeuThich/getYeuThichIDNguoiDung/',
     
-    checkDaTai : 'http://192.168.1.28/api/GameDaTai/checkGameDaTai/',
-    checkYeuThich : 'http://192.168.1.28/api/YeuThich/checkYeuThich/',
+    checkDaTai : 'http://gamestoreapi.somee.com/api/GameDaTai/checkGameDaTai/',
+    checkYeuThich : 'http://gamestoreapi.somee.com/api/YeuThich/checkYeuThich/',
     
-    findGame : 'http://192.168.1.28/api/Game/findGame/',
-    filterTheLoai : 'http://192.168.1.28/api/ChiTietGame/getGamelistIDTheLoai/',
+    findGame : 'http://gamestoreapi.somee.com/api/Game/findGame/',
+    filterTheLoai : 'http://gamestoreapi.somee.com/api/ChiTietGame/getGamelistIDTheLoai/',
 
-    downloadGame : 'http://192.168.1.28/api/GameDaTai',
-    updateLuotTai : 'http://192.168.1.28/api/Game/updateLuotTai/',
-    deleteGame : 'http://192.168.1.28/api/GameDaTai/',
+    downloadGame : 'http://gamestoreapi.somee.com/api/GameDaTai',
+    updateLuotTai : 'http://gamestoreapi.somee.com/api/Game/updateLuotTai/',
+    deleteGame : 'http://gamestoreapi.somee.com/api/GameDaTai/',
 
-    addYeuThich : 'http://192.168.1.28/api/YeuThich',
-    deleteYeuThich : 'http://192.168.1.28/api/YeuThich/',
+    addYeuThich : 'http://gamestoreapi.somee.com/api/YeuThich',
+    deleteYeuThich : 'http://gamestoreapi.somee.com/api/YeuThich/',
 
-    BinhLuan : 'http://192.168.1.28/api/BinhLuan',
-    findBinhLuan : 'http://192.168.1.28/api/BinhLuan/findBinhLuan/',
+    BinhLuan : 'http://gamestoreapi.somee.com/api/BinhLuan',
+    findBinhLuan : 'http://gamestoreapi.somee.com/api/BinhLuan/findBinhLuan/',
 
-    updateDanhGia : 'http://192.168.1.28/api/Game/updateDanhGia/',
+    updateDanhGia : 'http://gamestoreapi.somee.com/api/Game/updateDanhGia/',
 
-    topLuottai : 'http://192.168.1.28/api/Game/TopLuotTai',
-    topDanhGia : 'http://192.168.1.28/api/Game/TopDanhGia',
-    gameFree : 'http://192.168.1.28/api/Game/gameFree',
-    topGiaTien : 'http://192.168.1.28/api/Game/TopGiaTien',
+    topLuottai : 'http://gamestoreapi.somee.com/api/Game/TopLuotTai',
+    topDanhGia : 'http://gamestoreapi.somee.com/api/Game/TopDanhGia',
+    gameFree : 'http://gamestoreapi.somee.com/api/Game/gameFree',
+    topGiaTien : 'http://gamestoreapi.somee.com/api/Game/TopGiaTien',
 };

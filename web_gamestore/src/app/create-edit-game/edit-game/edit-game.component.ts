@@ -65,7 +65,7 @@ export class EditGameComponent implements OnInit {
   saveGameClick(){
       var val =  {ID_Game:this.ID_Game,Ten_Game:this.Ten_Game,Ten_NhaSanXuat:this.Ten_NhaSanXuat,SoHieuPhienBan:this.SoHieuPhienBan
       ,PhienBan:this.PhienBan,YC_CauHinh:this.YC_CauHinh,LuotTaiXuong:this.LuotTaiXuong,DanhGiaTB:this.DanhGiaTB,GioiHan_Tuoi:this.GioiHan_Tuoi,
-      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_CapNhat:this.service.username,NgayTao:this.NgayTao, UserName_Tao:this.UserName_Tao,
+      Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_CapNhat:"admin",NgayTao:this.NgayTao, UserName_Tao:this.UserName_Tao,
       NgayCapNhat:this.NgayCapNhat,Logo_Game:this.Logo_Game};
       console.log(val)
       alert("Lưu lại những thay đổi ?");

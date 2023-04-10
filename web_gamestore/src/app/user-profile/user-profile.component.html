@@ -1,4 +1,4 @@
-<section class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 20px;" *ngIf="ID_NguoiDung != 'error'">
+<section class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 20px;" *ngIf="User.length != 0">
     <div  class="container card-body py-5 px-md-5" style="width: 95%;">
       <div class="row">
         <div class="col-lg-4">
@@ -11,7 +11,7 @@
               <p class="text-muted mb-4">Cập nhật cuối : {{User[0].NgayCapNhat}}</p>
               <div class="d-flex justify-content-center mb-2">
                 <a [routerLink]="['/edit-user', User[0].ID_NguoiDung]" routerLinkActive="router-link-active"><button type="button" class="btn btn-primary">Chỉnh sửa thông tin</button></a>
-                <button type="button" class="btn btn-outline-primary ms-1" [(ngModel)]="TenNhomChucNang">{{TenNhomChucNang}}</button>
+                <button type="text" class="btn btn-outline-primary ms-1" [(ngModel)]="TenNhomChucNang">{{TenNhomChucNang}}</button>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
     </div>
   </section>
 
-<section class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 20px;" *ngIf="ID_NguoiDung == 'error'">
+<section class="card mx-4 mx-md-5 shadow-5-strong" style="margin-top: 20px;" *ngIf="User.length == 0">
   <div  class="container card-body py-5 px-md-5" style="width: 95%;">
     <div class="row">
       <div class="col-lg" style="color: red;">

@@ -18,8 +18,8 @@ export class GameDownloadComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.ID_NguoiDung = params['id'];
-      if(this.ID_NguoiDung == null)
-        this.ID_NguoiDung = "error";
+      // if(this.ID_NguoiDung == null)
+      //   this.ID_NguoiDung = "error";
       this.refreshGameDaTai();
     });
     this.imageUrl=this.service.ImagesUrl + "/";

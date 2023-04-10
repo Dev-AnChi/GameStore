@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t22fp+rE5Vy4Gv4JhL2zYBLa3n18ObdURy0AMlGvpyo95m7mHiEjXRf0gF75xL90WWf1JfFU1nBNI3reLjn93Q==",
+  "dgSpecHash": "qxJEQkR1XbV53/OYs9GBD5UCdm0xunhSO2jY3ytY318umg8fhGYlb6GYhK8+GOXdp1n7YibKsar6gJ1kxEXUyQ==",
   "success": true,
-  "projectFilePath": "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\APIgamestore.csproj",
+  "projectFilePath": "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\APIgamestore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chipa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.0\\microsoft.aspnetcore.authentication.jwtbearer.6.0.0.nupkg.sha512",
     "C:\\Users\\chipa\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.1\\microsoft.aspnetcore.jsonpatch.6.0.1.nupkg.sha512",

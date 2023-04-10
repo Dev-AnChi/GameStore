@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\APIgamestore.csproj": {}
+    "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\APIgamestore.csproj": {}
   },
   "projects": {
-    "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\APIgamestore.csproj": {
+    "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\APIgamestore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\APIgamestore.csproj",
+        "projectUniqueName": "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\APIgamestore.csproj",
         "projectName": "APIgamestore",
-        "projectPath": "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\APIgamestore.csproj",
+        "projectPath": "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\APIgamestore.csproj",
         "packagesPath": "C:\\Users\\chipa\\.nuget\\packages\\",
-        "outputPath": "D:\\Data\\GameStore\\APIgamestore\\APIgamestore\\obj\\",
+        "outputPath": "D:\\Data\\GameStore\\gamestoreAPI\\APIgamestore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chipa\\AppData\\Roaming\\NuGet\\NuGet.Config",

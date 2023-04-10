@@ -1,48 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { Router, } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private service:SharedService, private router:Router,) { }
+  constructor(private service:SharedService, private router:Router, private cookie:CookieService) { }
 
   User:any;
-  checkLogin:any;
-  username:string="";
-  password:string="";
-
-  id_nguoidung:string="";
+  checkLogin:boolean = false;
+  username:any;
+  password:any;
 
   ngOnInit(): void {
-    this.service.username = this.username;
-    this.service.password = this.password;
+    setTimeout(() => {})
+  }
+
+  addCookie(){
+    this.cookie.set("username", this.username);
+    this.cookie.set("password", this.password);
   }
 
   clickLogin(){
-    this.service.username = this.username;
-    this.service.password = this.password;
-    if(this.username==""){
-      this.service.username="error";
+    if(this.username == null || this.password == null){
+      alert("Yêu cầu nhập đầy đủ tài khoản và mật khẩu !");
     }
-    if(this.password==""){
-      this.service.password="error";
+    else{
+      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+        this.User=data;
+        if(this.User.length == 0){
+          this.checkLogin = false;
+          alert("Nhập sai tài khoản hoặc mật khẩu !");
+        }
+        else{
+          this.addCookie();
+          //this.router.navigate(['/game']);
+          location.replace("/");
+          this.checkLogin = true;
+        }
+      })
     }
+  }
 
-    this.service.loginNguoiDung(this.service.username,this.service.password).subscribe(data=>{
-      this.User=data;
-      this.id_nguoidung = this.User[0].ID_NguoiDung;
-      if(this.id_nguoidung == 'error'){
-        this.service.checkLogin = false;
-        this.checkLogin = this.service.checkLogin;
-      }
-      else{
-        //dùng routerlink bằng code 
-        this.router.navigate(['/game']);
-        this.service.checkLogin = true;
-      }
-    })
+  clickRegister(){
+    this.router.navigate(['/register']);
   }
 }

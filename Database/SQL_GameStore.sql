@@ -311,11 +311,12 @@ BEGIN
     SELECT COUNT(ID_NguoiDung) FROM NguoiDung
 END
 GO
+--Login
 CREATE PROC LoginNguoiDung
 (@UserName_ND VARCHAR(50),@Password_ND VARCHAR(200))
 AS
 BEGIN
-    SELECT ID_NguoiDung FROM NguoiDung WHERE @UserName_ND=UserName_ND AND @Password_ND=Password_ND
+    SELECT * FROM NguoiDung WHERE @UserName_ND=UserName_ND AND @Password_ND=Password_ND
 END
 GO
 --get ID bằng name nhóm chức năng

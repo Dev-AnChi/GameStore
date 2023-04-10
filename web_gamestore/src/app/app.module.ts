@@ -38,6 +38,10 @@ import { GameLikeComponent } from './game-like/game-like.component';
 import { OtherComponent } from './other/other.component';
 import { TheloaiComponent } from './theloai/theloai.component';
 
+//add cookie
+import { CookieService } from 'ngx-cookie-service';
+
+import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,7 @@ import { TheloaiComponent } from './theloai/theloai.component';
     OtherComponent,
     TheloaiComponent,
     TheloaiEditComponent,
+    BinhluanGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,7 @@ import { TheloaiComponent } from './theloai/theloai.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [SharedService],
+  providers: [SharedService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

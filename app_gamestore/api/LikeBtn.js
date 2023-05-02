@@ -66,7 +66,7 @@ const LikeBtn = (props) => {
             getDatacheckYeuthich();
         } 
     }>
-        <Image source={checkYeuthich=='error' ? images.heart : images.heartred} style={{width : 20, height : 20}}/>
+        <Image source={{uri:checkYeuthich=='error' ? images.heart : images.heartred}} style={{width : 20, height : 20}}/>
     </TouchableOpacity>
   )
 }

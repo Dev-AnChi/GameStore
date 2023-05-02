@@ -888,3 +888,55 @@ BEGIN
     Order by Gia Desc
 END
 GO
+
+
+
+--Recommender Systems-------------------------------------------------------------
+CREATE PROC getRateIDNguoiDung
+(@ID_NguoiBinhLuan Varchar(20))
+AS
+BEGIN
+    SELECT ID_Game , DanhGia FROM BinhLuan
+	Where ID_NguoiBinhLuan = @ID_NguoiBinhLuan
+	Order by ID_Game asc
+END
+GO
+
+CREATE PROC getIDLoai
+AS
+BEGIN
+    SELECT ID_Loai FROM TheLoai
+	Order by ID_Loai asc
+END
+GO
+
+CREATE PROC checkTheLoaiGame
+(@id_game int, @id_loai int)
+AS
+BEGIN
+	DECLARE @id int
+    SET @id = (select ID_ChiTietGame from ChiTietGame where ID_Game = @id_game and ID_Loai = @id_loai)
+	if @id is null
+		select 0
+	else
+		select 1
+END
+GO
+
+CREATE PROC getFullIDGame
+AS
+BEGIN
+    SELECT ID_Game FROM Game
+	Order by ID_Game asc
+END
+GO
+
+CREATE PROC getFullIDGameDaTai
+(@ID_NguoiDung varchar(20))
+AS
+BEGIN
+    SELECT ID_Game FROM GameDaTai
+	Where ID_NguoiDung = @ID_NguoiDung
+	Order by ID_Game asc
+END
+GO

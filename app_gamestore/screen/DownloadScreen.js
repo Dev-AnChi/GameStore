@@ -40,7 +40,7 @@ const DownloadScreen = ({ navigation, route }) => {
                 getDataGamedatai();
                 
             }} >
-            <Image source={images.reload} style={styles.imgSearch}
+            <Image source={{uri:images.reload}} style={styles.imgSearch}
                 resizeMode='cover'/>
         </TouchableOpacity>
       </View>

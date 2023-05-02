@@ -39,20 +39,20 @@ const LoginScreen = ({navigation}) => {
             enabled={Platform.OS === "ios" ? true : false}
             style={styles.keyboard}
         >
-        <ImageBackground source={images.backgroundLogin} style={{flex :1}}>
+        <ImageBackground source={{uri:images.backgroundLogin}} style={{flex :1}}>
             <View style={styles.container}>
                 <View style={styles.title}>
                     <View style={styles.wellcome}>
                         <Text style={styles.textTitle}>Đăng nhập cửa hàng trò chơi</Text>
                     </View>
                     <View style={styles.logo}>
-                        <Image source={images.logoGame} style={{width: 100, height : 100}}/>
+                        <Image source={{uri:images.logoGame}} style={{width: 100, height : 100}}/>
                     </View>
                 </View>
                 <View style={styles.formlogin}>
                         <View style={styles.inputgroup}>
                             <View style={{ position: "absolute",zIndex: 1,left: 10, top : 10}}>
-                                <Image source={images.user} style={{width: 25, height : 25}}/>
+                                <Image source={{uri:images.user}} style={{width: 25, height : 25}}/>
                             </View>
                             <TextInput 
                                 onChangeText={(text) => {
@@ -63,7 +63,7 @@ const LoginScreen = ({navigation}) => {
                         </View>
                         <View style={styles.inputgroup}>
                             <View style={{ position: "absolute",zIndex: 1,left: 10, top : 10}}>
-                                <Image source={images.password} style={{width: 25, height : 25}}/>
+                                <Image source={{uri:images.password}} style={{width: 25, height : 25}}/>
                             </View>
                             <TextInput 
                                 onChangeText={(text) => {

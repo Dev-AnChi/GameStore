@@ -37,7 +37,7 @@ namespace APIgamestore.Controllers
         }
 
         //create
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public JsonResult Post(TheLoaiModel tl)
         {
@@ -65,7 +65,7 @@ namespace APIgamestore.Controllers
         }
 
         //edit
-        [Authorize]
+        //[Authorize]
         [HttpPut]
         public JsonResult Put(TheLoaiModel tl)
         {
@@ -93,7 +93,7 @@ namespace APIgamestore.Controllers
         }
 
         //delete
-        [Authorize]
+        //Authorize]
         [HttpDelete("{id}")]
         public JsonResult Delete(string id)
         {

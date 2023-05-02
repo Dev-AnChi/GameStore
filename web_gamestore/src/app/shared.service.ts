@@ -208,4 +208,9 @@ export class SharedService {
   checkGameDaTai(user:any, id:any){
     return this.http.get(this.APIUrl + '/GameDaTai/checkGameDaTai/'+user+'/' + id);
   }
+
+  //recommender systems
+  getGameRecommender(val:any){
+    return this.http.get<any>(this.APIUrl+'/RecommenderSystems/' + val);
+  }
 }

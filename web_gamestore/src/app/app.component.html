@@ -25,6 +25,9 @@
               <li class="nav-item">
                   <a class="nav-link active"  [routerLink]="['/game']" routerLinkActive="router-link-active">Trang chủ</a>
               </li>
+              <li class="nav-item" *ngIf="checkLogin">
+                <a class="nav-link active"  [routerLink]="['/game', 0]" routerLinkActive="router-link-active">Game dành cho bạn</a>
+              </li>
               <span *ngFor="let item of listTheLoai">
                   <li class="nav-item">
                       <a class="nav-link" [routerLink]="['/game',item.ID_Loai]" routerLinkActive="router-link-active">{{item.TenTheLoai}}</a>

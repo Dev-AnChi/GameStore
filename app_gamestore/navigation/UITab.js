@@ -38,7 +38,7 @@ const screenOption = ({route}) => ({
             iconName = images.user;
             iconNameClick = images.userclick;
         }
-        return <Image source={focused ? iconNameClick : iconName} style={{width : 25, height : 25}}/>
+        return <Image source={{uri:focused ? iconNameClick : iconName}} style={{width : 25, height : 25}}/>
     }
 })
 function UITab({navigation, route}){

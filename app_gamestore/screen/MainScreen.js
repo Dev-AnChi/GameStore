@@ -150,11 +150,11 @@ function MainScreen({ navigation, route }) {
             enabled={Platform.OS === "ios" ? true : false}
             style={styles.keyboard}
         >
-            <ImageBackground source={images.backgroundLogin} style={styles.container}>
+            <ImageBackground source={{uri:images.backgroundLogin}} style={styles.container}>
                 <View style={styles.header}>
                     <View style={styles.title}>
                         <View style={styles.wellcome}>
-                            <Image source={images.logoGame} style={styles.logoGame} />
+                            <Image source={{uri:images.logoGame}} style={styles.logoGame} />
                             <Text style={styles.textWellcome}>GameStore</Text>
                         </View>
                         {/* tim kiem */}
@@ -182,7 +182,7 @@ function MainScreen({ navigation, route }) {
                                 }} >
                                 <Image style={styles.imgSearch}
                                     resizeMode='cover'
-                                    source={images.search}/>
+                                    source={{uri:images.search}}/>
                                 </TouchableOpacity>}
                             {show && <TouchableOpacity
                                 onPress={() => {
@@ -192,7 +192,7 @@ function MainScreen({ navigation, route }) {
                                     setGame([]);
                                     getDataGame();
                                 }} >
-                                <Image source={images.cancel} style={styles.imgSearch}
+                                <Image source={{uri:images.cancel}} style={styles.imgSearch}
                                     resizeMode='cover'/>
                             </TouchableOpacity>}
                         </View>
@@ -251,7 +251,7 @@ function MainScreen({ navigation, route }) {
                             style={styles.thongke}
                             >
                                 <View style={styles.itemTaiXuong}>
-                                    <Image source={images.cups} style={{ width: 40, height: 40, margin: 15 }} />
+                                    <Image source={{uri:images.cups}} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Top lượt tải</Text></View>
                             </TouchableOpacity>
@@ -264,7 +264,7 @@ function MainScreen({ navigation, route }) {
                             style={styles.thongke}
                             >
                                 <View style={styles.itemDanhGia}>
-                                    <Image source={images.check} style={{ width: 40, height: 40, margin: 15 }} />
+                                    <Image source={{uri:images.check}} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Top đánh giá</Text></View>
                             </TouchableOpacity>
@@ -276,7 +276,7 @@ function MainScreen({ navigation, route }) {
                             }} 
                             style={styles.thongke}>
                                 <View style={styles.itemMienPhi}>
-                                    <Image source={images.free} style={{ width: 40, height: 40, margin: 15 }} />
+                                    <Image source={{uri:images.free}} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Miễn phí</Text></View>
                             </TouchableOpacity>
@@ -288,7 +288,7 @@ function MainScreen({ navigation, route }) {
                             }} 
                             style={styles.thongke}>
                                 <View style={styles.itemGiaCaoNhat}>
-                                    <Image source={images.money} style={{ width: 40, height: 40, margin: 15 }} />
+                                    <Image source={{uri:images.money}} style={{ width: 40, height: 40, margin: 15 }} />
                                 </View>
                                 <View><Text style={styles.textTK}>Giá cao nhất</Text></View>
                             </TouchableOpacity>
@@ -309,7 +309,7 @@ function MainScreen({ navigation, route }) {
                                     setGame([]);
                                     getDataGame();
                                 }} >
-                                <Image source={isFilter != '' ? images.cancel : images.reload} style={styles.imgSearch}
+                                <Image source={{uri: isFilter != '' ? images.cancel : images.reload}} style={styles.imgSearch}
                                     resizeMode='cover'/>
                             </TouchableOpacity>{/*}*/}
                 </View>

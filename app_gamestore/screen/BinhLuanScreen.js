@@ -105,7 +105,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     onPress={
                         navigation.goBack
                     }>
-                <Image source={images.back} style={{width : 15, height : 15}}/>
+                <Image source={{uri:images.back}} style={{width : 15, height : 15}}/>
             </TouchableOpacity>
             <View style={{ margin: 10, flexDirection: 'row' }}>
                 <Text style={{
@@ -118,7 +118,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     onPress={() => {
                         getDatabinhluan();
                     }} >
-                    <Image source={images.reload} style={{ width: 30, height: 30 }}
+                    <Image source={{uri:images.reload}} style={{ width: 30, height: 30 }}
                         resizeMode='cover' />
                 </TouchableOpacity>
             </View>
@@ -134,7 +134,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     for(let i = 0; i < item.DanhGia; i++){
                         star.push(
                             <View key = {i}>
-                                <Image source={images.star} style={{width : 15 , height : 15, marginRight : 10}}/>
+                                <Image source={{uri:images.star}} style={{width : 15 , height : 15, marginRight : 10}}/>
                             </View>
                         )
                     }
@@ -142,7 +142,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                     for(let i = 0; i < 5-item.DanhGia; i++){
                         starNone.push(
                             <View key = {i}>
-                                <Image source={images.starNone} style={{width : 15 , height : 15, marginRight : 10}}/>
+                                <Image source={{uri:images.starNone}} style={{width : 15 , height : 15, marginRight : 10}}/>
                             </View>
                         )
                     }
@@ -171,19 +171,19 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 <Text style={{color : 'black', fontSize : 18, fontWeight : 'bold', borderLeftWidth : 5, paddingLeft : 10, borderLeftColor : 'blue'}}>Thêm đánh giá</Text>
                 <View style={{margin : 10, flexDirection : 'row'}}>
                     <TouchableOpacity onPress={()=>{setdanhgia(1)}} style={styles.starDanhGia}>
-                        <Image source={danhgia>=1 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>
+                        <Image source={{uri:danhgia>=1 ? images.star : images.starNone}} style={{width : 25 , height : 25, marginRight : 15}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{setdanhgia(2)}} style={styles.starDanhGia}>
-                        <Image source={danhgia>=2 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>
+                        <Image source={{uri:danhgia>=2 ? images.star : images.starNone}} style={{width : 25 , height : 25, marginRight : 15}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{setdanhgia(3)}} style={styles.starDanhGia}>
-                        <Image source={danhgia>=3 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>
+                        <Image source={{uri:danhgia>=3 ? images.star : images.starNone}} style={{width : 25 , height : 25, marginRight : 15}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{setdanhgia(4)}} style={styles.starDanhGia}>
-                        <Image source={danhgia>=4 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>
+                        <Image source={{uri:danhgia>=4 ? images.star : images.starNone}} style={{width : 25 , height : 25, marginRight : 15}}/>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{setdanhgia(5)}} style={styles.starDanhGia}>
-                        <Image source={danhgia>=5 ? images.star : images.starNone} style={{width : 25 , height : 25, marginRight : 15}}/>
+                        <Image source={{uri:danhgia>=5 ? images.star : images.starNone}} style={{width : 25 , height : 25, marginRight : 15}}/>
                     </TouchableOpacity>
                 </View>
                 <TextInput 

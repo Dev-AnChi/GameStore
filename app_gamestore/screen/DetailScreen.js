@@ -48,7 +48,7 @@ const DetailScreen = ({ navigation, route }) => {
                     onPress={
                         navigation.goBack
                     }>
-                    <Image source={images.back} style={{width : 15, height : 15}}/>
+                    <Image source={{uri:images.back}} style={{width : 15, height : 15}}/>
                 </TouchableOpacity>
 
                 <View style={styles.icon}>
@@ -81,19 +81,19 @@ const DetailScreen = ({ navigation, route }) => {
 
                 <View style={styles.thongtinchitiet}>
                     <View style={styles.boxDetails}>
-                        <Image source={images.star} style={styles.sizeIcon}/>
+                        <Image source={{uri:images.star}} style={styles.sizeIcon}/>
                         <Text style={styles.textTT}>{game.DanhGiaTB? game.DanhGiaTB.toFixed(1) : game.DanhGiaTB} sao</Text>
                     </View>
                     <View style={styles.boxDetails}>
-                        <Image source={images.icondownload} style={styles.sizeIcon}/>
+                        <Image source={{uri:images.icondownload}} style={styles.sizeIcon}/>
                         <Text style={styles.textTT}>{game.LuotTaiXuong ? game.LuotTaiXuong.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') : game.LuotTaiXuong} lượt tải</Text>
                     </View>
                     <View style={styles.boxDetails}>
-                        <Image source={images.age} style={styles.sizeIcon}/>
+                        <Image source={{uri:images.age}} style={styles.sizeIcon}/>
                         <Text style={styles.textTT}>{game.GioiHan_Tuoi} tuổi</Text>
                     </View>
                     <View style={styles.boxDetails}>
-                        <Image source={images.memory} style={styles.sizeIcon}/>
+                        <Image source={{uri:images.memory}} style={styles.sizeIcon}/>
                         <Text style={styles.textTT}>250 MB</Text>
                     </View>
                 </View>

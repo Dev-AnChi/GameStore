@@ -26,9 +26,9 @@ const UserScreen = ({ navigation, route }) => {
   }
 
   return (
-    <ImageBackground source={images.backgroundLogin} style={{ flex: 1 }}>
+    <ImageBackground source={{uri:images.backgroundLogin}} style={{ flex: 1 }}>
       <View style={styles.container}>
-        <ImageBackground source={images.backgroundAvatar} style={styles.top}>
+        <ImageBackground source={{uri:images.backgroundAvatar}} style={styles.top}>
           {/* <View style={{alignItems : 'flex-end', backgroundColor : 'blue'}}>
             <Image source={images.logout} style ={{width: 50, height : 50}}/>
           </View> */}
@@ -44,7 +44,7 @@ const UserScreen = ({ navigation, route }) => {
             <ScrollView>
               <View style={styles.itemcard}>
                 <View style={styles.iconitem}>
-                  <Image source={images.nameUser} style={{ width: 25, height: 25 }} />
+                  <Image source={{uri:images.nameUser}} style={{ width: 25, height: 25 }} />
                 </View>
                 <Text style={styles.textitem}>
                   {user.TenNguoiDung}
@@ -53,7 +53,7 @@ const UserScreen = ({ navigation, route }) => {
 
               <View style={styles.itemcard}>
                 <View style={styles.iconitem}>
-                  <Image source={images.sexUser} style={{ width: 25, height: 25 }} />
+                  <Image source={{uri:images.sexUser}} style={{ width: 25, height: 25 }} />
                 </View>
                 <Text style={styles.textitem}>
                   {user.GioiTinh == true ? "Nam" : "Nữ"}
@@ -62,7 +62,7 @@ const UserScreen = ({ navigation, route }) => {
 
               <View style={styles.itemcard}>
                 <View style={styles.iconitem}>
-                  <Image source={images.email} style={{ width: 25, height: 25 }} />
+                  <Image source={{uri:images.email}} style={{ width: 25, height: 25 }} />
                 </View>
                 <Text style={styles.textitem}>
                   {user.Email}
@@ -71,7 +71,7 @@ const UserScreen = ({ navigation, route }) => {
 
               <View style={styles.itemcard}>
                 <View style={styles.iconitem}>
-                  <Image source={images.homeaddress} style={{ width: 25, height: 25 }} />
+                  <Image source={{uri:images.homeaddress}} style={{ width: 25, height: 25 }} />
                 </View>
                 <Text style={styles.textitem}>
                   {user.DiaChi}
@@ -80,7 +80,7 @@ const UserScreen = ({ navigation, route }) => {
 
               <View style={styles.itemcard}>
                 <View style={styles.iconitem}>
-                  <Image source={images.phone} style={{ width: 25, height: 25 }} />
+                  <Image source={{uri:images.phone}} style={{ width: 25, height: 25 }} />
                 </View>
                 <Text style={styles.textitem}>
                   {user.SDT}

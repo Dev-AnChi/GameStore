@@ -39,7 +39,7 @@ const LikeScreen = ({ navigation, route }) => {
                 setgameyeuthich([]);
                 getDatagameyeuthich();
             }} >
-            <Image source={images.reload} style={styles.imgSearch}
+            <Image source={{uri:images.reload}} style={styles.imgSearch}
                 resizeMode='cover'/>
         </TouchableOpacity>
       </View>

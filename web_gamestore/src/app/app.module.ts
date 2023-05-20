@@ -42,6 +42,7 @@ import { TheloaiComponent } from './theloai/theloai.component';
 import { CookieService } from 'ngx-cookie-service';
 
 import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
+import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game
     TheloaiComponent,
     TheloaiEditComponent,
     BinhluanGameComponent,
+    KiemDuyetGameComponent,
   ],
   imports: [
     BrowserModule,

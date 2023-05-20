@@ -18,5 +18,7 @@
         public string UserName_CapNhat { get; set; }
         public string NgayCapNhat { get; set; }
         public string Logo_Game { get; set; }
+        public bool KiemDuyet { get; set; }
+        public int DungLuong { get; set; }
     }
 }

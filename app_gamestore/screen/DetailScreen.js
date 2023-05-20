@@ -31,7 +31,7 @@ const DetailScreen = ({ navigation, route }) => {
             });
         })
         .catch(function (error) {
-            console.log("Loi khong lay duoc API: "  + error);
+            console.log("Loi khong lay duoc API details: "  + error);
         });
     }
  

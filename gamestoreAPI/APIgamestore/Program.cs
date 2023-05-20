@@ -46,6 +46,10 @@ builder.Services.AddControllersWithViews()
     options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
 builder.Services.AddControllers();
+
+//gói apis google drive
+builder.Services.AddScoped<GoogleDriveService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

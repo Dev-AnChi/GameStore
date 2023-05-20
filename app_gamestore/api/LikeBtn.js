@@ -21,7 +21,7 @@ const LikeBtn = (props) => {
             setcheckYeuthich(datacheckYeuthich);
         })
         .catch(function (error) {
-            console.log("Loi khong lay duoc API: "  + error);
+            console.log("Loi khong lay duoc API datayeuthich: "  + error);
         });
     }
 
@@ -38,7 +38,7 @@ const LikeBtn = (props) => {
                 getDatacheckYeuthich();
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API likeOK: " + error);
             });
     }
     //go cai dat
@@ -49,7 +49,7 @@ const LikeBtn = (props) => {
                 setcheckdatai('error');
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API gocaidat: " + error);
             });
     }
 

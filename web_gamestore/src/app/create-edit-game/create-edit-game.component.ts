@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-create-edit-game',
@@ -9,17 +10,20 @@ import { SharedService } from '../shared.service';
 })
 export class CreateEditGameComponent implements OnInit {
 
-  constructor(private service:SharedService) { }
+  constructor(private service:SharedService,private cookie:CookieService) { }
   animation:string="card p-3";
   Gamelist:any=[];
   imageUrl:any;
-
+  username:any;
+  password:any;
   ngOnInit(): void {
+    this.username = this.cookie.get("username");
+    this.password = this.cookie.get("password");
     this.refreshGameList();
     this.imageUrl=this.service.ImagesUrl + "/";
   }
   refreshGameList(){
-    this.service.getGamelist().subscribe(data=>{
+    this.service.getMyGame(this.username).subscribe(data=>{
       this.Gamelist=data;
     })
   }

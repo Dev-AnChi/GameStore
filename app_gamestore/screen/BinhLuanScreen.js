@@ -30,7 +30,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 setbinhluan(databinhluan);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API dataBL: " + error);
             });
     }
 
@@ -51,7 +51,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 getDatabinhluan();
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API addBL: " + error);
             });
     }
 
@@ -64,7 +64,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 setfindBL(findBL);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API checkBL: " + error);
             });
     }
     //edit binh luan
@@ -84,7 +84,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 getDatabinhluan();
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API edit binhluan: " + error);
             });
     }
 
@@ -95,7 +95,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                 //console.log(response);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API danhgia: " + error);
             });
     }
 

@@ -19,7 +19,7 @@ const TheLoai = () => {
                 setTheLoai(dataTheLoai);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API datatheloai: " + error);
             });
     }
 

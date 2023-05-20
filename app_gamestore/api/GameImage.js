@@ -18,7 +18,7 @@ const GameImage = (props) => {
             setHinhAnh(dataHinhAnh);
         })
         .catch(function (error) {
-            console.log("Loi khong lay duoc API: "  + error);
+            console.log("Loi khong lay duoc API imgGame: "  + error);
         });
     }
 

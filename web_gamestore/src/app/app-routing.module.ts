@@ -21,6 +21,7 @@ import { OtherComponent } from './other/other.component';
 import { TheloaiComponent } from './theloai/theloai.component';
 import { TheloaiEditComponent } from './theloai/theloai-edit/theloai-edit.component';
 import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
+import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.component';
 const routes: Routes = [
   {path:"", component:GameComponent},
   {path:"game", component:GameComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path:"other/:keyword", component:OtherComponent},
   {path:"theloai", component:TheloaiComponent},
   {path:"theloai-edit/:id", component:TheloaiEditComponent},
+  {path:"kiem-duyet-game", component:KiemDuyetGameComponent},
 ];
 
 @NgModule({

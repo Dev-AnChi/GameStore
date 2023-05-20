@@ -22,7 +22,7 @@ const DownloadScreen = ({ navigation, route }) => {
         setGamedatai(dataGamedatai);
       })
       .catch(function (error) {
-        console.log("Loi khong lay duoc API: " + error);
+        console.log("Loi khong lay duoc API download: " + error);
       });
   }
   return (

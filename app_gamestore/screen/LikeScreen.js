@@ -22,7 +22,7 @@ const LikeScreen = ({ navigation, route }) => {
         setgameyeuthich(datagameyeuthich);
       })
       .catch(function (error) {
-        console.log("Loi khong lay duoc API: " + error);
+        console.log("Loi khong lay duoc API like: " + error);
       });
   }
   return (

@@ -24,6 +24,7 @@ export default {
     free : 'http://gamestoreapi.somee.com/Images/free.png',
     check : 'http://gamestoreapi.somee.com/Images/check.png',
     money : 'http://gamestoreapi.somee.com/Images/money.png',
+    mygame : 'http://gamestoreapi.somee.com/Images/mygame.png',
 
     back : 'http://gamestoreapi.somee.com/Images/back.png',
 

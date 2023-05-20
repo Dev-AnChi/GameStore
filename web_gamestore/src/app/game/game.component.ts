@@ -54,7 +54,7 @@ export class GameComponent implements OnInit {
   }}
 
   refreshGameList(){
-    this.service.getGamelist().subscribe(data=>{
+    this.service.getGameDaKiemDuyet().subscribe(data=>{
       this.Gamelist=data;
     })
   }

@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 
 export class SharedService {
-  readonly APIUrl="http://gamestoreapi.somee.com/api";
-  readonly ImagesUrl = "http://gamestoreapi.somee.com/Images";
+  readonly APIUrl="http://localhost:5162/api";
+  readonly ImagesUrl = "http://localhost:5162/Images";
 
   constructor(private http:HttpClient) { }
 
@@ -16,6 +16,20 @@ export class SharedService {
   getGamelist():Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/Game');
   }
+
+  getMyGame(val:any){
+    return this.http.get(this.APIUrl + '/Game/MyGame/' + val);
+  }
+  getGameDaKiemDuyet():Observable<any[]>{
+    return this.http.get<any>(this.APIUrl+'/Game/GameDaKiemDuyet');
+  }
+  getGameChuaKiemDuyet():Observable<any[]>{
+    return this.http.get<any>(this.APIUrl+'/Game/GameChuaKiemDuyet');
+  }
+  kiemduyetGame(val:any){
+    return this.http.get(this.APIUrl + '/Game/KiemDuyet/' + val);
+  }
+
   addGame(val:any){
     return this.http.post(this.APIUrl+'/Game',val);
   }
@@ -147,6 +161,13 @@ export class SharedService {
   }
   checkUserName(val:any){
     return this.http.get(this.APIUrl+'/NguoiDung/checkUserName/'+val);
+  }
+
+  capquyenAdmin(val:any){
+    return this.http.get(this.APIUrl + '/NguoiDung/capquyenAdmin/' + val);
+  }
+  huyquyenAdmin(val:any){
+    return this.http.get(this.APIUrl + '/NguoiDung/huyquyenAdmin/' + val);
   }
 
   //Bình luận

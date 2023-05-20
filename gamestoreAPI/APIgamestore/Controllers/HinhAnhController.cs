@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using System.Net;
+using System;
 
 namespace APIgamestore.Controllers
 {
@@ -141,12 +142,27 @@ namespace APIgamestore.Controllers
         [HttpPost]
         public JsonResult SaveFile()
         {
-            int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            //int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            Random rand = new Random();
+            int stringlen = 40;
+            int randValue;
+            string str = "";
+            char letter;
+
+            while(System.IO.File.Exists(Path.Combine(_env.ContentRootPath, "Images" + '\\'+str)) || str==""){
+                for (int i = 0; i < stringlen; i++)
+                {
+                    randValue = rand.Next(0, 26);
+                    letter = Convert.ToChar(randValue + 65);
+                    str = str + letter;
+                }
+            }
+
             try
             {
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
-                string filename = "image" + (index + 1) + ".png";
+                string filename = "image_" + str + ".png";
                 var physicalPath = _env.ContentRootPath + "/Images/" + filename;
 
                 using (var stream = new FileStream(physicalPath, FileMode.Create))

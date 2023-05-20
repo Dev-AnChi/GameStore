@@ -1,0 +1,8 @@
+client id
+143076549869-lbuqgj1g53rrhptikv52ga1eaoerg7kk.apps.googleusercontent.com
+
+Client secret :
+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
+
+refresh token 
+1//04lYSHSZeIGfpCgYIARAAGAQSNwF-L9Iro_932jZ_E6chVGcz8yeJ18zy3N_lq-wn99ztAqBJ6cfkkcJ7_y1tTfGj7XuTgBLM9o0

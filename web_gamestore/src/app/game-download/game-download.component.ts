@@ -28,11 +28,12 @@ export class GameDownloadComponent implements OnInit {
   refreshGameDaTai(){
     this.service.getGameDaTaiIDNguoiDung(this.ID_NguoiDung).subscribe(data=>{
       this.listGameDaTai = data;
-      for(let i of this.listGameDaTai){
-        this.service.detailGame(i.ID_Game).subscribe(data=>{
-          this.listGame.push(data);
-        })
-      }
+      console.log(this.listGameDaTai)
+      // for(let i of this.listGameDaTai){
+      //   this.service.detailGame(i.ID_Game).subscribe(data=>{
+      //     this.listGame.push(data);
+      //   })
+      // }
     })
   }
 

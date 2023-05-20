@@ -20,7 +20,7 @@ const DownloadBtn = (props) => {
                 setcheckdatai(datacheckdatai);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API getcheckdatai: " + error);
             });
     }
 
@@ -48,7 +48,7 @@ const DownloadBtn = (props) => {
                 //console.log(response);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API updateluottai: " + error);
             });
     }
     //go cai dat
@@ -59,7 +59,7 @@ const DownloadBtn = (props) => {
                 setcheckdatai('error');
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API gocaidat: " + error);
             });
     }
     return (

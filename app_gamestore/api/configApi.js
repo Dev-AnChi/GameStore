@@ -8,7 +8,7 @@
 // };
 export default configApi = {
     localhostIMG : 'http://gamestoreapi.somee.com/Images/',
-    games: 'http://gamestoreapi.somee.com/api/Game',
+    games: 'http://gamestoreapi.somee.com/api/Game/GameDaKiemDuyet',
     theloais : 'http://gamestoreapi.somee.com/api/TheLoai',
     detailGame : 'http://gamestoreapi.somee.com/api/Game/',
     detailImage : 'http://gamestoreapi.somee.com/api/HinhAnh/',
@@ -43,4 +43,5 @@ export default configApi = {
     topDanhGia : 'http://gamestoreapi.somee.com/api/Game/TopDanhGia',
     gameFree : 'http://gamestoreapi.somee.com/api/Game/gameFree',
     topGiaTien : 'http://gamestoreapi.somee.com/api/Game/TopGiaTien',
+    myGame : 'http://gamestoreapi.somee.com/api/RecommenderSystems/',
 };

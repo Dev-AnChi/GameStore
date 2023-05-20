@@ -56,7 +56,19 @@ CREATE TABLE Game(
     UserName_CapNhat VARCHAR(50),
     NgayCapNhat datetime,
     Logo_Game NVARCHAR(50),
+	KiemDuyet bit default(0),
+	DungLuong int,
 )
+/*
+ALTER TABLE Game
+  ADD KiemDuyet bit default(0);*/
+/*
+select * from nguoidung
+update NguoiDung set Password_ND='123' where ID_NguoiDung = 'ND6'
+update Game set KiemDuyet=0 where ID_Game = 1
+update Game set UserName_Tao='chi' where ID_Game = 6
+*/
+
 
 GO
 CREATE TABLE BinhLuan(
@@ -291,6 +303,15 @@ CREATE PROC deleteNguoiDung
 (@ID_NguoiDung VARCHAR(20))
 AS
 BEGIN
+	DELETE FROM GameDaTai
+	WHERE ID_NguoiDung=@ID_NguoiDung
+
+	DELETE FROM BinhLuan
+	WHERE ID_NguoiBinhLuan=@ID_NguoiDung
+
+	DELETE FROM YeuThich
+	WHERE ID_NguoiDung=@ID_NguoiDung
+
     DELETE FROM NguoiDung
     WHERE ID_NguoiDung=@ID_NguoiDung
 END
@@ -341,6 +362,24 @@ CREATE PROC checkUserName
 AS
 BEGIN
     SELECT ID_NguoiDung FROM NguoiDung WHERE UserName_ND = @UserName_ND
+END
+GO
+--Cap quyen admin
+CREATE PROC CapQuyenAdmin
+(@ID_NguoiDung VARCHAR(20))
+AS
+BEGIN
+    Update NguoiDung Set ID_NhomChucNang = 'NCN1'
+    WHERE ID_NguoiDung=@ID_NguoiDung
+END
+GO
+--Huy quyen admin
+CREATE PROC HuyQuyenAdmin
+(@ID_NguoiDung VARCHAR(20))
+AS
+BEGIN
+    Update NguoiDung Set ID_NhomChucNang = 'NCN2'
+    WHERE ID_NguoiDung=@ID_NguoiDung
 END
 GO
 ---------------------------------Xem BinhLuan------------------------------------------------------------------
@@ -476,6 +515,21 @@ CREATE PROC deleteGame
 (@ID_Game INT)
 AS
 BEGIN
+    DELETE FROM GameDaTai
+	WHERE ID_Game = @ID_Game
+	
+	DELETE FROM YeuThich
+	WHERE ID_Game = @ID_Game
+
+	DELETE FROM ChiTietGame
+	WHERE ID_Game = @ID_Game
+
+	DELETE FROM HinhAnh
+	WHERE ID_Game = @ID_Game
+
+	DELETE FROM BinhLuan
+	WHERE ID_Game = @ID_Game
+
     DELETE FROM Game
     WHERE ID_Game = @ID_Game
 END
@@ -514,6 +568,35 @@ BEGIN
     select * from Game WHERE Ten_Game like ('%'+@keyword+'%')
 END
 GO
+--Kiem Duyet Game (danh cho admin)
+CREATE PROC KiemDuyet
+(@ID_Game INT)
+AS
+BEGIN
+    UPDATE Game Set KiemDuyet = 1 Where @ID_Game = ID_Game
+END
+go
+-- Game cua toi
+CREATE PROC getMyGame
+(@Username varchar(50))
+AS
+BEGIN
+    SELECT * FROM Game Where UserName_Tao = @Username
+END
+GO
+-- get game da kiem duyet
+CREATE PROC getGameDaKiemDuyet
+AS
+BEGIN
+    SELECT * FROM Game Where KiemDuyet = 1
+END
+go
+-- get game chua kiem duyet
+CREATE PROC getGameChuaKiemDuyet
+AS
+BEGIN
+    SELECT* FROM Game Where KiemDuyet = 0
+END
 GO-----------------------------------Xem HinhAnh------------------------------------------------------------------
 CREATE PROC getHinhAnh
 AS
@@ -729,8 +812,8 @@ CREATE PROC getGameDaTaiIDNguoiDung
 (@ID_NguoiDung VARCHAR(20))
 AS
 BEGIN
-    SELECT* FROM GameDaTai
-    WHERE ID_NguoiDung = @ID_NguoiDung
+    SELECT* FROM GameDaTai gdt, Game g
+    WHERE ID_NguoiDung = @ID_NguoiDung and g.ID_Game = gdt.ID_Game
 END
 GO
 CREATE PROC checkGameDaTai
@@ -800,8 +883,8 @@ CREATE PROC getYeuThichIDNguoiDung
 (@ID_NguoiDung VARCHAR(20))
 AS
 BEGIN
-    SELECT* FROM YeuThich
-    WHERE ID_NguoiDung = @ID_NguoiDung
+    SELECT* FROM YeuThich yt, Game g
+    WHERE ID_NguoiDung = @ID_NguoiDung and yt.ID_Game = g.ID_Game
 END
 GO
 CREATE PROC checkYeuThich
@@ -940,3 +1023,8 @@ BEGIN
 	Order by ID_Game asc
 END
 GO
+
+
+--dem so stored procedures
+SELECT COUNT(*) AS TotalCount
+FROM sys.procedures

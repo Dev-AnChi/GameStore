@@ -9,30 +9,30 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody *ngFor="let in of counter(listYeuThich.length) ;let i = index">
+            <tbody *ngFor="let dataItem of listYeuThich">
               <tr>
                 <td>
                   <div class="d-flex align-items-center">
                       <img
-                          [src]=imageUrl+listGame[i][0].Logo_Game
+                          [src]=imageUrl+dataItem.Logo_Game
                           alt=""
                           style="width: 45px; height: 45px"
                           class="rounded-circle"
                           />
                     <div class="ms-3">
-                      <p class="fw-bold mb-1">{{listGame[i][0].Ten_Game}}</p>
-                      <p class="text-muted mb-0">{{listGame[i][0].Ten_NhaSanXuat}}</p>
+                      <p class="fw-bold mb-1">{{dataItem.Ten_Game}}</p>
+                      <p class="text-muted mb-0">{{dataItem.Ten_NhaSanXuat}}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {{listYeuThich[i].NgayThich}}
+                  {{dataItem.NgayThich}}
                 </td>
                 <td>
                   <span class="badge badge-success rounded-pill d-inline">Active</span>
                 </td>
                 <td >
-                    <a [routerLink]="['/detail_game/',listYeuThich[i].ID_Game]" routerLinkActive="router-link-active" class="col-md-6">
+                    <a [routerLink]="['/detail_game/',dataItem.ID_Game]" routerLinkActive="router-link-active" class="col-md-6">
                       <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: green;" >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
                         <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>

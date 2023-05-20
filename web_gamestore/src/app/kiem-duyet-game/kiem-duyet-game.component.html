@@ -1,0 +1,51 @@
+<div class="wrapper card mx-4 mx-md-5 shadow-5-strong" >
+    <div class="container card-body py-5 px-md-5 ">
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+              <tr>
+                <th>Tên game</th>
+                <th>Tên nhà sản xuất</th>
+                <th>Cập nhật</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let dataItem of Gamelist">
+              <tr>
+                <td>
+                    <a [routerLink]="['/detail_game/',dataItem.ID_Game]" routerLinkActive="router-link-active" >
+                        <div class="d-flex align-items-center">
+                            <img
+                                [src]=imageUrl+dataItem.Logo_Game
+                                alt=""
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
+                                />
+                          <div class="ms-3">
+                            <p class="fw-bold mb-1">{{dataItem.Ten_Game}}</p>
+                            <p class="text-muted mb-0">{{dataItem.Ten_NhaSanXuat}}</p>
+                          </div>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                  {{dataItem.Ten_NhaSanXuat}}
+                </td>
+                <td>
+                  <span class="badge badge-success rounded-pill d-inline">Active</span>
+                </td>
+                <td >
+                    <a (click)="DuyetGame(dataItem.ID_Game)" class="col-md-6">
+                      <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: green;" >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+                        <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"/>
+                        <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                      </svg>
+                        Kiểm duyệt
+                      </button>
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

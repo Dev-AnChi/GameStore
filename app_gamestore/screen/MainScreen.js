@@ -48,7 +48,7 @@ function MainScreen({ navigation, route }) {
                 setGame(dataGame);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API datagame: " + error);
             });
     }
     //get find game by name
@@ -60,7 +60,7 @@ function MainScreen({ navigation, route }) {
                 setGame(datafindGame);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API findgame: " + error);
             });
     }
     //get full thể loại
@@ -74,7 +74,7 @@ function MainScreen({ navigation, route }) {
                 setTheLoai(dataTheLoai);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API theloai: " + error);
             });
     }
     //get find game by ID_TheLoai
@@ -86,7 +86,7 @@ function MainScreen({ navigation, route }) {
                 setGame(datafilterTheLoai);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API game: " + error);
             });
     }
 
@@ -99,7 +99,7 @@ function MainScreen({ navigation, route }) {
                 setGame(datatopLuotTai);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API luottai: " + error);
             });
     }
 
@@ -112,7 +112,7 @@ function MainScreen({ navigation, route }) {
                 setGame(datatopDanhGia);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API danhgia: " + error);
             });
     }
 
@@ -125,7 +125,7 @@ function MainScreen({ navigation, route }) {
                 setGame(datagameFree);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API gamefree: " + error);
             });
     }
 
@@ -138,9 +138,31 @@ function MainScreen({ navigation, route }) {
                 setGame(datatopGiaTien);
             })
             .catch(function (error) {
-                console.log("Loi khong lay duoc API: " + error);
+                console.log("Loi khong lay duoc API giatien: " + error);
             });
     }
+
+    //game dành cho bạn
+    const configMyGame = configApi.myGame;
+    const getMyGame = () => {
+    axios.get(configMyGame + idUser).then((response) => {
+        const dataMyGame = response.data;
+        const detailGamePromises = dataMyGame.map((gameId) =>
+        axios.get(configApi.detailGame + gameId)
+        );
+        Promise.all(detailGamePromises)
+    .then((detailGameResponses) => {
+        const detailGames = detailGameResponses.map((res) => res.data);
+        const listOfGames = JSON.parse(JSON.stringify(detailGames));
+        const firstGame = listOfGames.slice(0, 3).flat();
+        console.log(firstGame);
+        setGame(firstGame); // set game thành một đối tượng JavaScript
+    })
+        .catch((error) => {
+            console.log("Lỗi không lấy được API mygame: " + error);
+        });
+    });
+    };
     
 
     return (
@@ -244,6 +266,19 @@ function MainScreen({ navigation, route }) {
                     <View style={styles.boxTK}>
                         <ScrollView horizontal style={{ flex: 1 }}>
                             <TouchableOpacity onPress={()=>{
+                                setisFilter('Dành cho bạn');
+                                setGame([]);
+                                getMyGame();
+                            }} 
+                            style={styles.thongke}
+                            >
+                                <View style={styles.itemMyGame}>
+                                    <Image source={{uri:images.mygame}} style={{ width: 40, height: 40, margin: 15 }} />
+                                </View>
+                                <View><Text style={styles.textTK}>Dành cho bạn</Text></View>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={()=>{
                                 setisFilter('Top lượt tải');
                                 setGame([]);
                                 getDatatopLuotTai();
@@ -255,6 +290,7 @@ function MainScreen({ navigation, route }) {
                                 </View>
                                 <View><Text style={styles.textTK}>Top lượt tải</Text></View>
                             </TouchableOpacity>
+
                             <TouchableOpacity
                             onPress={()=>{
                                 setisFilter('Top đánh giá');
@@ -389,6 +425,12 @@ const styles = StyleSheet.create({
         width: 100,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    itemMyGame: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 100,
+        backgroundColor: '#cc3300'
     },
     itemTaiXuong: {
         justifyContent: 'center',

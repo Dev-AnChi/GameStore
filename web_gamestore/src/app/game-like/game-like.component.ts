@@ -28,11 +28,11 @@ export class GameLikeComponent implements OnInit {
   refreshYeuThich(){
     this.service.getYeuThichIDNguoiDung(this.ID_NguoiDung).subscribe(data=>{
       this.listYeuThich = data;
-      for(let i of this.listYeuThich){
-        this.service.detailGame(i.ID_Game).subscribe(data=>{
-          this.listGame.push(data);
-        })
-      }
+      // for(let i of this.listYeuThich){
+      //   this.service.detailGame(i.ID_Game).subscribe(data=>{
+      //     this.listGame.push(data);
+      //   })
+      // }
     })
   }
 

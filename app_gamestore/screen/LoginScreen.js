@@ -28,7 +28,7 @@ const LoginScreen = ({navigation}) => {
             });
         })
         .catch(function (error) {
-            console.log("Loi khong lay duoc API: "  + error);
+            console.log("Loi khong lay duoc API login: "  + error);
         });
     }
 

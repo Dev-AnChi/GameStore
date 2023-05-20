@@ -172,12 +172,29 @@ namespace APIgamestore.Controllers
         [HttpPost]
         public JsonResult SaveFile()
         {
-            int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            //int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            Random rand = new Random();
+            int stringlen = 40;
+            int randValue;
+            string str = "";
+            char letter;
+
+            while (System.IO.File.Exists(Path.Combine(_env.ContentRootPath, "Images" + '\\' + str)) || str == "")
+            {
+                for (int i = 0; i < stringlen; i++)
+                {
+                    randValue = rand.Next(0, 26);
+                    letter = Convert.ToChar(randValue + 65);
+                    str = str + letter;
+                }
+            }
+
+
             try
             {
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
-                string filename = "logo" + (index + 1) + ".png";
+                string filename = "logo_" + str + ".png";
                 var physicalPath = _env.ContentRootPath + "/Images/" + filename;
                 
                 using(var stream = new FileStream(physicalPath, FileMode.Create))
@@ -347,6 +364,82 @@ namespace APIgamestore.Controllers
                 da.Fill(table);
             }
             return new JsonResult(table);
+        }
+
+        [Route("/api/Game/GameDaKiemDuyet")]
+        [HttpGet]
+        public JsonResult gameDaKiemDuyet()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            var cmd = new SqlCommand("getGameDaKiemDuyet", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return new JsonResult(table);
+        }
+
+        [Route("/api/Game/GameChuaKiemDuyet")]
+        [HttpGet]
+        public JsonResult gameChuaKiemDuyet()
+        {
+            DataTable table = new DataTable();
+            var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            var cmd = new SqlCommand("getGameChuaKiemDuyet", con);
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
+            return new JsonResult(table);
+        }
+
+        [Route("/api/Game/MyGame/{username}")]
+        [HttpGet]
+        public JsonResult getMyGame(string username)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+
+            con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            cmd = new SqlCommand("getMyGame", con);
+            cmd.Parameters.Add(new SqlParameter("@Username", username));
+            cmd.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+
+            return new JsonResult(dt);
+        }
+
+        [Route("/api/Game/KiemDuyet/{id}")]
+        [HttpGet]
+        public JsonResult KiemDuyet(int id)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+
+            try
+            {
+                con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+                cmd = new SqlCommand("KiemDuyet", con);
+                cmd.Parameters.Add(new SqlParameter("@ID_Game", id));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                return new JsonResult("Thành công !!");
+            }
+            catch (Exception)
+            {
+                return new JsonResult("Không thành công !!");
+            }
+            
         }
     }
 }

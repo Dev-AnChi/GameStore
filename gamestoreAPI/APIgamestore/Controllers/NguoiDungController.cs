@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using System.Net;
+//md5
+using System.Security.Cryptography;
+using System.Text;
+
+
 
 namespace APIgamestore.Controllers
 {
@@ -13,6 +18,22 @@ namespace APIgamestore.Controllers
     {
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
+
+        private string EncryptPassword(string password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(password);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    builder.Append(hashBytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
 
         public NguoiDungController(IConfiguration configuration, IWebHostEnvironment env)
         {
@@ -39,6 +60,10 @@ namespace APIgamestore.Controllers
         [HttpPost]
         public JsonResult Post(NguoiDungModel nd)
         {
+            //md5
+            nd.Password_ND = EncryptPassword(nd.Password_ND);
+
+
             Int32 count;
             var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
             var cmd = new SqlCommand("countNguoiDung", con);
@@ -91,6 +116,7 @@ namespace APIgamestore.Controllers
         [HttpPut]
         public JsonResult Put(NguoiDungModel nd)
         {
+            nd.Password_ND = EncryptPassword(nd.Password_ND);
             SqlCommand cmd;
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
@@ -178,12 +204,14 @@ namespace APIgamestore.Controllers
         [HttpGet]
         public JsonResult Get(string username, string password)
         {
+            string hashedPassword = EncryptPassword(password);
+
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
             var cmd = new SqlCommand("LoginNguoiDung", con);
             cmd.Parameters.Add(new SqlParameter("@UserName_ND", username));
-            cmd.Parameters.Add(new SqlParameter("@Password_ND", password));
+            cmd.Parameters.Add(new SqlParameter("@Password_ND", hashedPassword));
             cmd.CommandType = CommandType.StoredProcedure;
             
             da.SelectCommand = cmd;
@@ -197,12 +225,28 @@ namespace APIgamestore.Controllers
         [HttpPost]
         public JsonResult SaveFile()
         {
-            int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            //int index = Directory.GetFiles(Path.Combine(_env.ContentRootPath, "Images")).Length;
+            Random rand = new Random();
+            int stringlen = 40;
+            int randValue;
+            string str = "";
+            char letter;
+
+            while (System.IO.File.Exists(Path.Combine(_env.ContentRootPath, "Images" + '\\' + str)) || str == "")
+            {
+                for (int i = 0; i < stringlen; i++)
+                {
+                    randValue = rand.Next(0, 26);
+                    letter = Convert.ToChar(randValue + 65);
+                    str = str + letter;
+                }
+            }
+
             try
             {
                 var httpRequest = Request.Form;
                 var postedFile = httpRequest.Files[0];
-                string filename = "avatar" + (index + 1) + ".png";
+                string filename = "avatar" + str + ".png";
                 var physicalPath = _env.ContentRootPath + "/Images/" + filename;
 
                 using (var stream = new FileStream(physicalPath, FileMode.Create))
@@ -298,6 +342,56 @@ namespace APIgamestore.Controllers
                 IDuser = cmd.ExecuteScalar().ToString();
             con.Close();
             return new JsonResult(IDuser);
+        }
+
+        [Route("/api/NguoiDung/capquyenAdmin/{id}")]
+        [HttpGet]
+        public JsonResult capquyenAdmin(string id)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+            try
+            {
+                con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+                cmd = new SqlCommand("CapQuyenAdmin", con);
+                cmd.Parameters.Add(new SqlParameter("@ID_NguoiDung", id));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                return new JsonResult("Thành công !!");
+            }
+            catch (Exception)
+            {
+                return new JsonResult("Không thành công !!");
+            }
+        }
+
+        [Route("/api/NguoiDung/huyquyenAdmin/{id}")]
+        [HttpGet]
+        public JsonResult huyquyenAdmin(string id)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+            try
+            {
+                con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+                cmd = new SqlCommand("HuyQuyenAdmin", con);
+                cmd.Parameters.Add(new SqlParameter("@ID_NguoiDung", id));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                return new JsonResult("Thành công !!");
+            }
+            catch (Exception)
+            {
+                return new JsonResult("Không thành công !!");
+            }
         }
     }
 }

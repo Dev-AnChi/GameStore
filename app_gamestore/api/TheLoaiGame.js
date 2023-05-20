@@ -18,7 +18,7 @@ const TheLoaiGame = (props) => {
             settheloaigame(datatheloaigame);
         })
         .catch(function (error) {
-            console.log("Loi khong lay duoc API: "  + error);
+            console.log("Loi khong lay duoc API theloaigame: "  + error);
         });
     }
 

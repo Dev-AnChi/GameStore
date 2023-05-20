@@ -82,6 +82,15 @@ export class AppComponent {
     this.isAdmin = false;
   }
 
+  clickSetting(){
+    if(this.username == '')
+      this.router.navigate(['/user_profile']);
+    else
+    {
+      this.router.navigate(['/create-edit-game']);
+    }
+  }
+
   clickViewDownload(){
     if(this.username == '')
       this.router.navigate(['/user_profile']);

@@ -70,6 +70,7 @@ namespace APIgamestore.Controllers
                 cmd.Parameters.Add(new SqlParameter("@UserName_CapNhat", g.UserName_CapNhat));
                 cmd.Parameters.Add(new SqlParameter("@NgayCapNhat", g.NgayCapNhat));
                 cmd.Parameters.Add(new SqlParameter("@Logo_Game", g.Logo_Game));
+                cmd.Parameters.Add(new SqlParameter("@LinkTaiGame", g.LinkTaiGame));
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
                 da.Fill(dt);
@@ -112,6 +113,7 @@ namespace APIgamestore.Controllers
                 cmd.Parameters.Add(new SqlParameter("@UserName_CapNhat", g.UserName_CapNhat));
                 cmd.Parameters.Add(new SqlParameter("@NgayCapNhat", g.NgayCapNhat));
                 cmd.Parameters.Add(new SqlParameter("@Logo_Game", g.Logo_Game));
+                cmd.Parameters.Add(new SqlParameter("@LinkTaiGame", g.LinkTaiGame));
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
                 da.Fill(dt);
@@ -441,5 +443,7 @@ namespace APIgamestore.Controllers
             }
             
         }
+
+
     }
 }

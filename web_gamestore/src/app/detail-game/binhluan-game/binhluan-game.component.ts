@@ -49,7 +49,7 @@ export class BinhluanGameComponent {
   refreshUser(){
     if(this.cookie.check('username')){
       this.imageUrl=this.service.ImagesUrl + "/";
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         
         this.service.findBinhLuan(this.idGameDetails, this.User[0].ID_NguoiDung).subscribe(

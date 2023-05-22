@@ -2,3 +2,6 @@ npm install ngx-cookie-service
 npm install --save angular-material         //uninstall
 npm install --save @angular/cdk		//uninstall
 ng add @angular/material
+
+npm install file-saver --save
+npm install --save-dev @types/file-saver

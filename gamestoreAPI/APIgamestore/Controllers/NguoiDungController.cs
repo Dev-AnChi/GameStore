@@ -220,6 +220,24 @@ namespace APIgamestore.Controllers
             return new JsonResult(dt);
         }
 
+        [Route("/api/NguoiDung/LoginCookies/{username}/{password}")]
+        [HttpGet]
+        public JsonResult LoginCookies(string username, string password)
+        {
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            var cmd = new SqlCommand("LoginNguoiDung", con);
+            cmd.Parameters.Add(new SqlParameter("@UserName_ND", username));
+            cmd.Parameters.Add(new SqlParameter("@Password_ND", password));
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+
+            return new JsonResult(dt);
+        }
+
         //chuyển ảnh vào thư mục Images (chọn file)
         [Route("/api/NguoiDung/SaveFile")]
         [HttpPost]

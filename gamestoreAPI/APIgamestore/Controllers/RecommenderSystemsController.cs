@@ -36,6 +36,19 @@ namespace APIgamestore.Controllers
             SqlDataAdapter da = new SqlDataAdapter();
             var con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
 
+            /*var cmd = new SqlCommand("CountSoBinhLuan", con);
+            cmd.Parameters.Add(new SqlParameter("@ID_NguoiDung", idUser));
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            if (cmd.ExecuteScalar() != null)
+                if(int.Parse(cmd.ExecuteScalar().ToString()) == 0)
+                {
+                    return new JsonResult("");
+                };
+            con.Close();*/
+
+
+
             var cmd = new SqlCommand("getIDLoai", con);
             cmd.CommandType = CommandType.StoredProcedure;
             da.SelectCommand = cmd;
@@ -79,6 +92,8 @@ namespace APIgamestore.Controllers
             }
 
             double[] rateAVG = new double[idloai.Length];
+            if (matrix.Length == 0)
+                return new JsonResult(matrix);
             for(int i=0; i < matrix[0].Length; i++)
             {
                 rateAVG[i] = 0;

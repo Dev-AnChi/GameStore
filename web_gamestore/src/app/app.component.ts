@@ -29,7 +29,7 @@ export class AppComponent {
 
   NguoiDung:any;
   checkLogin:boolean = false;
-  isAdmin:boolean = false;
+  isAdmin:number = 0;
 
   ngOnInit(): void {    
     this.username = this.cookie.get("username");
@@ -40,7 +40,7 @@ export class AppComponent {
 
   isLogin(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         this.ID_NguoiDung = this.User[0].ID_NguoiDung;
         if(this.ID_NguoiDung == 'error'){
@@ -48,11 +48,14 @@ export class AppComponent {
         }
         else{
           this.checkLogin = true;
-          if(this.User[0].ID_NhomChucNang != 'NCN1'){
-            this.isAdmin = false;
+          if(this.User[0].ID_NhomChucNang == 'NCN1'){
+            this.isAdmin = 1;
+          }
+          else if(this.User[0].ID_NhomChucNang == 'NCN2'){
+            this.isAdmin = 2;
           }
           else{
-            this.isAdmin = true;
+            this.isAdmin = 3;
           }
         }
       })
@@ -79,7 +82,7 @@ export class AppComponent {
     alert("Bạn có chắc chắn muốn đăng xuất không ? ");
     this.cookie.deleteAll();
     this.checkLogin = false;
-    this.isAdmin = false;
+    this.isAdmin = 0;
   }
 
   clickSetting(){

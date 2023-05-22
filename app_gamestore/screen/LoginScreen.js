@@ -10,18 +10,18 @@ const LoginScreen = ({navigation}) => {
     const [isLogin, setisLogin]=useState(true);
     const [isPress, setisPress]=useState(false);
 
-    var configlogin = '';
+    var configlogin = configApi.login + username + '/' + password;
 
     const getDatalogin = () => {
         axios.get(configlogin)
         .then( (response) => {
             var datalogin = response.data;
-
+            console.log(datalogin)
             setisLogin(datalogin.length==0 ? false : true);
             datalogin.length==0 ? alert('Sai tài khoản hoặc mật khẩu, yêu cầu nhập lại !') : alert('Đăng nhập thành công !');
 
             datalogin.map((item, index)=>{
-                if(item.UserName_ND == username && item.Password_ND == password){
+                if(item.UserName_ND == username){
                     setisLogin(true);
                     navigation.navigate('Home', {idUser : item.ID_NguoiDung});
                 }

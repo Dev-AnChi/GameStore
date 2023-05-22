@@ -72,3 +72,33 @@ li:hover{
 a:hover{
   color: blue;
 }
+
+
+.navbar-container {
+  width: 50rem;
+  margin-right: 4rem;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.navbar-content {
+  display: inline-block;
+}
+
+.navbar-nav {
+  display: flex;
+}
+
+.nav-item {
+  padding: 0 10px;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #666;
+}

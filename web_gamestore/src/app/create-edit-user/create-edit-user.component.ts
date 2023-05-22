@@ -19,7 +19,7 @@ export class CreateEditUserComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.cookie.get("username");
     this.password = this.cookie.get("password");
-    this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+    this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
       this.User=data;
     })
 
@@ -52,7 +52,7 @@ export class CreateEditUserComponent implements OnInit {
   }
 
   capquyenAdmin(item:any, id_NCN:any){
-    if(id_NCN == 'NCN1'){
+    if(id_NCN == 'NCN2'){
       alert("Người dùng đã là Admin !!")
     }
     else{
@@ -65,7 +65,7 @@ export class CreateEditUserComponent implements OnInit {
 
   huyquyenAdmin(item:any, id_NCN:any){
     console.log(item)
-    if(id_NCN == 'NCN2'){
+    if(id_NCN == 'NCN3'){
       alert("Người dùng hiện tại là User !!")
     }
     else{

@@ -25,6 +25,7 @@ export class EditGameComponent implements OnInit {
   NgayTao:any;
   UserName_CapNhat:any;
   NgayCapNhat:any;
+  LinkTaiGame:any;
   Logo_Game:any;
 
   imageUrl:any;
@@ -59,6 +60,7 @@ export class EditGameComponent implements OnInit {
     this.NgayTao = this.dataGame[0].NgayTao;
     this.UserName_CapNhat = this.dataGame[0].UserName_CapNhat;
     this.NgayCapNhat = this.dataGame[0].NgayCapNhat;
+    this.LinkTaiGame = this.dataGame[0].LinkTaiGame;
     this.Logo_Game = this.dataGame[0].Logo_Game;
   }
 
@@ -66,7 +68,7 @@ export class EditGameComponent implements OnInit {
       var val =  {ID_Game:this.ID_Game,Ten_Game:this.Ten_Game,Ten_NhaSanXuat:this.Ten_NhaSanXuat,SoHieuPhienBan:this.SoHieuPhienBan
       ,PhienBan:this.PhienBan,YC_CauHinh:this.YC_CauHinh,LuotTaiXuong:this.LuotTaiXuong,DanhGiaTB:this.DanhGiaTB,GioiHan_Tuoi:this.GioiHan_Tuoi,
       Gia:this.Gia,MoTaChiTiet:this.MoTaChiTiet,UserName_CapNhat:"admin",NgayTao:this.NgayTao, UserName_Tao:this.UserName_Tao,
-      NgayCapNhat:this.NgayCapNhat,Logo_Game:this.Logo_Game};
+      NgayCapNhat:this.NgayCapNhat,Logo_Game:this.Logo_Game,LinkTaiGame:this.LinkTaiGame};
       console.log(val)
       alert("Lưu lại những thay đổi ?");
       this.service.editGame(val).subscribe(res=>{

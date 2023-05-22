@@ -35,6 +35,24 @@ namespace APIgamestore.Controllers
             return new JsonResult(table);
         }
 
+        private string LinkTaiGame(int id)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+
+            con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            cmd = new SqlCommand("getLinkTaiGame", con);
+            cmd.Parameters.Add(new SqlParameter("@ID_Game", id));
+            cmd.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            string linkTaiGame = dt.Rows[0]["LinkTaiGame"].ToString();
+
+            return linkTaiGame;
+        }
+
         //create
         [HttpPost]
         public JsonResult Post(GameDaTaiModel gdt)
@@ -162,6 +180,39 @@ namespace APIgamestore.Controllers
                 ID_GameDaTai = cmd.ExecuteScalar().ToString();
             con.Close();
             return new JsonResult(ID_GameDaTai);
+        }
+
+        [Route("/api/GameDaTai/DownloadFile/{id}")]
+        [HttpGet]
+        public JsonResult DownloadApk(int id)
+        {
+            SqlCommand cmd;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            SqlConnection con;
+
+            con = new SqlConnection(_configuration.GetConnectionString("dataGameStore"));
+            cmd = new SqlCommand("getLinkTaiGame", con);
+            cmd.Parameters.Add(new SqlParameter("@ID_Game", id));
+            cmd.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            return new JsonResult(dt);
+            /*string linkTaiGame = LinkTaiGame(id); // Lấy đường dẫn từ stored procedure
+
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(linkTaiGame);
+                if (response.IsSuccessStatusCode)
+                {
+                    var fileBytes = await response.Content.ReadAsByteArrayAsync();
+                    var fileName = "app-release.apk"; // Tên tệp APK mặc định
+
+                    return File(fileBytes, "application/vnd.android.package-archive", fileName);
+                }
+            }
+
+            return NotFound();*/
         }
     }
 }

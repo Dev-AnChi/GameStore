@@ -1,4 +1,6 @@
-﻿namespace APIgamestore.Models
+﻿using System.Security;
+
+namespace APIgamestore.Models
 {
     public class GameModel
     {
@@ -20,5 +22,6 @@
         public string Logo_Game { get; set; }
         public bool KiemDuyet { get; set; }
         public int DungLuong { get; set; }
+        public string LinkTaiGame { get; set; }
     }
 }

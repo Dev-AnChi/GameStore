@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
             var val =  {ID_NguoiDung:this.ID_NguoiDung,NickName:this.NickName,UserName_ND:this.UserName_ND,Password_ND:this.Password_ND,
               TenNguoiDung:this.TenNguoiDung,GioiTinh:this.GioiTinh,NgaySinh:this.NgaySinh,Email:this.Email, DiaChi:this.DiaChi, 
               SDT:this.SDT,AnhDaiDien:this.AnhDaiDien,UserName_Tao:this.UserName_Tao,NgayTao:this.NgayTao,
-              UserName_CapNhat:this.UserName_CapNhat,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:'NCN2'};
+              UserName_CapNhat:this.UserName_CapNhat,NgayCapNhat:this.NgayCapNhat,ID_NhomChucNang:'NCN3'};
               alert("Lưu lại những thay đổi ?");
               this.service.addNguoiDung(val).subscribe(res=>{
                 alert(res.toString())

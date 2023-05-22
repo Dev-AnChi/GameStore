@@ -147,6 +147,9 @@ export class SharedService {
   loginNguoiDung(username:any, password:any){
     return this.http.get(this.APIUrl + '/NguoiDung/Login/' + username + '/' + password);
   }
+  loginCookiesNguoiDung(username:any, password:any){
+    return this.http.get(this.APIUrl + '/NguoiDung/LoginCookies/' + username + '/' + password);
+  }
   getNameIDNhomChucNang(val:any){
     return this.http.get(this.APIUrl+'/NguoiDung/GetNameIDNhomChucNang/'+val);
   }
@@ -233,5 +236,9 @@ export class SharedService {
   //recommender systems
   getGameRecommender(val:any){
     return this.http.get<any>(this.APIUrl+'/RecommenderSystems/' + val);
+  }
+
+  downloadGame(val:any){
+    return this.http.get<any>(this.APIUrl+'/GameDaTai/DownloadFile/' + val);
   }
 }

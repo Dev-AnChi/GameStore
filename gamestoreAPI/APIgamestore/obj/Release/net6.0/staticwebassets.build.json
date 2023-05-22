@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "csEyWce2xk11CgjYPPGUbGyIFlTbCsGEeKBwu1GXnwY=",
-  "Source": "APIgamestore",
-  "BasePath": "_content/APIgamestore",
+  "Hash": "X8Rs5sVw++Bf4Bg1EH9pXXILOLUbcvxzRSeSZ9nTLCM=",
+  "Source": "gamestoreAPI",
+  "BasePath": "_content/gamestoreAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

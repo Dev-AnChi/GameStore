@@ -58,6 +58,7 @@ CREATE TABLE Game(
     Logo_Game NVARCHAR(50),
 	KiemDuyet bit default(0),
 	DungLuong int,
+	LinkTaiGame varchar(255)
 )
 /*
 ALTER TABLE Game
@@ -369,7 +370,7 @@ CREATE PROC CapQuyenAdmin
 (@ID_NguoiDung VARCHAR(20))
 AS
 BEGIN
-    Update NguoiDung Set ID_NhomChucNang = 'NCN1'
+    Update NguoiDung Set ID_NhomChucNang = 'NCN2'
     WHERE ID_NguoiDung=@ID_NguoiDung
 END
 GO
@@ -378,7 +379,7 @@ CREATE PROC HuyQuyenAdmin
 (@ID_NguoiDung VARCHAR(20))
 AS
 BEGIN
-    Update NguoiDung Set ID_NhomChucNang = 'NCN2'
+    Update NguoiDung Set ID_NhomChucNang = 'NCN3'
     WHERE ID_NguoiDung=@ID_NguoiDung
 END
 GO
@@ -477,28 +478,35 @@ GO
 CREATE PROC createGame
 (@Ten_Game NVARCHAR(200),@Ten_NhaSanXuat NVARCHAR(100),@SoHieuPhienBan INT,@PhienBan VARCHAR(10),
 @YC_CauHinh NVARCHAR(50),@LuotTaiXuong int,@DanhGiaTB FLOAT,@GioiHan_Tuoi int,@Gia FLOAT,@MoTaChiTiet ntext,
-@UserName_Tao VARCHAR(10),@NgayTao VARCHAR(50),@UserName_CapNhat VARCHAR(10),@NgayCapNhat VARCHAR(50),@Logo_Game NVARCHAR(50))
+@UserName_Tao VARCHAR(10),@NgayTao VARCHAR(50),@UserName_CapNhat VARCHAR(10),@NgayCapNhat VARCHAR(50),@Logo_Game NVARCHAR(50), @LinkTaiGame varchar(255))
 AS
 BEGIN
     INSERT INTO Game(Ten_Game,Ten_NhaSanXuat,SoHieuPhienBan,PhienBan,
-                    YC_CauHinh,LuotTaiXuong,DanhGiaTB,GioiHan_Tuoi,Gia,MoTaChiTiet,UserName_Tao,NgayTao,UserName_CapNhat,NgayCapNhat,Logo_Game)
+                    YC_CauHinh,LuotTaiXuong,DanhGiaTB,GioiHan_Tuoi,Gia,MoTaChiTiet,UserName_Tao,NgayTao,UserName_CapNhat,NgayCapNhat,Logo_Game, LinkTaiGame)
     VALUES(@Ten_Game,@Ten_NhaSanXuat,@SoHieuPhienBan,@PhienBan,
             @YC_CauHinh,@LuotTaiXuong,@DanhGiaTB,@GioiHan_Tuoi,@Gia,@MoTaChiTiet,
-            @UserName_Tao,CONVERT(DATETIME, @NgayTao ,120),@UserName_CapNhat,CONVERT(DATETIME, @NgayCapNhat ,120),@Logo_Game)
+            @UserName_Tao,CONVERT(DATETIME, @NgayTao ,120),@UserName_CapNhat,CONVERT(DATETIME, @NgayCapNhat ,120),@Logo_Game, @LinkTaiGame)
 END
 GO
 --Sửa Game
 CREATE PROC editGame
 (@ID_Game INT,@Ten_Game NVARCHAR(200),@Ten_NhaSanXuat NVARCHAR(100),@SoHieuPhienBan INT,@PhienBan VARCHAR(10),
 @YC_CauHinh NVARCHAR(50),@LuotTaiXuong int,@DanhGiaTB FLOAT,@GioiHan_Tuoi int,@Gia FLOAT,@MoTaChiTiet ntext,
-@UserName_CapNhat VARCHAR(10),@NgayCapNhat varchar(50),@Logo_Game NVARCHAR(50))
+@UserName_CapNhat VARCHAR(10),@NgayCapNhat varchar(50),@Logo_Game NVARCHAR(50), @LinkTaiGame varchar(255))
 AS
 BEGIN
     UPDATE Game
     SET Ten_Game=@Ten_Game,Ten_NhaSanXuat=@Ten_NhaSanXuat,SoHieuPhienBan=@SoHieuPhienBan,PhienBan=@PhienBan,YC_CauHinh=@YC_CauHinh,
     LuotTaiXuong=@LuotTaiXuong,DanhGiaTB=@DanhGiaTB,GioiHan_Tuoi=@GioiHan_Tuoi,Gia=@Gia,MoTaChiTiet=@MoTaChiTiet,
-    UserName_CapNhat=@UserName_CapNhat,NgayCapNhat=CONVERT(DATETIME, @NgayCapNhat ,120),Logo_Game=@Logo_Game
+    UserName_CapNhat=@UserName_CapNhat,NgayCapNhat=CONVERT(DATETIME, @NgayCapNhat ,120),Logo_Game=@Logo_Game,LinkTaiGame=@LinkTaiGame
     WHERE ID_Game = @ID_Game
+END
+GO
+--Get link tải game theo id game
+CREATE PROC getLinkTaiGame(@ID_Game int)
+AS
+BEGIN
+	Select LinkTaiGame From Game Where ID_Game=@ID_Game
 END
 GO
 --Tăng số lượt tải game
@@ -543,7 +551,7 @@ BEGIN
     WHERE ID_Game = @ID_Game
 END
 go
---Tìm id game theo logo
+--Tìm id game theo ten
 CREATE PROC getIDNameLogo
 (@Ten_Game NVARCHAR(50))
 AS
@@ -565,7 +573,7 @@ CREATE PROC findGame
 (@keyword NVARCHAR(50))
 AS
 BEGIN
-    select * from Game WHERE Ten_Game like ('%'+@keyword+'%')
+    select * from Game WHERE Ten_Game like ('%'+@keyword+'%') and KiemDuyet=1
 END
 GO
 --Kiem Duyet Game (danh cho admin)
@@ -759,7 +767,7 @@ CREATE PROC getGamelistIDTheLoai
 AS
 BEGIN
     SELECT * FROM ChiTietGame ctg, TheLoai tl, Game g
-    WHERE ctg.ID_Game = g.ID_Game and tl.ID_Loai=ctg.ID_Loai and tl.ID_Loai=@ID_Loai
+    WHERE ctg.ID_Game = g.ID_Game and tl.ID_Loai=ctg.ID_Loai and tl.ID_Loai=@ID_Loai and g.KiemDuyet=1
 END
 GO
 -----------------------------------Xem GameDaTai------------------------------------------------------------------
@@ -944,6 +952,7 @@ CREATE PROC topLuotTai
 AS
 BEGIN
     SELECT* FROM Game
+	WHERE KiemDuyet=1
     Order by LuotTaiXuong Desc
 END
 GO
@@ -952,6 +961,7 @@ CREATE PROC topDanhGia
 AS
 BEGIN
     SELECT* FROM Game
+	WHERE KiemDuyet=1
     Order by DanhGiaTB Desc
 END
 GO
@@ -960,7 +970,7 @@ CREATE PROC gameFree
 AS
 BEGIN
     SELECT* FROM Game
-    WHERE Gia=0
+    WHERE Gia=0 and KiemDuyet=1
 END
 GO
 --Sap xep theo luot tai
@@ -968,6 +978,7 @@ CREATE PROC topGiaTien
 AS
 BEGIN
     SELECT* FROM Game
+	WHERE KiemDuyet=1
     Order by Gia Desc
 END
 GO
@@ -1010,6 +1021,7 @@ CREATE PROC getFullIDGame
 AS
 BEGIN
     SELECT ID_Game FROM Game
+	WHERE KiemDuyet=1
 	Order by ID_Game asc
 END
 GO
@@ -1024,7 +1036,18 @@ BEGIN
 END
 GO
 
-
+--Check so luong binh luan cua nguoi dung
+CREATE PROC CountSoBinhLuan
+(@ID_NguoiDung varchar(20))
+AS
+BEGIN
+	DECLARE @count int
+    SET @count = (SELECT COUNT(*) FROM BinhLuan WHERE ID_NguoiBinhLuan=@ID_NguoiDung)
+	IF (@count < 3)
+		PRINT 0;
+	ELSE PRINT 1;
+END
+GO
 --dem so stored procedures
 SELECT COUNT(*) AS TotalCount
 FROM sys.procedures

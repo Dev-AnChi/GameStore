@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
 
   isLogin(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         console.log(this.User)
         this.ID_NguoiDung = this.User[0].ID_NguoiDung;

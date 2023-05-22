@@ -2,12 +2,16 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import configApi from './configApi';
 import axios from 'axios';
+import { Linking } from 'react-native';
+//import { Navigation } from 'react-native-navigation';
+
 
 const DownloadBtn = (props) => {
     const idGame = props.idGame;
     const idUser = props.idUser;
     //console.log(idGame + "=" + idUser)
 
+    //const [ApkLink, setApkLink] = useState('');
     const [checkdatai, setcheckdatai] = useState('');
     useEffect(() => {
         getDatacheckdatai();
@@ -23,6 +27,25 @@ const DownloadBtn = (props) => {
                 console.log("Loi khong lay duoc API getcheckdatai: " + error);
             });
     }
+
+    //mở trình duyệt chứa file
+    openApkUrl = (url) => {
+        Linking.openURL(url)
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+    const getlinkDownLoad = async () => {
+        await axios.get(configApi.linkDownload + idGame)
+        .then((response) => {
+            var apkUrl = response.data[0].LinkTaiGame;
+            this.openApkUrl(apkUrl);
+            //console.log(apkUrl);
+            //setApkLink(apkUrl);
+        })
+    }
+    
+    
 
     //tải game
     const downloadGame = async () => {
@@ -75,6 +98,7 @@ const DownloadBtn = (props) => {
                 //getDatacheckdatai();
                 if(checkdatai == 'error'){
                     downloadGame();
+                    getlinkDownLoad();
                     alert("Cài đặt thành công !!");
                 }
                 else{ 

@@ -28,14 +28,20 @@
                     </div>
                   </div>
                 </td>
-                <td>
-                  <p class="fw-normal mb-1">{{item.ID_NhomChucNang == 'NCN1' ? "Admin" : "User"}}</p>
+                <td *ngIf="item.ID_NhomChucNang == 'NCN1'">
+                  <p class="fw-normal mb-1">Host</p>
+                </td>
+                <td *ngIf="item.ID_NhomChucNang == 'NCN2'">
+                  <p class="fw-normal mb-1">Admin</p>
+                </td>
+                <td *ngIf="item.ID_NhomChucNang == 'NCN3'">
+                  <p class="fw-normal mb-1">User</p>
                 </td>
                 <td>
                   <span class="badge badge-success rounded-pill d-inline">Active</span>
                 </td>
                 <!-- <td>{{item.UserName_Tao}}</td> -->
-                <td *ngIf="User[0].ID_NguoiDung == 'ND1' && item.ID_NguoiDung!='ND1'">
+                <td *ngIf="item.ID_NhomChucNang != 'NCN1'">
                     <a (click)="huyquyenAdmin(item.ID_NguoiDung, item.ID_NhomChucNang)" class="col-md-6" style="margin-right : 10px;">
                       <button type="button" class="btn btn-light" style="font-size: 60%;  border: solid 1px black; border-radius: 50px; color: red;" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">

@@ -46,7 +46,7 @@ export class GameComponent implements OnInit {
 
   isLogin(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         this.ID_NguoiDung = this.User[0].ID_NguoiDung;
         this.recommenderSystems();
@@ -68,6 +68,7 @@ export class GameComponent implements OnInit {
   recommenderSystems(){
     this.service.getGameRecommender(this.ID_NguoiDung).subscribe(data=>{
       this.recommender = data;
+      this.Gamelist=[];
       for(var i=0; i<this.recommender.length; i++){
         this.service.detailGame(this.recommender[i]).subscribe(data=>{
           this.Gamedetail = data;

@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {})
   }
 
-  addCookie(){
-    this.cookie.set("username", this.username);
-    this.cookie.set("password", this.password);
+  addCookie(user:any, pass:any){
+    this.cookie.set("username", user);
+    this.cookie.set("password", pass);
   }
 
   clickLogin(){
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           alert("Nhập sai tài khoản hoặc mật khẩu !");
         }
         else{
-          this.addCookie();
+          this.addCookie(this.User[0].UserName_ND, this.User[0].Password_ND);
           //this.router.navigate(['/game']);
           location.replace("/");
           this.checkLogin = true;

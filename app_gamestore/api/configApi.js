@@ -43,5 +43,7 @@ export default configApi = {
     topDanhGia : 'http://gamestoreapi.somee.com/api/Game/TopDanhGia',
     gameFree : 'http://gamestoreapi.somee.com/api/Game/gameFree',
     topGiaTien : 'http://gamestoreapi.somee.com/api/Game/TopGiaTien',
+    
     myGame : 'http://gamestoreapi.somee.com/api/RecommenderSystems/',
+    linkDownload : 'http://gamestoreapi.somee.com/api/GameDaTai/DownloadFile/'
 };

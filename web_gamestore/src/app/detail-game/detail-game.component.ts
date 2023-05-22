@@ -3,6 +3,9 @@ import { SharedService } from '../shared.service';
 import {ActivatedRoute, Router } from '@angular/router';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
+
 
 @Component({
   selector: 'app-detail-game',
@@ -11,11 +14,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class DetailGameComponent implements OnInit {
 
-  constructor(private service:SharedService, private route : ActivatedRoute, private cookie:CookieService, private router:Router) { } 
+  constructor(private service:SharedService, private route : ActivatedRoute, private cookie:CookieService, 
+    private router:Router,private http: HttpClient) { } 
   //kiểm tra user có đăng nhập hay không để hiển thị bình luận
   User:any = null;
   imageUrl:any;
   checkLogin:any;
+  apkUrl:any;
   //xem chi tiết game
   idGameDetails:any;
   dataGame:any;
@@ -66,7 +71,7 @@ export class DetailGameComponent implements OnInit {
 
   refreshUser(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         
         // this.service.findBinhLuan(this.idGameDetails, this.User[0].ID_NguoiDung).subscribe(
@@ -122,7 +127,7 @@ export class DetailGameComponent implements OnInit {
 
   clickLike(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
           this.service.checkYeuThich(this.User[0].ID_NguoiDung,this.idGameDetails).subscribe(check=>{
             if(check != "error")
@@ -152,7 +157,7 @@ export class DetailGameComponent implements OnInit {
 
   clickDowload(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
           this.service.checkGameDaTai(this.User[0].ID_NguoiDung,this.idGameDetails).subscribe(check=>{
             if(check != "error")
@@ -168,15 +173,19 @@ export class DetailGameComponent implements OnInit {
               alert("Đã gỡ cài đặt thành công !");
             }
             else{
-              var val={CapNhat:false,NgayTai:"",ID_NguoiDung:this.User[0].ID_NguoiDung,ID_Game:this.idGameDetails}
-              this.service.addGameDaTai(val).subscribe(res=>{
-                this.service.updateGameLuotTai(this.idGameDetails).subscribe(res=>{
-                  this.refreshGame();
+              this.service.downloadGame(this.idGameDetails).subscribe(res=>{
+                this.apkUrl = res[0].LinkTaiGame;
+                window.open(this.apkUrl, '_blank');
+                var val={CapNhat:false,NgayTai:"",ID_NguoiDung:this.User[0].ID_NguoiDung,ID_Game:this.idGameDetails}
+                this.service.addGameDaTai(val).subscribe(res=>{
+                  this.service.updateGameLuotTai(this.idGameDetails).subscribe(res=>{
+                    this.refreshGame();
+                  });
+                  alert(res.toString())
                 });
-                alert(res.toString())
-              });
-              this.isGameDaTai = true;
-              alert("Đã cài đặt thành công !");
+                this.isGameDaTai = true;
+                alert("Đã cài đặt thành công !");
+              })
             }
           })
       })

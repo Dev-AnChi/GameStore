@@ -1,0 +1,12 @@
+npm i -g firebase-tools
+
+(xxx ng build --prod xx)
+or
+ng build --configuration production
+
+firebase login   //chọn n
+
+firebase init //space để chọn -> chọn dự án
+--->dist/tên dự án
+
+firebase deploy --only hosting

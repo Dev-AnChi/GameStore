@@ -152,7 +152,7 @@ const BinhLuanScreen = ({ navigation, route }) => {
                                 <Image source={{ uri: configApi.localhostIMG + item.AnhDaiDien }} style={{ width: 60, height: 60, borderRadius: 100 }} />
                             </View>
                             <View>
-                                <Text style={styles.textname}>{item.NickName}<Text style={{ fontWeight: 'normal', fontSize: 14 }}>{" <" + item.Email + "> "}</Text></Text>
+                                <Text style={styles.textname}>{item.NickName}</Text>
                                 <View style={{ flexDirection: 'row', marginLeft: 10 }}>
                                     {star}
                                     {starNone}

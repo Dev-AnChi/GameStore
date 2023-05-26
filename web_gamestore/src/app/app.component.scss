@@ -1,6 +1,6 @@
 mat-sidenav {
     margin: 16px;
-    width: 200px;
+    width: 15%;
     border-right: none;
     background: white;
     color: #508bfc;;   
@@ -11,6 +11,7 @@ mat-sidenav {
 
 mat-sidenav-container {
     height: calc(100vh - 65px);
+    //height: 80%;
 } 
 
 .header{
@@ -60,7 +61,7 @@ svg{
 }
 
 
-@media (min-width: 800px) {  }
+@media (min-width: 700px) {  }
 
 li{
   color: #1462f3;
@@ -75,8 +76,8 @@ a:hover{
 
 
 .navbar-container {
-  width: 50rem;
-  margin-right: 4rem;
+  width: 80%;
+  margin-right: 50px;
   overflow-x: auto;
   white-space: nowrap;
 }

@@ -47,11 +47,4 @@ D:\Data\GameStore\gamestoreAPI\APIgamestore\obj\Debug\net6.0\refint\gamestoreAPI
 D:\Data\GameStore\gamestoreAPI\APIgamestore\obj\Debug\net6.0\gamestoreAPI.pdb
 D:\Data\GameStore\gamestoreAPI\APIgamestore\obj\Debug\net6.0\gamestoreAPI.genruntimeconfig.cache
 D:\Data\GameStore\gamestoreAPI\APIgamestore\obj\Debug\net6.0\ref\gamestoreAPI.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.Auth.PlatformServices.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.Auth.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.Core.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.Drive.v3.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Google.Apis.Auth.AspNetCore3.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Debug\net6.0\client_secret_143076549869-lbuqgj1g53rrhptikv52ga1eaoerg7kk.apps.googleusercontent.com.json

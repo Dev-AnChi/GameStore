@@ -1,7 +1,12 @@
 <div class="header p-1">
-  <div class="text-center">
-      <span style="font-size: 30px; font-weight: bold;">Game Store</span>
-  </div>
+    <div class="text-left" style="margin: 10px; margin-left: 20px;">
+      <span style="font-size: 30px; font-weight: bold;">
+        <a [routerLink]="['']" routerLinkActive="router-link-active">
+          <img src="http://gamestoreapi.somee.com/Images/game-console.png" alt="" width="50px">
+          Game Store
+        </a>
+      </span>
+    </div>
 </div>
 
 <nav class="navbar navbar-expand-sm">
@@ -20,7 +25,7 @@
           <i class="fas fa-bars"></i>
       </button>
 
-      <div class="collapse navbar-collapse" id="mynavbar">
+      <div class="collapse navbar-collapse col col-11" id="mynavbar">
         <div class="navbar-container">
             <div class="navbar-content">
               <ul class="navbar-nav me-auto">
@@ -39,7 +44,7 @@
 
 
           <!-- search -->
-          <div class="col-lg-2">
+          <div class="col-3">
               <form class="d-flex form-floating">
                   <input class="form-floating d-flex" type="search" id="IDsearch"
                     aria-label="Search" style="background-color: white; border: solid 1px black; border-radius: 5px;" placeholder="Tìm kiếm game" [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}">
@@ -53,9 +58,9 @@
           </div>
 
           <!-- login -->
-          <div class="col-lg-2">
+          <div class="col-2">
               <a [routerLink]="['/login']" routerLinkActive="router-link-active" *ngIf="!checkLogin">
-                  <button type="button" class="btn btn-primary pull-right"> Login
+                  <button type="button" class="btn btn-primary pull-right" style="width: 115px;"> Login
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                           fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0
                           0 16 16">
@@ -70,7 +75,7 @@
                   </button>
               </a>
               <a [routerLink]="['/']" routerLinkActive="router-link-active" *ngIf="checkLogin">
-                  <button type="button" class="btn btn-primary pull-right" (click)="clickLogout()" style="background-color: red;"> Logout
+                  <button type="button" class="btn btn-primary pull-right" (click)="clickLogout()" style="background-color: red; width: 115px;"> Logout
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
                           <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>

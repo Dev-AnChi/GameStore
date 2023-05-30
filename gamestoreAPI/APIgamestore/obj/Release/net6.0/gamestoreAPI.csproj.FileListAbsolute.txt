@@ -6,14 +6,7 @@ D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\gamestoreAPI.deps
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\gamestoreAPI.runtimeconfig.json
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\gamestoreAPI.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\gamestoreAPI.pdb
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.Auth.PlatformServices.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.Auth.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.Auth.AspNetCore3.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.Core.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Google.Apis.Drive.v3.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Data\GameStore\gamestoreAPI\APIgamestore\bin\Release\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll

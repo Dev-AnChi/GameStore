@@ -22,6 +22,10 @@ import { TheloaiComponent } from './theloai/theloai.component';
 import { TheloaiEditComponent } from './theloai/theloai-edit/theloai-edit.component';
 import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
 import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.component';
+
+
+import { QRCodeMomoComponent } from './qrcode-momo/qrcode-momo.component';
+
 const routes: Routes = [
   {path:"", component:GameComponent},
   {path:"game", component:GameComponent},
@@ -48,6 +52,9 @@ const routes: Routes = [
   {path:"theloai", component:TheloaiComponent},
   {path:"theloai-edit/:id", component:TheloaiEditComponent},
   {path:"kiem-duyet-game", component:KiemDuyetGameComponent},
+  
+  
+  {path:"qrCodeMomo", component:QRCodeMomoComponent},
 ];
 
 @NgModule({

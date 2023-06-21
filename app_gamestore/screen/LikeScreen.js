@@ -8,8 +8,20 @@ import images from '../contains/images';
 
 const LikeScreen = ({ navigation, route }) => {
   const idUser = route.params.idUser;
-  configyeuthich = configApi.gameyeuthich + idUser;
+  
+  //refresh control
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+      setgameyeuthich([]);
+      getDatagameyeuthich();
+      setRefreshing(true);
+      setTimeout(() => {
+      setRefreshing(false);
+      }, 2000);
+  }, []);
 
+
+  configyeuthich = configApi.gameyeuthich + idUser;
   const [gameyeuthich, setgameyeuthich] = useState([]);
   useEffect(() => {
     getDatagameyeuthich();
@@ -48,7 +60,10 @@ const LikeScreen = ({ navigation, route }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        // refreshControl={<RefreshControl refreshing={true} onRefresh={getDatagameyeuthich()} />}
+        //làm mới flatlist bằng refresh
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         renderItem={({ item }) => {
           return <TouchableOpacity
             onPress={() =>

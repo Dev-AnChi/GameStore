@@ -43,6 +43,10 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { BinhluanGameComponent } from './detail-game/binhluan-game/binhluan-game.component';
 import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.component';
+import { QRCodeMomoComponent } from './qrcode-momo/qrcode-momo.component';
+
+//add QR Code Momo
+//import { QRCodeModule } from 'ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,7 @@ import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.compon
     TheloaiEditComponent,
     BinhluanGameComponent,
     KiemDuyetGameComponent,
+    QRCodeMomoComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +87,7 @@ import { KiemDuyetGameComponent } from './kiem-duyet-game/kiem-duyet-game.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    //QRCodeModule
   ],
   providers: [SharedService, CookieService],
   bootstrap: [AppComponent]

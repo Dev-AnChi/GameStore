@@ -5,3 +5,17 @@ ng add @angular/material
 
 npm install file-saver --save
 npm install --save-dev @types/file-saver
+
+
+//thanh toán momo QRCode
+//npm install ngx-qrcode2 --save
+//npm install ngx-qrcode --save
+//npm i angularx-qrcode
+//npm install ng-qrcode@16.0.0 --save --force
+//npm install ngx-qrcode-generator --save
+npm install qrcode ngx-qrcode --save
+npm install @types/qrcode --save-dev
+
+
+
+

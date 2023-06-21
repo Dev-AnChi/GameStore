@@ -46,12 +46,11 @@ export class EditUserComponent implements OnInit {
 
   isLogin(){
     if(this.cookie.check('username')){
-      this.service.loginNguoiDung(this.username,this.password).subscribe(data=>{
+      this.service.loginCookiesNguoiDung(this.username,this.password).subscribe(data=>{
         this.User=data;
         if(this.User[0].ID_NhomChucNang == 'NCN1'){
           this.isAdmin = true;
         }
-        console.log(data)
 
         //this.ID_NguoiDung = this.User[0].ID_NguoiDung;
         if(this.User.length == 0){

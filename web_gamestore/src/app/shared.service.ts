@@ -126,9 +126,6 @@ export class SharedService {
   }
 
   //Người dùng
-  // checkLogin:boolean=false;
-  // username:string="error";
-  // password:string="error"; 
   getNguoiDung():Observable<any[]>{
     return this.http.get<any>(this.APIUrl+'/NguoiDung');
   }
@@ -144,12 +141,14 @@ export class SharedService {
   detailNguoiDung(val:any){
     return this.http.get(this.APIUrl + '/NguoiDung/' + val);
   }
+
   loginNguoiDung(username:any, password:any){
     return this.http.get(this.APIUrl + '/NguoiDung/Login/' + username + '/' + password);
   }
   loginCookiesNguoiDung(username:any, password:any){
     return this.http.get(this.APIUrl + '/NguoiDung/LoginCookies/' + username + '/' + password);
   }
+  
   getNameIDNhomChucNang(val:any){
     return this.http.get(this.APIUrl+'/NguoiDung/GetNameIDNhomChucNang/'+val);
   }

@@ -18,7 +18,6 @@ namespace APIgamestore.Controllers
         {
             _configuration = configuration;
         }
-
         //get
         //[Authorize]
         [HttpGet]

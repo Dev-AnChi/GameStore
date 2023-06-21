@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, Image, TouchableOpacity, ScrollView, ImageBackground, TextInput, FlatList, RefreshControl, BackHandler, Alert } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, 
+    Image, TouchableOpacity, ScrollView, ImageBackground, 
+    TextInput, FlatList, RefreshControl, BackHandler, Alert} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import color from '../contains/color';
 //import TheLoai from '../api/TheLoai';
@@ -14,6 +16,18 @@ function MainScreen({ navigation, route }) {
     const [show, setShow] = useState(false);
     const [isFilter, setisFilter] = useState('');
     const [textfilter, settextfilter] = useState('');
+
+    //refresh control
+    const [refreshing, setRefreshing] = React.useState(false);
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        setTimeout(() => {
+        setRefreshing(false);
+        }, 2000);
+    }, []);
+
+
+
     //get full game
     configGame = configApi.games;
     const [games, setGame] = useState([]);
@@ -361,7 +375,10 @@ function MainScreen({ navigation, route }) {
                         style={styles.flatlist}
                         showsVerticalScrollIndicator={false}
                         showsHorizontalScrollIndicator={false}
-                        // refreshControl={<RefreshControl refreshing={true} onRefresh={getDataGame()} />}
+                        //làm mới flatlist bằng refresh
+                        refreshControl={
+                            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                        }
                         renderItem={({ item }) => {
                             return <TouchableOpacity
                                 onPress={() =>

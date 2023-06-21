@@ -8,8 +8,20 @@ import images from '../contains/images';
 
 const DownloadScreen = ({ navigation, route }) => {
   const idUser = route.params.idUser;
-  configGamedatai = configApi.gamedatai + idUser;
 
+   //refresh control
+   const [refreshing, setRefreshing] = React.useState(false);
+   const onRefresh = React.useCallback(() => {
+       setGamedatai([]);
+       getDataGamedatai();
+       setRefreshing(true);
+       setTimeout(() => {
+       setRefreshing(false);
+       }, 2000);
+   }, []);
+
+
+  configGamedatai = configApi.gamedatai + idUser;
   const [gamedatai, setGamedatai] = useState([]);
   useEffect(() => {
     getDataGamedatai();
@@ -49,7 +61,10 @@ const DownloadScreen = ({ navigation, route }) => {
         style={styles.flatlist}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        // refreshControl={<RefreshControl refreshing={true} onRefresh={getDataGamedatai()} />}
+        //làm mới flatlist bằng refresh
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         renderItem={({ item }) => {
           return <TouchableOpacity
             onPress={() =>
